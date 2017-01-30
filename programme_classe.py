@@ -30,6 +30,18 @@ class MySprite():
     # Retourne la vitesse
     def get_speed(self):
         return self.speed
+# Classe Bombe hérite de 'MySprite'
+class Bombe(MySprite):
+    def __init__(self, pos_x, pos_y, image1, largeur, hauteur, speed, etat):
+        # appel du constructeur de la classe mere
+        MySprite.__init__(self, pos_x, pos_y, image1, largeur, hauteur, speed)
+
+        # Initialisation et affectation de l'attribut etat
+        self.etat = 0
+
+    # Retourne l'etat de la bombe (Entière= 0, Explosé= 1)
+    def get_etat(self):
+        return self.etat
 
 # Classe Pasteque hérite de 'MySprite'
 class Pasteque(MySprite):
@@ -61,19 +73,27 @@ class Pasteque(MySprite):
     def set_etat(self, etat):
         self.__etat = etat
 
-# Classe Dorée hérite de 'Pasteque'
-class Doree(Pasteque):
+# Classe PastequeDoree hérite de 'Pasteque'
+class PastequeDoree(Pasteque):
     def __init__(self, pos_x, pos_y, image1, largeur, hauteur, speed, points, temps, etat, multiplicateur):
         # appel du constructeur de la classe mere
         Pasteque.__init__(self, pos_x, pos_y, image1, largeur, hauteur, speed, points, temps, etat)
 
-        #Initialisation et affectation de l'attribut multiplicateur
+        # Initialisation et affectation de l'attribut multiplicateur
         self.multiplicateur = 2
 
     # Retourne le multiplicateur
     def get_mult(self):
         return self.multiplicateur
 
+#class PastequePourrie hérite de 'Pasteque'
+    def __init__(self, pos_x, pos_y, image1, largeur, hauteur, speed, points, temps, etat):
+        # appel du constructeur de la classe mere
+        Pasteque.__init__(self, pos_x, pos_y, image1, largeur, hauteur, speed, points, temps, etat)
+
+        # Initialisation et affectation de l'attribut points
+        self.points = 50
+        
 #importation de la bibliothèque system
 import sys
 
