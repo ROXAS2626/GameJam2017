@@ -1,10 +1,17 @@
+# -*- coding:Utf-8 -*-
+#ligne permettant l'utilisation des accents
+
+#importation de pygame
+import pygame
+from pygame.locals import *
+pygame.init()
 #Classe générique des sprites
 class MySprite():
     # Constructeur
     def __init__(self, pos_x, pos_y, image, largeur, hauteur, speed):
 
         # Initialisation et affectation de l'attribut image
-        self.image = pygame.load(image).convert_alpha()
+        self.image = pygame.image.load(image).convert_alpha()
 
         #Initialisation et affection de l'attribut rect
         self.rect = pygame.Rect(pos_x, pos_y, largeur, hauteur)
@@ -23,6 +30,7 @@ class MySprite():
     # Retourne la vitesse
     def get_speed(self):
         return self.speed
+
 # Classe Bombe hérite de 'MySprite'
 class Bombe(MySprite):
     def __init__(self, pos_x, pos_y, image1, largeur, hauteur, speed, etat):
@@ -30,7 +38,7 @@ class Bombe(MySprite):
         MySprite.__init__(self, pos_x, pos_y, image1, largeur, hauteur, speed)
 
         # Initialisation et affectation de l'attribut etat
-        self.etat = 0
+        self.etat = etat #0
 
     # Retourne l'etat de la bombe (Entière= 0, Explosé= 1)
     def get_etat(self):
@@ -43,13 +51,13 @@ class Pasteque(MySprite):
         MySprite.__init__(self, pos_x, pos_y, image1, largeur, hauteur, speed)
 
         # Initialisation et affectation de l'attribut points
-        self.points = 100
+        self.points = points #100
 
         # Initialisation et affectation de l'attribut temps
-        self.temps = 5
+        self.temps = temps #5
 
         # Initialisation et affectation de l'attribut etat
-        self.etat = 0
+        self.etat = etat #0
 
     # Méthode gérant les déplacements des pasteques
     def movement(self):
@@ -83,7 +91,7 @@ class PastequeDoree(Pasteque):
         Pasteque.__init__(self, pos_x, pos_y, image1, largeur, hauteur, speed, points, temps, etat)
 
         # Initialisation et affectation de l'attribut multiplicateur
-        self.multiplicateur = 2
+        self.multiplicateur = multiplicateur #2
 
     # Retourne le multiplicateur
     def get_mult(self):
@@ -96,4 +104,4 @@ class PastequePourrie(Pasteque):
         Pasteque.__init__(self, pos_x, pos_y, image1, largeur, hauteur, speed, points, temps, etat)
 
         # Initialisation et affectation de l'attribut points
-        self.points = 50
+        self.points = points#50

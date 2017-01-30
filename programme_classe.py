@@ -2,11 +2,8 @@
 #ligne permettant l'utilisation des accents
 
 #importation de pygame
-import pygame
+import pygame, Classes
 from pygame.locals import *
-
-#importation des classes
-import Classes
 
 #importation de la bibliothèque system
 import sys
@@ -20,12 +17,11 @@ pygame.init()
 fenetre = pygame.display.set_mode((700,530), RESIZABLE)
 
 # Création fond d'écran
-fond_e = pygame.image.load("image/floor.png").convert()
+#fond_e = pygame.image.load("Image/floor.png").convert()
 
 # Charge l'image de la pastèque et définit sa vitesse
 speed = [1, 0]
-pasteque = Pasteque(50, 50, "watermelon_400x400.png", 100, 100, speed)
-
+pasteque = Classes.Pasteque(50, 50, "Images/Pasteque.png", 100, 100, speed, 100, 5, 0)
 
 # boucle infinie pour affichage permanent de la fenêtre
 while 1:
@@ -38,7 +34,7 @@ while 1:
     pasteque.movement()
 
     # On affiche les différentes images
-    fenetre.blit(fond_e, (0,0))
+    #fenetre.blit(fond_e, (0,0))
     fenetre.blit(pasteque.get_img(), pasteque.get_rect())
 
     #On refresh l'affichage
