@@ -87,13 +87,14 @@ class PastequeDoree(Pasteque):
         return self.multiplicateur
 
 #class PastequePourrie hérite de 'Pasteque'
+class PastequePourrie(Pasteque):
     def __init__(self, pos_x, pos_y, image1, largeur, hauteur, speed, points, temps, etat):
         # appel du constructeur de la classe mere
         Pasteque.__init__(self, pos_x, pos_y, image1, largeur, hauteur, speed, points, temps, etat)
 
         # Initialisation et affectation de l'attribut points
         self.points = 50
-        
+
 #importation de la bibliothèque system
 import sys
 
