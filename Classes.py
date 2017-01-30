@@ -66,8 +66,8 @@ class Pasteque(MySprite):
 
          # On teste si la pasteque à atteint l'un des bords de l'écran
          # Si oui on change sa direction
-         if self.rect.left < 0 or self.rect.right > 700:
-             self.speed[0] = -self.speed[0]
+         if self.rect.right > 450:
+             self.speed[0] = 0
 
     # Retourne les points
     def get_pts(self):
