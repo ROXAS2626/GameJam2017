@@ -21,7 +21,7 @@ fond_e = pygame.image.load("Images/VRAI_FOND.png").convert()
 
 # Charge l'image de la pastèque et définit sa vitesse
 speed = [2, 0]
-pasteque = Classes.Pasteque(0, 650, "Images/Pasteque.png", 0, 0, speed, 100, 5, 0)
+pasteque = Classes.Pasteque(0, 650, "Images/Pasteque.png", 27, 29, speed, 100, 5, 0)
 
 # boucle infinie pour affichage permanent de la fenêtre
 while 1:
