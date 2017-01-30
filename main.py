@@ -2,13 +2,15 @@
 #ligne permettant l'utilisation des accents
 
 #importation de Pygame
-import pygame, Buttons
+import pygame
 from pygame.locals import *
+
 
 #importation de la bibliothèque system
 import sys;
+sys.path.insert(0, 'Buttons.py')
 
-
+import Buttons
 
 #importation du mixer pour gérer la musique
 import pygame.mixer
@@ -51,7 +53,7 @@ class Button_Jouer:
                     pygame.quit()
                 elif event.type == MOUSEBUTTONDOWN:
                     if self.Button1.pressed(pygame.mouse.get_pos()):
-                        jeu()
+                        import Jeu
 
 
 
