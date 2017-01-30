@@ -23,11 +23,9 @@ fenetre = pygame.display.set_mode((700,530), RESIZABLE)
 fond_e = pygame.image.load("image/floor.png").convert()
 
 # Charge l'image de la pastèque et définit sa vitesse
-pasteque = pygame.image.load("image/watermelon_400x400.png").convert_alpha()
 speed = [1, 0]
+pasteque = Pasteque(50, 50, "watermelon_400x400.png", 100, 100, speed)
 
-# Charge le rectangle de la pasteque
-pasteque_rect = pasteque.get_rect()
 
 # boucle infinie pour affichage permanent de la fenêtre
 while 1:
@@ -37,17 +35,11 @@ while 1:
             sys.exit()
 
     # Deplacement de la pasteque
-    pasteque_rect = pasteque_rect.move(speed)
-
-    #On teste si le slim à atteint l'un des bords de l'écran
-    if pasteque_rect.left < 0 or pasteque_rect.right > 700:
-        speed[0] = -speed[0]
-    if pasteque_rect.top < 0 or pasteque_rect.bottom > 530:
-        speed[1] = -speed[1]
+    pasteque.movement()
 
     # On affiche les différentes images
     fenetre.blit(fond_e, (0,0))
-    fenetre.blit(pasteque, pasteque_rect)
+    fenetre.blit(pasteque.get_img(), pasteque.get_rect())
 
     #On refresh l'affichage
     pygame.display.flip()

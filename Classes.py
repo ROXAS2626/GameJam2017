@@ -51,6 +51,16 @@ class Pasteque(MySprite):
         # Initialisation et affectation de l'attribut etat
         self.etat = 0
 
+    # Méthode gérant les déplacements des pasteques
+    def movement(self):
+         # Déplacement de la pasteque
+         self.rect = self.rect.move(self.speed)
+
+         # On teste si la pasteque à atteint l'un des bords de l'écran
+         # Si oui on change sa direction
+         if self.rect.left < 0 or self.rect.right > 700:
+             self.speed[0] = -self.speed[0]
+
     # Retourne les points
     def get_pts(self):
         return self.points
