@@ -343,26 +343,30 @@ def Credit():
         fenetre.blit(fond_e,(0,0))              #affiche l'image "fond_e" aux coordonnées "(0,0)" de la fenêtre "fenetre"
         fenetre.blit(titre_credits,(200,50))    #affiche l'image "titre_credits" aux coordonnées "(200,50)" de la fenêtre "fenetre"
         pygame.display.flip()                   #rafraichit la fenêtre pour voir les changements
+
         Nom = font.render("Bastien : Notre roi",1,(255,255,255))
         Nom2 = font.render("Nathan : Notre Guide",1,(255,255,255))
         Nom3 = font.render("Esteban : Notre Sauveur",1,(255,255,255))
         Nom4 = font.render("Lucas  : Notre Force",1,(255,255,255))
         Nom5 = font.render("Kirill : Notre Fierte",1,(255,255,255))
-        PDR = font.render("Nous vous remercions d'avoir jouer a notre jeu.",1,(255,255,255))
-        PDR2 = font.render("Nous esperons que cela vous a procuré un plaisir malsaint de casser les pasteques.",1,(255,255,255))
-        PDR3 = font.render("NB : Aucune pasteque n'etait maltraité pendant la creation du jeu.",1,(255,255,255))
-        PDR4 = font.render("NNB : Nous ne somme pas sponso par Zizou.",1,(255,255,255))
-        PDR5 = font.render("NNNB : Copyright@ Les Jäger-Masters.",1,(255,255,255))
-        fenetre.blit(Nom,(200,150))
-        fenetre.blit(Nom2,(200,200))
-        fenetre.blit(Nom3,(200,250))
-        fenetre.blit(Nom4,(200,300))
-        fenetre.blit(Nom5,(200,350))
-        fenetre.blit(PDR,(100,400))
-        fenetre.blit(PDR2,(100,420))
-        fenetre.blit(PDR3,(100,440))
-        fenetre.blit(PDR4,(100,460))
-        fenetre.blit(PDR5,(100,480))
+
+        PDR = font.render("Nous vous remercions d'avoir joue a notre jeu.",1,(255,255,255))
+        PDR2 = font.render("Nous esperons que cela vous a procure un plaisir malsain de casser les pasteques.",1,(255,255,255))
+        PDR3 = font.render("NB : Aucune pasteque n'a ete maltraitee pendant la creation du jeu.",1,(255,255,255))
+        PDR4 = font.render("Nous ne sommes pas sponsorises par Zizou.",1,(255,255,255))
+        PDR5 = font.render("Copyright @Les Jager-Masters.",1,(255,255,255))
+
+        fenetre.blit(Nom,(250,175))
+        fenetre.blit(Nom2,(250,200))
+        fenetre.blit(Nom3,(250,225))
+        fenetre.blit(Nom4,(250,250))
+        fenetre.blit(Nom5,(250,275))
+
+        fenetre.blit(PDR,(150,375))
+        fenetre.blit(PDR2,(25,400))
+        fenetre.blit(PDR3,(100,450))
+        fenetre.blit(PDR4,(140,475))
+        fenetre.blit(PDR5,(200,500))
 
         boutonJouer = Button()
 
@@ -504,16 +508,9 @@ class Button:
                     pygame.quit()
                 elif event.type == MOUSEBUTTONDOWN:
                     if self.Button1.pressed(pygame.mouse.get_pos()):
-<<<<<<< HEAD
-                        import Jeu
-                    if self.Button3.pressed(pygame.mouse.get_pos()):
-                        Tutoriel()
-                        Jeu()
-=======
                         Jeu()
                     if self.Button3.pressed(pygame.mouse.get_pos()):
                         Tutoriel()
->>>>>>> 5757fbcd3e40d5e53d883a00ba14e9ee17cf0923
                     if self.Button2.pressed(pygame.mouse.get_pos()):
                         Credit()
 
