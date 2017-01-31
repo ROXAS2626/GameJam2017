@@ -83,8 +83,8 @@ class Pasteque(MySprite):
         return self.etat
 
     # Setter de l'etat de la pasteque
-    def set_etat(self, etat):
-        self.__etat = etat
+    def set_etat(self, et):
+        self.__etat = et
 
 # Classe PastequeDoree hérite de 'Pasteque'
 class PastequeDoree(Pasteque):
