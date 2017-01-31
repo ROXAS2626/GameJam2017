@@ -26,12 +26,17 @@ pygame.display.set_caption('KoudBoul')
 def menuMain(): #procedure qui affiche le menu
 
     # musique du menu
+    # musique du menu
     pygame.mixer.music.load("Transforyou.mp3")
     pygame.mixer.music.play()
 
     #création fond d'écran menu
     fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
     fenetre.blit(fond_e,(0,0))              #affiche l'image "fond_e" aux coordonnées "(0,0)" de la fenêtre "fenetre"
+
+    logo = pygame.image.load("Images/logo.png")
+    fenetre.blit(logo,(200,100))             #affiche l'image "logo" aux coordonnées "(0,0)" de la fenêtre "fenetre"
+
     pygame.display.flip()                   #rafraichit la fenêtre pour voir les changements
 
 
@@ -145,24 +150,6 @@ class Button:
 
 
 
-<<<<<<< HEAD
-    # musique du menu
-    pygame.mixer.music.load("Transforyou.mp3")
-    pygame.mixer.music.play()
-
-    #création fond d'écran menu
-    fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
-    fenetre.blit(fond_e,(0,0))              #affiche l'image "fond_e" aux coordonnées "(0,0)" de la fenêtre "fenetre"
-
-    logo = pygame.image.load("Images/logo.png")
-    fenetre.blit(logo,(200,100))             #affiche l'image "logo" aux coordonnées "(0,0)" de la fenêtre "fenetre"
-
-    pygame.display.flip()                   #rafraichit la fenêtre pour voir les changements
-
-
-    boutonJouer = Button()
-=======
->>>>>>> ef364794f17bd11b1563a2c5163a1dacdb83e7bd
 
 
 
