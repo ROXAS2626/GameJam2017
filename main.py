@@ -27,7 +27,7 @@ def jeu(): #procedure qui affiche le jeu
     print "ICI LE JEU"
 
 
-class Button_Jouer:
+class Button:
     def __init__(self):
         self.main()
 
@@ -40,11 +40,13 @@ class Button_Jouer:
         #Parameters:               surface,      color,       x,   y,   length, height, width,    text,      text_color
         self.Button1.create_button(self.screen, (127,51,6), 100, 200, 500,    75,    0,        "Jouer", (255,255,255))
         pygame.display.flip()
+        self.Button2.create_button(self.screen,(127,51,6),100,400,500,75,0,"Credit",(255,255,255))
 
 
     #Run the loop
     def main(self):
         self.Button1 = Buttons.Button()
+        self.Button2 = Buttons.Button()
         self.display()
         while True:
             self.update_display()
@@ -54,6 +56,8 @@ class Button_Jouer:
                 elif event.type == MOUSEBUTTONDOWN:
                     if self.Button1.pressed(pygame.mouse.get_pos()):
                         import Jeu
+                    if self.Button2.pressed(pygame.mouse.get_pos()):
+                        import Credit
 
 
 
@@ -70,7 +74,7 @@ def menu(): #procedure qui affiche le menu
     pygame.display.flip()                   #rafraichit la fenêtre pour voir les changements
 
 
-    boutonJouer = Button_Jouer()
+    boutonJouer = Button()
 
 
 
