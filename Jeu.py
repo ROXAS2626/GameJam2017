@@ -30,9 +30,9 @@ multiplicateur_text = font.render("Multiplicateur : " + str(multiplicateur), 1, 
 
 # Création perso
 zizou_normal = pygame.image.load("Images/Zizou_transparent.png").convert()
-zizou_qui_casse = pygame.image.load("Images/Zizou_Qui_Casse.png").convert()
-zizou_qui_casse_vraiment = pygame.image.load("Images/Zizou_Qui_Casse_Vraiment.png").convert()
-zizou_qui_casse_pourris = pygame.image.load("Images/Zizou_Casse_Pasteque_Pourris.png").convert()
+zizou_qui_casse = pygame.image.load("Images/zizou_casse_fail.png").convert()
+zizou_qui_casse_vraiment = pygame.image.load("Images/zizou_casse_pasteque.png").convert()
+zizou_qui_casse_pourris = pygame.image.load("Images/zizou_casse_pasteque_pourrie.png").convert()
 
 
 # Charge l'image de la pastèque et définit sa vitesse
