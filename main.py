@@ -96,6 +96,16 @@ def Credit():
         fenetre.blit(fond_e,(0,0))              #affiche l'image "fond_e" aux coordonnées "(0,0)" de la fenêtre "fenetre"
         fenetre.blit(titre_credits,(200,50))    #affiche l'image "titre_credits" aux coordonnées "(200,50)" de la fenêtre "fenetre"
         pygame.display.flip()                   #rafraichit la fenêtre pour voir les changements
+        Nom = font.render("Babouch : Notre roi",1,(255,255,255))
+        Nom2 = font.render("Riki : Notre Guide",1,(255,255,255))
+        Nom3 = font.render("Gaillard : Notre Sauveur",1,(255,255,255))
+        Nom4 = font.render("Camarade : Notre Force",1,(255,255,255))
+        Nom5 = font.render("Phantom : Notre Fierte",1,(255,255,255))
+        fenetre.blit(Nom,(200,100))
+        fenetre.blit(Nom2,(200,150))
+        fenetre.blit(Nom3,(200,200))
+        fenetre.blit(Nom4,(200,250))
+        fenetre.blit(Nom5,(200,300))
 
 
         boutonJouer = Button()
@@ -113,7 +123,6 @@ def Credit():
 
 
         # Limite le nombre d'image par secondes
-        pygame.time.wait(10)
         menu()
 
 
