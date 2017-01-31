@@ -23,6 +23,10 @@ pygame.init()
 fenetre  = pygame.display.set_mode((700,700), RESIZABLE)
 pygame.display.set_caption('KoudBoul')
 
+
+def Jeu():
+    import Jeu
+
 def menuMain(): #procedure qui affiche le menu
 
     # musique du menu
@@ -153,7 +157,7 @@ class Button:
                     pygame.quit()
                 elif event.type == MOUSEBUTTONDOWN:
                     if self.Button1.pressed(pygame.mouse.get_pos()):
-                        import Jeu
+                        Jeu()
                     if self.Button2.pressed(pygame.mouse.get_pos()):
                         Credit()
 
