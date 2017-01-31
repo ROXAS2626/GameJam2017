@@ -24,8 +24,6 @@ multiplicateur = 1
 
 # Création du texte du score
 font = pygame.font.Font(None, 24)
-points_text = font.render("Points : " + str(points), 1, (255,255,255))
-multiplicateur_text = font.render("Multiplicateur : " + str(multiplicateur), 1, (255,255,255))
 
 # Création perso
 zizou_normal = pygame.image.load("Images/Zizou_transparent.png").convert_alpha()
@@ -56,9 +54,7 @@ while 1:
                 fenetre.blit(zizou_qui_casse, (0,0))
                 pygame.display.flip()
             if event.key == K_UP:
-                pasteque.etat = True
-                print pasteque.estCassee()
-                points = points + 100
+                points += 100
                 print points
                 pygame.display.flip()
 
@@ -73,6 +69,8 @@ while 1:
     fenetre.blit(zizou_normal, (230,130))
     fenetre.blit(monObjet.get_img(), monObjet.get_rect())
 
+    points_text = font.render("Points : {0}".format(points), 1, (255,255,255))
+    multiplicateur_text = font.render("Multiplicateur : {0}".format(multiplicateur), 1, (255,255,255))
     fenetre.blit(points_text, (30,30))
     fenetre.blit(multiplicateur_text, (30,50))
 
