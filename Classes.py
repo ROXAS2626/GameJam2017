@@ -5,32 +5,6 @@
 import pygame
 from pygame.locals import *
 pygame.init()
-#Classe Score
-class Score():
-    #Constructeur
-    def __init__(self, points, multiplicateur):
-
-        #Initialisation et affectation de l'attribut points
-        self.points = 0
-
-        #Initialisation et affectation de l'attribut multiplicateur
-        self.multiplicateur = 1
-
-    # Retourne les points de Score
-    def get_pts(self):
-        return self.points
-
-    # Retourne le multiplicateur de Score
-    def get_mult(self):
-        return self.multiplicateur
-
-    # Setter points de Score
-    def set_pts(self, points):
-        self.__points = points
-
-    # Setter multiplicateur de Score
-    def set_pts(self, multiplicateur):
-        self.__multiplicateur = multiplicateur
 
 #Classe générique des sprites
 class MySprite():
@@ -67,7 +41,7 @@ class Bombe(MySprite):
         # Initialisation et affectation de l'attribut etat
         self.etat = etat #0
 
-    # Retourne l'etat de la bombe (Entière= 0, Explosé= 1)
+    # Retourne l'etat de la bombe (Entière= False, Explosé= True)
     def get_etat(self):
         return self.etat
 
@@ -114,10 +88,11 @@ class Pasteque(MySprite):
     def get_tps(self):
         return self.temps
 
-    # Retourne l'etat de la pasteque (Entière= 0, Cassée= 1)
-    def get_etat(self):
+    # Méthode estCassee()
+    def estCassee(self):
         return self.etat
 
+    # Setter de l'etat de la pasteque
     def set_etat(self, etat):
         self.__etat = etat
 

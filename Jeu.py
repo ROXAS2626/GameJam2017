@@ -22,21 +22,31 @@ fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
 # Création d'un objet 'Score'
 points = 0
 multiplicateur = 1
-score = Classes.Score(points, multiplicateur)
 
 # Création du texte du score
 font = pygame.font.Font(None, 24)
-
-points_text = font.render("Points : " + str(score.get_pts()), 1, (255,255,255))
-multiplicateur_text = font.render("Multiplicateur : " + str(score.get_mult()), 1, (255,255,255))
+points_text = font.render("Points : " + str(points), 1, (255,255,255))
+multiplicateur_text = font.render("Multiplicateur : " + str(multiplicateur), 1, (255,255,255))
 
 # Création perso
+<<<<<<< HEAD
 zizou_normal = pygame.image.load("Images/Zizou_transparent.png").convert_alpha()
 zizou_qui_casse = pygame.image.load("Images/Zizou_Qui_Casse.png").convert_alpha()
 zizou_qui_casse_vraiment = pygame.image.load("Images/Zizou_Qui_Casse_Vraiment.png").convert_alpha()
 zizou_qui_casse_pourris = pygame.image.load("Images/Zizou_Casse_Pasteque_Pourris.png").convert_alpha()
 
 
+=======
+zizou_normal = pygame.image.load("Images/Zizou_transparent.png").convert()
+zizou_qui_casse = pygame.image.load("Images/zizou_casse_fail.png").convert()
+zizou_qui_casse_vraiment = pygame.image.load("Images/zizou_casse_pasteque.png").convert()
+zizou_qui_casse_pourris = pygame.image.load("Images/zizou_casse_pasteque_pourrie.png").convert()
+
+
+# Charge l'image de la pastèque et définit sa vitesse
+speed = [5, 0]
+pasteque = Classes.Pasteque(0, 305, "Images/pasteque200.png", 100, 100, speed, 100, 5, False)
+>>>>>>> master
 
 #pygame.key.set_repeat(500,3000)
 
@@ -47,9 +57,14 @@ while 1:
         if event.type == QUIT:
             sys.exit()
         if event.type == KEYDOWN:
-             if event.key == K_SPACE:
-                  fenetre.blit(zizou_qui_casse, (0,0))
-                  pygame.display.flip()
+            if event.key == K_SPACE:
+                fenetre.blit(zizou_qui_casse, (0,0))
+                pygame.display.flip()
+            if event.key == K_UP:
+                pasteque.set_etat(True)
+                print score.get_pts()
+
+    # Si la pasteque est cassée alors il faut ajouter les points de la pasteque dans le score
 
                   
     # Charge l'image des pastèques et définit leur vitesse
@@ -69,12 +84,20 @@ while 1:
 
     # On affiche les différentes images
     fenetre.blit(fond_e, (0,0))
+<<<<<<< HEAD
     fenetre.blit(zizou_normal, (230,130))
     fenetre.blit(listeObjets[numObjet].get_img(), listeObjets[numObjet].get_rect())
 
     fenetre.blit(points_text, (30,30))
     fenetre.blit(multiplicateur_text, (30,50))
 
+=======
+    fenetre.blit(pasteque.get_img(), pasteque.get_rect())
+
+    fenetre.blit(zizou_normal, (0,0))
+    fenetre.blit(points_text, (30,30))
+    fenetre.blit(multiplicateur_text, (30,50))
+>>>>>>> master
     #On refresh l'affichage
     pygame.display.flip()
 
