@@ -30,9 +30,18 @@ font = pygame.font.Font(None, 24)
 points_text = font.render("Points : " + str(score.get_pts()), 1, (255,255,255))
 multiplicateur_text = font.render("Multiplicateur : " + str(score.get_mult()), 1, (255,255,255))
 
+# Création perso
+zizou_normal = pygame.image.load("Images/Zizou_transparent.png").convert()
+zizou_qui_casse = pygame.image.load("Images/Zizou_Qui_Casse.png").convert()
+zizou_qui_casse_vraiment = pygame.image.load("Images/Zizou_Qui_Casse_Vraiment.png").convert()
+zizou_qui_casse_pourris = pygame.image.load("Images/Zizou_Casse_Pasteque_Pourris.png").convert()
+
+
 # Charge l'image de la pastèque et définit sa vitesse
 speed = [5, 0]
 pasteque = Classes.Pasteque(0, 305, "Images/pasteque200.png", 100, 100, speed, 100, 5, 0)
+
+pygame.key.set_repeat(500,3000)
 
 # boucle infinie pour affichage permanent de la fenêtre
 while 1:
@@ -40,6 +49,10 @@ while 1:
     for event in pygame.event.get():
         if event.type == QUIT:
             sys.exit()
+        if event.type == KEYDOWN:
+             if event.key == K_SPACE:
+                  fenetre.blit(zizou_qui_casse, (0,0))
+                  pygame.display.flip()
 
     # Deplacement de la pasteque
     pasteque.movement()
@@ -50,8 +63,15 @@ while 1:
     fenetre.blit(points_text, (30,30))
     fenetre.blit(multiplicateur_text, (30,50))
 
+    fenetre.blit(zizou_normal, (0,0))
+
     #On refresh l'affichage
     pygame.display.flip()
+
+
+
+
+
 
     # Limite le nombre d'image par secondes
     pygame.time.wait(10)
