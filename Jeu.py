@@ -39,12 +39,21 @@ zizou_qui_casse_pourris = pygame.image.load("Images/zizou_casse_pasteque_pourrie
 def getObjet():
     # Charge l'image des pastèques et définit leur vitesse
     speed = [5, 0]
-    pasteque = Classes.Pasteque(0, 305, "Images/pasteque.png", 100, 100, speed, 100, 5, 0)
-    bombe = Classes.Bombe(0, 305, "Images/bombe.png", 100, 100, speed, 0)
+    pasteque1 = Classes.Pasteque(0, 305, "Images/pasteque.png", 100, 100, speed, 100, 5, 0)
+    pasteque2 = Classes.Pasteque(0, 305, "Images/pasteque.png", 100, 100, speed, 100, 5, 0)
+    pasteque3 = Classes.Pasteque(0, 305, "Images/pasteque.png", 100, 100, speed, 100, 5, 0)
+    pasteque4 = Classes.Pasteque(0, 305, "Images/pasteque.png", 100, 100, speed, 100, 5, 0)
+    pasteque5 = Classes.Pasteque(0, 305, "Images/pasteque.png", 100, 100, speed, 100, 5, 0)
+    pasteque6 = Classes.Pasteque(0, 305, "Images/pasteque.png", 100, 100, speed, 100, 5, 0)
+    pasteque7 = Classes.Pasteque(0, 305, "Images/pasteque.png", 100, 100, speed, 100, 5, 0)
+    pasteque8 = Classes.Pasteque(0, 305, "Images/pasteque.png", 100, 100, speed, 100, 5, 0)
+    bombe1 = Classes.Bombe(0, 305, "Images/bombe.png", 100, 100, speed, 0)
+    bombe2 = Classes.Bombe(0, 305, "Images/bombe.png", 100, 100, speed, 0)
     pastequeDoree = Classes.PastequeDoree(0, 305, "Images/Pasteque_Doréé.png", 100, 100, speed, 100, 5, 0, 2)
-    pastequePourrie = Classes.PastequePourrie(0, 305, "Images/Pasteque_Pourris.png", 100, 100, speed, 100, 5, 0)
-    listeObjets = [pasteque, bombe, pastequeDoree, pastequePourrie]
-    numObjet = random.randint(0,3)
+    pastequePourrie1 = Classes.PastequePourrie(0, 305, "Images/Pasteque_Pourris.png", 100, 100, speed, 100, 5, 0)
+    pastequePourrie2 = Classes.PastequePourrie(0, 305, "Images/Pasteque_Pourris.png", 100, 100, speed, 100, 5, 0)
+    listeObjets = [pasteque1, pasteque2, pasteque3, pasteque4, pasteque5, pasteque6, pasteque7, pasteque8, bombe1, bombe2, pastequeDoree, pastequePourrie1, pastequePourrie2]
+    numObjet = random.randint(0,12)
     return listeObjets[numObjet]
 
 
