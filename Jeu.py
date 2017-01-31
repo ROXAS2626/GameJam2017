@@ -20,7 +20,7 @@ fenetre = pygame.display.set_mode((700,700), RESIZABLE)
 fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
 
 # Création du timer
-time = 100
+time = 10
 pygame.time.set_timer(USEREVENT+1, 1000) # 1 seconde c'est 1000 millisecondes
 
 # Création des variables des Scores
@@ -80,9 +80,12 @@ while 1:
                     points += 100 * multiplicateur
                     time += 2
                     pygame.display.flip()
-                elif isinstance(monObjet, Classes.Bombe) or time ==0:           # Si l'objet est une Bombe
-                    #import GameOver
+                elif isinstance(monObjet, Classes.Bombe):           # Si l'objet est une Bombe
+                    import game_over
                     pygame.display.flip()
+    if time == 0:
+        import game_over
+        pygame.display.flip()
 
     # Création d'une instance d'un objet (Pasteque, PastequeDoree, PastequePourrie ou Bombe)
     monObjet = getObjet()

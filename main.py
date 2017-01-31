@@ -118,6 +118,9 @@ def Jeu():
         # Limite le nombre d'image par secondes
         pygame.time.wait(10)
 
+def Game_Over():
+    import game_over
+
 def menuMain(): #procedure qui affiche le menu
 
     # musique du menu
@@ -137,9 +140,6 @@ def menuMain(): #procedure qui affiche le menu
 
     boutonJouer = Button()
 
-
-def jeu(): #procedure qui affiche le jeu
-    print "ICI LE JEU"
 
 def Credit():
     fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
