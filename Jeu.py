@@ -2,7 +2,7 @@
 #ligne permettant l'utilisation des accents
 
 #importation de pygame
-import pygame, Classes
+import pygame, Classes, random
 from pygame.locals import *
 
 #importation de la bibliothèque system
@@ -31,17 +31,14 @@ points_text = font.render("Points : " + str(score.get_pts()), 1, (255,255,255))
 multiplicateur_text = font.render("Multiplicateur : " + str(score.get_mult()), 1, (255,255,255))
 
 # Création perso
-zizou_normal = pygame.image.load("Images/Zizou_transparent.png").convert()
-zizou_qui_casse = pygame.image.load("Images/Zizou_Qui_Casse.png").convert()
-zizou_qui_casse_vraiment = pygame.image.load("Images/Zizou_Qui_Casse_Vraiment.png").convert()
-zizou_qui_casse_pourris = pygame.image.load("Images/Zizou_Casse_Pasteque_Pourris.png").convert()
+zizou_normal = pygame.image.load("Images/Zizou_transparent.png").convert_alpha()
+zizou_qui_casse = pygame.image.load("Images/Zizou_Qui_Casse.png").convert_alpha()
+zizou_qui_casse_vraiment = pygame.image.load("Images/Zizou_Qui_Casse_Vraiment.png").convert_alpha()
+zizou_qui_casse_pourris = pygame.image.load("Images/Zizou_Casse_Pasteque_Pourris.png").convert_alpha()
 
 
-# Charge l'image de la pastèque et définit sa vitesse
-speed = [5, 0]
-pasteque = Classes.Pasteque(0, 305, "Images/pasteque200.png", 100, 100, speed, 100, 5, 0)
 
-pygame.key.set_repeat(500,3000)
+#pygame.key.set_repeat(500,3000)
 
 # boucle infinie pour affichage permanent de la fenêtre
 while 1:
@@ -54,23 +51,32 @@ while 1:
                   fenetre.blit(zizou_qui_casse, (0,0))
                   pygame.display.flip()
 
+                  
+    # Charge l'image des pastèques et définit leur vitesse
+    speed = [5, 0]
+    pasteque = Classes.Pasteque(0, 305, "Images/pasteque200.png", 100, 100, speed, 100, 5, 0)
+    bombe = Classes.Bombe(0, 305, "Images/bombe150.png", 100, 100, speed, 0)
+    pastequeDoree = Classes.PastequeDoree(0, 305, "Images/Pasteque_Doree.png", 100, 100, speed, 100, 5, 0, 2)
+    pastequePourrie = Classes.PastequePourrie(0, 305, "Images/Pasteque_Pourris.png", 100, 100, speed, 100, 5, 0)
+
+    listeObjets = [pasteque, bombe, pastequeDoree, pastequePourrie]
+
+
+    numObjet = random.randint(0,3)
+
     # Deplacement de la pasteque
-    pasteque.movement()
+    listeObjets[numObjet].movement()
 
     # On affiche les différentes images
     fenetre.blit(fond_e, (0,0))
-    fenetre.blit(pasteque.get_img(), pasteque.get_rect())
+    fenetre.blit(zizou_normal, (230,130))
+    fenetre.blit(listeObjets[numObjet].get_img(), listeObjets[numObjet].get_rect())
+
     fenetre.blit(points_text, (30,30))
     fenetre.blit(multiplicateur_text, (30,50))
 
-    fenetre.blit(zizou_normal, (0,0))
-
     #On refresh l'affichage
     pygame.display.flip()
-
-
-
-
 
 
     # Limite le nombre d'image par secondes

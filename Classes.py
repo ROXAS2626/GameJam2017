@@ -71,6 +71,16 @@ class Bombe(MySprite):
     def get_etat(self):
         return self.etat
 
+    # Méthode gérant les déplacements des pasteques
+    def movement(self):
+         # Déplacement de la pasteque
+         self.rect = self.rect.move(self.speed)
+
+         # On teste si la pasteque à atteint l'un des bords de l'écran
+         # Si oui on change sa direction
+         if self.rect.right > 350:
+             self.speed[0] = 0
+
 # Classe Pasteque hérite de 'MySprite'
 class Pasteque(MySprite):
     def __init__(self, pos_x, pos_y, image1, largeur, hauteur, speed, points, temps, etat):
