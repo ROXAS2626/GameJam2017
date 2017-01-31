@@ -34,12 +34,15 @@ zizou_qui_casse_pourris = pygame.image.load("Images/zizou_casse_pasteque_pourrie
 def getObjet():
     # Charge l'image des pastèques et définit leur vitesse
     speed = [5, 0]
-    pasteque = Classes.Pasteque(0, 305, "Images/pasteque200.png", 100, 100, speed, 100, 5, 0)
-    bombe = Classes.Bombe(0, 305, "Images/bombe150.png", 100, 100, speed, 0)
+    pasteque = Classes.Pasteque(0, 305, "Images/pasteque.png", 100, 100, speed, 100, 5, 0)
+    bombe = Classes.Bombe(0, 305, "Images/bombe.png", 100, 100, speed, 0)
     pastequeDoree = Classes.PastequeDoree(0, 305, "Images/Pasteque_Doréé.png", 100, 100, speed, 100, 5, 0, 2)
     pastequePourrie = Classes.PastequePourrie(0, 305, "Images/Pasteque_Pourris.png", 100, 100, speed, 100, 5, 0)
-    listeObjets = [pasteque, bombe, pastequeDoree, pastequePourrie]
-    numObjet = random.randint(0,3)
+    pastequeDefoncee = Classes.PastequeDoree(0, 305, "Images/pasteque_defoncee.png", 100, 100, speed, 100, 5, 0, 2)
+    pastequeDoreeDefoncee = Classes.PastequeDoree(0, 305, "Images/pasteque_doree_defoncee.png", 100, 100, speed, 100, 5, 0, 2)
+    pastequePourrieDefoncee = Classes.PastequeDoree(0, 305, "Images/pasteque_pourrie_defoncee.png", 100, 100, speed, 100, 5, 0, 2)
+    listeObjets = [pasteque, bombe, pastequeDoree, pastequePourrie, pastequeDefoncee, pastequeDoreeDefoncee, pastequePourrieDefoncee]
+    numObjet = random.randint(0,6)
     return listeObjets[numObjet]
 
 
