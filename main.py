@@ -21,6 +21,7 @@ pygame.init()
 
 # création de la fenêtre
 fenetre  = pygame.display.set_mode((700,700), RESIZABLE)
+pygame.display.set_caption('WATERMELON BREAKER')
 
 
 def jeu(): #procedure qui affiche le jeu
