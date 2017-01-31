@@ -50,8 +50,8 @@ class Bombe(MySprite):
          # Déplacement de la pasteque
          self.rect = self.rect.move(self.speed)
 
-         # On teste si la pasteque à atteint l'un des bords de l'écran
-         # Si oui on change sa direction
+         # On teste si la pasteque à atteint le milieu de la fenetre
+         # Si oui on arrête la bombe
          if self.rect.right > 350:
              self.speed[0] = 0
 
@@ -75,8 +75,8 @@ class Pasteque(MySprite):
          # Déplacement de la pasteque
          self.rect = self.rect.move(self.speed)
 
-         # On teste si la pasteque à atteint l'un des bords de l'écran
-         # Si oui on change sa direction
+         # On teste si la pasteque à atteint le milieu de la fenetre
+         # Si oui on arrête la pasteque
          if self.rect.right > 350:
              self.speed[0] = 0
 

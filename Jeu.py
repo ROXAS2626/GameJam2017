@@ -38,11 +38,8 @@ def getObjet():
     bombe = Classes.Bombe(0, 305, "Images/bombe.png", 100, 100, speed, 0)
     pastequeDoree = Classes.PastequeDoree(0, 305, "Images/Pasteque_Doréé.png", 100, 100, speed, 100, 5, 0, 2)
     pastequePourrie = Classes.PastequePourrie(0, 305, "Images/Pasteque_Pourris.png", 100, 100, speed, 100, 5, 0)
-    pastequeDefoncee = Classes.PastequeDoree(0, 305, "Images/pasteque_defoncee.png", 100, 100, speed, 100, 5, 0, 2)
-    pastequeDoreeDefoncee = Classes.PastequeDoree(0, 305, "Images/pasteque_doree_defoncee.png", 100, 100, speed, 100, 5, 0, 2)
-    pastequePourrieDefoncee = Classes.PastequeDoree(0, 305, "Images/pasteque_pourrie_defoncee.png", 100, 100, speed, 100, 5, 0, 2)
-    listeObjets = [pasteque, bombe, pastequeDoree, pastequePourrie, pastequeDefoncee, pastequeDoreeDefoncee, pastequePourrieDefoncee]
-    numObjet = random.randint(0,6)
+    listeObjets = [pasteque, bombe, pastequeDoree, pastequePourrie]
+    numObjet = random.randint(0,3)
     return listeObjets[numObjet]
 
 
@@ -57,9 +54,17 @@ while 1:
                 fenetre.blit(zizou_qui_casse, (0,0))
                 pygame.display.flip()
             if event.key == K_UP:
-                points += 100
-                print points
-                pygame.display.flip()
+                if isinstance(monObjet, Classes.PastequeDoree):
+                    points += 300
+                    print points
+                    pygame.display.flip()
+                elif isinstance(monObjet, Classes.Pasteque):
+                    points += 100
+                    print points
+                    pygame.display.flip()
+                elif isinstance(monObjet, Classes.Bombe):
+                    points = 0
+                    pygame.display.flip()
 
 
     monObjet = getObjet()
