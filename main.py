@@ -24,11 +24,12 @@ fenetre  = pygame.display.set_mode((700,700), RESIZABLE)
 pygame.display.set_caption('KoudBoul')
 
 
+
 def Jeu():
     fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
 
     # Création du timer
-    time = 100
+    time = 2
     pygame.time.set_timer(USEREVENT+1, 1000) # 1 seconde c'est 1000 millisecondes
 
     # Création des variables des Scores
@@ -88,9 +89,10 @@ def Jeu():
                         points += 100 * multiplicateur
                         time += 2
                         pygame.display.flip()
-                    elif isinstance(monObjet, Classes.Bombe) or time ==0:           # Si l'objet est une Bombe
-                        #import GameOver
+                    elif isinstance(monObjet, Classes.Bombe):           # Si l'objet est une Bombe
+                        Game_Over()
                         pygame.display.flip()
+        if time == 0: Game_Over()
 
         # Création d'une instance d'un objet (Pasteque, PastequeDoree, PastequePourrie ou Bombe)
         monObjet = getObjet()
@@ -137,9 +139,76 @@ def menuMain(): #procedure qui affiche le menu
 
     boutonJouer = Button()
 
+def Game_Over():
+    fenetre = pygame.display.set_mode((700,700), RESIZABLE)
 
-def jeu(): #procedure qui affiche le jeu
-    print "ICI LE JEU"
+    # Création fond d'écran
+    fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
+
+
+    # Création du texte du score
+    fenetre.blit(fond_e,(0,0))
+    font = pygame.font.Font(None, 24)
+
+    pygame.display.flip()
+
+    class Button:
+        def __init__(self):
+            self.main()
+
+        #Create a display
+        def display(self):
+            self.screen = fenetre
+
+        #Update the display and show the button
+        def update_display(self):
+            #Parameters:               surface,      color,       x,   y,   length, height, width,    text,      text_color
+            self.Button1.create_button(self.screen, (127,51,6), 50, 600, 250,    75,    0,        "Retour", (255,255,255))
+            pygame.display.flip()
+
+
+        #Run the loop
+        def main(self):
+            self.Button1 = Buttons.Button()
+            self.display()
+            while True:
+                self.update_display()
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                    elif event.type == MOUSEBUTTONDOWN:
+                        if self.Button1.pressed(pygame.mouse.get_pos()):
+                            menuMain()
+
+    def menu(): #procedure qui affiche le menu
+
+        # musique du menu
+        pygame.mixer.music.load("Transforyou.mp3")
+        pygame.mixer.music.play()
+
+        #création fond d'écran menu
+        fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
+        fenetre.blit(fond_e,(0,0))              #affiche l'image "fond_e" aux coordonnées "(0,0)" de la fenêtre "fenetre"
+        pygame.display.flip()                   #rafraichit la fenêtre pour voir les changements
+
+
+        boutonJouer = Button()
+
+    while 1:
+        # Boucle sur les différents évènement reçut
+        for event in pygame.event.get():    # Ferme la fenetre si appuie sur la croix rouge
+            if event.type == QUIT:
+                sys.exit()
+        fenetre.blit(fond_e, (0,0))
+
+
+        #On refresh l'affichage
+        pygame.display.flip()
+
+
+        # Limite le nombre d'image par secondes
+        pygame.time.wait(10)
+        menu()
 
 def Credit():
     fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
