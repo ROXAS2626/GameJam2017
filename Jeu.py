@@ -2,7 +2,7 @@
 # Ligne permettant l'utilisation des accents
 
 # Importation de pygame
-import pygame, Classes, random
+import pygame, Classes, random, time
 from pygame.locals import *
 
 # Importation de la bibliothèque system
@@ -57,8 +57,42 @@ def getObjet():
     return listeObjets[numObjet]
 
 
+def combo_random(longueur_combo): # choix au hasard de la combinaison
+	i = 0
+	liste_temp = []
+	liste_images = []
+
+	while i < longueur_combo:
+		liste_temp.append(random.randint(0, 3))
+		i = i + 1
+
+	v = 0
+	while v < len(liste_temp):
+		 if(liste_temp[v] == 0):
+			 liste_images.append("../GameJam2017/Images/fleche_gauche_noire.png")
+		 if(liste_temp[v] == 1):
+			 liste_images.append("../GameJam2017/Images/fleche_droite_noire.png")
+		 if(liste_temp[v] == 2):
+			 liste_images.append("../GameJam2017/Images/fleche_haut_noire.png")
+		 if(liste_temp[v] == 3):
+			 liste_images.append("../GameJam2017/Images/fleche_bas_noire.png")
+		 v = v + 1
+
+
+	return liste_images
+
+# variable globale fixe longueur combo
+longueur_combo = 5
+
+liste_fleches = combo_random(longueur_combo);
+
+numFlecheCour = 0
+
 # Boucle infinie pour affichage permanent de la fenêtre
 while 1:
+    #accès a l'élément courant de la liste de fleches
+    flecheCour = liste_fleches[numFlecheCour]
+
     # Boucle sur les différents évènement reçut
     for event in pygame.event.get():
         if event.type == USEREVENT+1:
@@ -69,7 +103,7 @@ while 1:
             if event.key == K_SPACE:    # Si appuie sur espace, on change l'image de zizou
                 fenetre.blit(zizou_qui_casse, (0,0))
                 pygame.display.flip()
-            if event.key == K_UP:       # Si appuie sur la fleche du haut
+            if event.key == K_a:       # Si appuie sur la fleche du haut
                 if isinstance(monObjet, Classes.PastequeDoree):     # Si l'objet est une Pasteque Doree
                     points += 300
                     if multiplicateur < 4:
@@ -83,9 +117,34 @@ while 1:
                 elif isinstance(monObjet, Classes.Bombe):           # Si l'objet est une Bombe
                     import game_over
                     pygame.display.flip()
+            #on test si le bouton correspond au bouton
+            if flecheCour=="../GameJam2017/Images/fleche_gauche_noire.png" and event.key == K_LEFT:
+                liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_gauche_verte.png"
+                numFlecheCour = numFlecheCour + 1
+            elif flecheCour=="../GameJam2017/Images/fleche_haut_noire.png" and event.key == K_UP:
+                liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_haut_verte.png"
+                numFlecheCour = numFlecheCour + 1
+            elif flecheCour=="../GameJam2017/Images/fleche_droite_noire.png" and event.key == K_RIGHT:
+                liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_droite_verte.png"
+                numFlecheCour = numFlecheCour + 1
+            elif flecheCour=="../GameJam2017/Images/fleche_bas_noire.png" and event.key == K_DOWN:
+                liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_bas_verte.png"
+                numFlecheCour = numFlecheCour + 1
+            #sinon c'est que la touche pressées ne correspond pas
+            else:
+                print "erreur"
+                #passage a l'objet suivant
+                liste_fleches = combo_random(longueur_combo);
+                numFlecheCour = 0
+            #si on arrive a la derniere fleche il faut passer a l'objet suivant
+            if numFlecheCour == longueur_combo:
+                #temps?
+                liste_fleches = combo_random(longueur_combo);
+                numFlecheCour= 0
     if time == 0:
         import game_over
         pygame.display.flip()
+
 
     # Création d'une instance d'un objet (Pasteque, PastequeDoree, PastequePourrie ou Bombe)
     monObjet = getObjet()
@@ -105,6 +164,25 @@ while 1:
     multiplicateur_text = font.render("Multiplicateur : {0}".format(multiplicateur), 1, (255,255,255))
     fenetre.blit(points_text, (30,30))
     fenetre.blit(multiplicateur_text, (30,50))
+
+
+    # On affiche les différentes images
+
+    i = 0
+    posPrem = 0
+    if longueur_combo == 3:
+        posPrem = 175
+    elif longueur_combo == 4:
+        posPrem = 110
+    else: posPrem = 50
+
+    while i < longueur_combo:
+        fle_n = pygame.image.load(liste_fleches[i])
+        fenetre.blit(fle_n, (posPrem + (125*i),500))
+        i = i+1
+
+
+
 
     #On refresh l'affichage
     pygame.display.flip()
