@@ -29,19 +29,21 @@ pygame.display.set_caption('KoudBoul')
 
 
 def Jeu():
-    fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
+#################### VARIABLES GLOBALES ####################
+    fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()     # Image de fond
+    font = pygame.font.Font(None, 24)       # Création de la font
 
     # Création du timer
     time = 30
     pygame.time.set_timer(USEREVENT+1, 1000) # 1 seconde c'est 1000 millisecondes
 
-    # Création des variables des Scores
+    # Création des variables globales des Scores
     points = 0
     multiplicateur = 1
     combo = 0
+    # variable globale fixe longueur combo
+    longueur_combo = 3
 
-    # Création du texte du score
-    font = pygame.font.Font(None, 24)
 
     # Création perso
     zizou_normal = pygame.image.load("Images/Zizou_transparent.png").convert_alpha()
@@ -49,6 +51,7 @@ def Jeu():
     zizou_qui_casse_vraiment = pygame.image.load("Images/zizou_casse_pasteque.png").convert_alpha()
     zizou_qui_casse_pourris = pygame.image.load("Images/zizou_casse_pasteque_pourrie.png").convert_alpha()
 
+#################### METHODES ####################
     def getObjet():
         # Charge l'image des pastèques et définit leur vitesse
         x = -100
@@ -63,13 +66,10 @@ def Jeu():
         pasteque8 = Classes.Pasteque(x, 305, "Images/pasteque.png", 100, 100, speed, 100, 5, 0)
         bombe1 = Classes.Bombe(x, 305, "Images/bombe.png", 100, 100, speed, 0)
         bombe2 = Classes.Bombe(x, 305, "Images/bombe.png", 100, 100, speed, 0)
-        #pastequeDoree = Classes.PastequeDoree(x, 305, "Images/Pasteque_Doréé.png", 100, 100, speed, 100, 5, 0, 2)
         pastequePourrie1 = Classes.PastequePourrie(x, 305, "Images/Pasteque_Pourris.png", 100, 100, speed, 100, 5, 0)
         pastequePourrie2 = Classes.PastequePourrie(x, 305, "Images/Pasteque_Pourris.png", 100, 100, speed, 100, 5, 0)
         listeObjets = [pasteque1, pasteque2, pasteque3, pasteque4, pasteque5, pasteque6, pasteque7, pasteque8, bombe1, bombe2, pastequePourrie1, pastequePourrie2]
         numObjet = random.randint(0,11)
-        #listeObjets = [pasteque1, pasteque2, pasteque3, pasteque4, pasteque5, pasteque6, pasteque7, pasteque8, bombe1, bombe2, pastequeDoree, pastequePourrie1, pastequePourrie2]
-        #numObjet = random.randint(0,11)
         return listeObjets[numObjet]
 
 
@@ -97,9 +97,6 @@ def Jeu():
 
     	return liste_images
 
-    # variable globale fixe longueur combo
-    longueur_combo = 3
-
     liste_fleches = combo_random(longueur_combo);
 
     numFlecheCour = 0
@@ -121,69 +118,90 @@ def Jeu():
             if event.type == QUIT:          # Ferme la fenetre si appuie sur la croix rouge
                 sys.exit()
             if event.type == KEYDOWN:       # Evenement sur le clavier
-                if event.key == K_SPACE:    # Si appuie sur espace, on change l'image de zizou
-                    fenetre.blit(zizou_qui_casse, (0,0))
-                    pygame.display.flip()
-
-                #on test si le bouton correspond au bouton
-                if flecheCour=="../GameJam2017/Images/fleche_gauche_noire.png" and event.key == K_LEFT:
-                    liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_gauche_verte.png"
-                    numFlecheCour = numFlecheCour + 1
-                elif flecheCour=="../GameJam2017/Images/fleche_haut_noire.png" and event.key == K_UP:
-                    liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_haut_verte.png"
-                    numFlecheCour = numFlecheCour + 1
-                elif flecheCour=="../GameJam2017/Images/fleche_droite_noire.png" and event.key == K_RIGHT:
-                    liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_droite_verte.png"
-                    numFlecheCour = numFlecheCour + 1
-                elif flecheCour=="../GameJam2017/Images/fleche_bas_noire.png" and event.key == K_DOWN:
-                    liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_bas_verte.png"
-                    numFlecheCour = numFlecheCour + 1
-                #sinon c'est que la touche pressées ne correspond pas
-                else:
-                    # Si le joueur se trompe de fleche alors il perd 5 secondes, perd son combo et la longueur redescend à 3
-                    time -= 5
-                    combo = 0
-                    longueur_combo = 3
-                    # Passage a l'objet suivant
-                    monObjet = getObjet()
-                    liste_fleches = combo_random(longueur_combo);
-                    numFlecheCour = 0
-                #si on arrive a la derniere fleche il faut passer a l'objet suivant
-                if numFlecheCour == longueur_combo:
-                    # Le joueur à rentrer la bonne suite de fleche
-                    # Il faut donc : ajouter les points, ajouter du temps, passer à un autre objet
-
-                    # Deplacement de la pasteque
-                    if isinstance(monObjet, Classes.PastequeDoree):     # Si l'objet est une Pasteque Doree
-                        points += 300
-                        if multiplicateur < 4:
-                            multiplicateur = multiplicateur * 2
-                        time += 5
-                        pygame.display.flip()
-                    elif isinstance(monObjet, Classes.Pasteque):        # Si l'objet est une Pasteque
-                        points += 100 * multiplicateur
-                        time += 1
-                        pygame.display.flip()
-
-                    # Création d'une instance d'un objet (Pasteque, PastequeDoree, PastequePourrie ou Bombe)
-
-                    # Incrémentation du combo
-                    combo += 1
-                    if (combo % 10) == 0:
-                        pastequeDoree = Classes.PastequeDoree(-100, 305, "Images/Pasteque_Doréé.png", 100, 100, [15,0], 100, 5, 0, 2)
-                        monObjet = pastequeDoree
-                    else:
-                        if combo < 10:
-                            longueur_combo = 3
-                        elif combo > 10 and combo < 20:
-                            longueur_combo = 4
-                        else:
-                            longueur_combo = 5
+                #if event.key == K_SPACE:    # Si appuie sur espace, on change l'image de zizou
+                #    fenetre.blit(zizou_qui_casse, (0,0))
+                #    pygame.display.flip()
+                if isinstance(monObjet, Classes.Bombe):     # Si l'objet est une bombe
+                    if event.key == K_SPACE:
                         monObjet = getObjet()
+                        liste_fleches = combo_random(longueur_combo);
+                        numFlecheCour = 0
+                    else:
+                        Game_Over()
+                        pygame.display.flip()
+                else:                                       # Sinon
+                    #on test si le bouton correspond au bouton
+                    if flecheCour=="../GameJam2017/Images/fleche_gauche_noire.png" and event.key == K_LEFT:
+                        liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_gauche_verte.png"
+                        numFlecheCour = numFlecheCour + 1
+                    elif flecheCour=="../GameJam2017/Images/fleche_haut_noire.png" and event.key == K_UP:
+                        liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_haut_verte.png"
+                        numFlecheCour = numFlecheCour + 1
+                    elif flecheCour=="../GameJam2017/Images/fleche_droite_noire.png" and event.key == K_RIGHT:
+                        liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_droite_verte.png"
+                        numFlecheCour = numFlecheCour + 1
+                    elif flecheCour=="../GameJam2017/Images/fleche_bas_noire.png" and event.key == K_DOWN:
+                        liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_bas_verte.png"
+                        numFlecheCour = numFlecheCour + 1
+                    #sinon c'est que la touche pressées ne correspond pas
+                    else:
+                        # Si le joueur se trompe de fleche alors il perd 5 secondes, perd son combo et la longueur redescend à 3
+                        time -= 5
+                        combo = 0
+                        longueur_combo = 3
+                        # Passage a l'objet suivant
+                        monObjet = getObjet()
+                        liste_fleches = combo_random(longueur_combo);
+                        numFlecheCour = 0
 
-                    # Change les fleches de façon aléatoire
-                    liste_fleches = combo_random(longueur_combo);
-                    numFlecheCour= 0
+                    # Si on arrive à la derniere flèche il faut passer à l'objet suivant
+                    if numFlecheCour == longueur_combo:
+                        # Le joueur à rentrer la bonne suite de fleche
+                        # Il faut donc : changer l'image, ajouter les points, ajouter du temps, passer à un autre objet
+
+                        # Deplacement de la pasteque
+                        if isinstance(monObjet, Classes.PastequeDoree):     # Si l'objet est une Pasteque Doree
+                            points += 400
+                            if multiplicateur < 4:
+                                multiplicateur = multiplicateur * 2
+                            time += 5
+                            pasteque_doree_defoncee = pygame.image.load("../GameJam2017/Images/pasteque_doree_defoncee.png").convert_alpha()
+                            monObjet.image = pasteque_doree_defoncee
+                            fenetre.blit(fond_e, (0,0))
+                            fenetre.blit(zizou_qui_casse_vraiment, (170,76))
+                            fenetre.blit(monObjet.get_img(), monObjet.get_rect())
+                            pygame.display.flip()
+                            pygame.time.delay(200)
+                        elif isinstance(monObjet, Classes.Pasteque):        # Si l'objet est une Pasteque
+                            points += 100 * multiplicateur
+                            time += 1
+                            pasteque_defoncee = pygame.image.load("../GameJam2017/Images/pasteque_defoncee.png").convert_alpha()
+                            monObjet.image = pasteque_defoncee
+                            fenetre.blit(fond_e, (0,0))
+                            fenetre.blit(zizou_qui_casse_vraiment, (170,76))
+                            fenetre.blit(monObjet.get_img(), monObjet.get_rect())
+                            pygame.display.flip()
+                            pygame.time.delay(200)
+
+                        # Incrémentation du combo
+                        combo += 1
+
+                        # Création d'une nouvelle instance d'un objet (Pasteque, PastequeDoree, PastequePourrie ou Bombe)
+                        if (combo % 10) == 0:       # Si le combo est un multiple de 10 alors le prochain objet sera une pastequeDoree
+                            pastequeDoree = Classes.PastequeDoree(-100, 305, "Images/Pasteque_Doréé.png", 100, 100, [15,0], 100, 5, 0, 2)
+                            monObjet = pastequeDoree
+                        else:
+                            if combo < 10:
+                                longueur_combo = 3
+                            elif combo > 10 and combo < 20:
+                                longueur_combo = 4
+                            else:
+                                longueur_combo = 5
+                            monObjet = getObjet()
+
+                        # Change les fleches de façon aléatoire
+                        liste_fleches = combo_random(longueur_combo);
+                        numFlecheCour= 0
 
         # Si le temps est inférieur ou égal à 0 alors le joueur a perdu
         if time <= 0:
@@ -201,11 +219,9 @@ def Jeu():
         # On affiche les scores
         points_text = font.render("Points : {0}".format(points), 1, (255,255,255))
         multiplicateur_text = font.render("Multiplicateur : {0}".format(multiplicateur), 1, (255,255,255))
+        combo_text = font.render("Combo : {0}".format(combo), 1, (255,255,255))
         fenetre.blit(points_text, (30,30))
         fenetre.blit(multiplicateur_text, (30,50))
-
-        # On affiche le combo
-        combo_text = font.render("Combo : {0}".format(combo), 1, (255,255,255))
         fenetre.blit(combo_text, (30,70))
 
         # On affiche les différentes images
