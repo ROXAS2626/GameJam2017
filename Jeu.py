@@ -1,17 +1,17 @@
 # -*- coding:Utf-8 -*-
-#ligne permettant l'utilisation des accents
+# Ligne permettant l'utilisation des accents
 
-#importation de pygame
+# Importation de pygame
 import pygame, Classes, random
 from pygame.locals import *
 
-#importation de la bibliothèque system
+# Importation de la bibliothèque system
 import sys
 
-#initialisation de pygame
+# Initialisation de pygame
 pygame.init()
 
-# création de la fenêtre
+# Création de la fenêtre
 # Fenêtre de 900 pixels de largeur et de 899 pixels de hauteur
 # Resizable permet à la fenêtre d'être redimensionnée durant l'exécution
 fenetre = pygame.display.set_mode((700,700), RESIZABLE)
@@ -19,6 +19,7 @@ fenetre = pygame.display.set_mode((700,700), RESIZABLE)
 # Création fond d'écran
 fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
 
+# Création des variables des Scores
 points = 0
 multiplicateur = 1
 
@@ -43,30 +44,30 @@ def getObjet():
     return listeObjets[numObjet]
 
 
-# boucle infinie pour affichage permanent de la fenêtre
+# Boucle infinie pour affichage permanent de la fenêtre
 while 1:
-    #boucle sur les différents évènement reçut
-    for event in pygame.event.get():
+    # Boucle sur les différents évènement reçut
+    for event in pygame.event.get():    # Ferme la fenetre si appuie sur la croix rouge
         if event.type == QUIT:
             sys.exit()
-        if event.type == KEYDOWN:
-            if event.key == K_SPACE:
+        if event.type == KEYDOWN:       # Evenement sur le clavier
+            if event.key == K_SPACE:    # Si appuie sur espace, on change l'image de zizou
                 fenetre.blit(zizou_qui_casse, (0,0))
                 pygame.display.flip()
-            if event.key == K_UP:
-                if isinstance(monObjet, Classes.PastequeDoree):
+            if event.key == K_UP:       # Si appuie sur la fleche du haut
+                if isinstance(monObjet, Classes.PastequeDoree):     # Si l'objet est une Pasteque Doree
                     points += 300
                     print points
                     pygame.display.flip()
-                elif isinstance(monObjet, Classes.Pasteque):
+                elif isinstance(monObjet, Classes.Pasteque):        # Si l'objet est une Pasteque
                     points += 100
                     print points
                     pygame.display.flip()
-                elif isinstance(monObjet, Classes.Bombe):
+                elif isinstance(monObjet, Classes.Bombe):           # Si l'objet est une Bombe
                     points = 0
                     pygame.display.flip()
 
-
+    # Création d'une instance d'un objet (Pasteque, PastequeDoree, PastequePourrie ou Bombe)
     monObjet = getObjet()
 
     # Deplacement de la pasteque
@@ -77,6 +78,7 @@ while 1:
     fenetre.blit(zizou_normal, (230,130))
     fenetre.blit(monObjet.get_img(), monObjet.get_rect())
 
+    # On affiche les scores
     points_text = font.render("Points : {0}".format(points), 1, (255,255,255))
     multiplicateur_text = font.render("Multiplicateur : {0}".format(multiplicateur), 1, (255,255,255))
     fenetre.blit(points_text, (30,30))
