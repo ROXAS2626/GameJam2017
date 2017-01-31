@@ -14,14 +14,14 @@ pygame.init()
 # création de la fenêtre
 # Fenêtre de 900 pixels de largeur et de 899 pixels de hauteur
 # Resizable permet à la fenêtre d'être redimensionnée durant l'exécution
-fenetre = pygame.display.set_mode((900,899), RESIZABLE)
+fenetre = pygame.display.set_mode((700,700), RESIZABLE)
 
 # Création fond d'écran
-fond_e = pygame.image.load("Images/VRAI_FOND.png").convert()
+fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
 
 # Charge l'image de la pastèque et définit sa vitesse
 speed = [2, 0]
-pasteque = Classes.Pasteque(0, 650, "Images/Pasteque.png", 27, 29, speed, 100, 5, 0)
+pasteque = Classes.Pasteque(0, 500, "Images/Pasteque.png", 27, 29, speed, 100, 5, 0)
 
 # boucle infinie pour affichage permanent de la fenêtre
 while 1:

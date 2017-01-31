@@ -5,6 +5,33 @@
 import pygame
 from pygame.locals import *
 pygame.init()
+#Classe Score
+class Score():
+    #Constructeur
+    def __init__(self, points, multiplicateur):
+
+        #Initialisation et affectation de l'attribut points
+        self.points = 0
+
+        #Initialisation et affectation de l'attribut multiplicateur
+        self.multiplicateur = 1
+
+    # Retourne les points de Score
+    def get_pts(self):
+        return self.points
+
+    # Retourne le multiplicateur de Score
+    def get_mult(self):
+        return self.multiplicateur
+
+    # Setter points de Score
+    def set_pts(self, points):
+        self.__points = points
+
+    # Setter multiplicateur de Score
+    def set_pts(self, multiplicateur):
+        self.__multiplicateur = multiplicateur
+
 #Classe générique des sprites
 class MySprite():
     # Constructeur
@@ -66,7 +93,7 @@ class Pasteque(MySprite):
 
          # On teste si la pasteque à atteint l'un des bords de l'écran
          # Si oui on change sa direction
-         if self.rect.right > 450:
+         if self.rect.right > 350:
              self.speed[0] = 0
 
     # Retourne les points
