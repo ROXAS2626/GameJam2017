@@ -2,7 +2,7 @@
 # Ligne permettant l'utilisation des accents
 
 # Importation de pygame
-import pygame, Classes, GameOver, random
+import pygame, Classes, random
 from pygame.locals import *
 
 # Importation de la bibliothèque system
