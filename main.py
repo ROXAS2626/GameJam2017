@@ -120,6 +120,9 @@ def Jeu():
         # Limite le nombre d'image par secondes
         pygame.time.wait(10)
 
+def Game_Over():
+    import game_over
+
 def menuMain(): #procedure qui affiche le menu
 
     # musique du menu
@@ -166,6 +169,7 @@ def Game_Over():
             self.Button1.create_button(self.screen, (127,51,6), 50, 600, 250,    75,    0,        "Retour", (255,255,255))
             pygame.display.flip()
 
+<<<<<<< HEAD
 
         #Run the loop
         def main(self):
@@ -210,6 +214,8 @@ def Game_Over():
         pygame.time.wait(10)
         menu()
 
+=======
+>>>>>>> b3e79e7b12beb51d313facaf73e0b5b76a272d60
 def Credit():
     fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
 
