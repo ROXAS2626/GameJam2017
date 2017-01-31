@@ -63,6 +63,8 @@ while 1:
             if event.key == K_UP:       # Si appuie sur la fleche du haut
                 if isinstance(monObjet, Classes.PastequeDoree):     # Si l'objet est une Pasteque Doree
                     points += 300
+                    if multiplicateur < 4:
+                        multiplicateur = multiplicateur * 2
                     print points
                     pygame.display.flip()
                 elif isinstance(monObjet, Classes.Pasteque):        # Si l'objet est une Pasteque
