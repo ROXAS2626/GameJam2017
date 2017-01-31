@@ -2,7 +2,7 @@
 # Ligne permettant l'utilisation des accents
 
 # Importation de pygame
-import pygame, Classes, random
+import pygame, Classes, GameOver, random
 from pygame.locals import *
 
 # Importation de la bibliothèque system
@@ -74,14 +74,14 @@ while 1:
                     points += 300
                     if multiplicateur < 4:
                         multiplicateur = multiplicateur * 2
-                    print points
+                    time += 5
                     pygame.display.flip()
                 elif isinstance(monObjet, Classes.Pasteque):        # Si l'objet est une Pasteque
                     points += 100 * multiplicateur
-                    print points
+                    time += 2
                     pygame.display.flip()
-                elif isinstance(monObjet, Classes.Bombe):           # Si l'objet est une Bombe
-                    points = 0
+                elif isinstance(monObjet, Classes.Bombe) or time ==0:           # Si l'objet est une Bombe
+                    #import GameOver
                     pygame.display.flip()
 
     # Création d'une instance d'un objet (Pasteque, PastequeDoree, PastequePourrie ou Bombe)
