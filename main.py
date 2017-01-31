@@ -121,69 +121,75 @@ def Jeu():
             if event.type == QUIT:          # Ferme la fenetre si appuie sur la croix rouge
                 sys.exit()
             if event.type == KEYDOWN:       # Evenement sur le clavier
-                if event.key == K_SPACE:    # Si appuie sur espace, on change l'image de zizou
-                    fenetre.blit(zizou_qui_casse, (0,0))
-                    pygame.display.flip()
-
-                #on test si le bouton correspond au bouton
-                if flecheCour=="../GameJam2017/Images/fleche_gauche_noire.png" and event.key == K_LEFT:
-                    liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_gauche_verte.png"
-                    numFlecheCour = numFlecheCour + 1
-                elif flecheCour=="../GameJam2017/Images/fleche_haut_noire.png" and event.key == K_UP:
-                    liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_haut_verte.png"
-                    numFlecheCour = numFlecheCour + 1
-                elif flecheCour=="../GameJam2017/Images/fleche_droite_noire.png" and event.key == K_RIGHT:
-                    liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_droite_verte.png"
-                    numFlecheCour = numFlecheCour + 1
-                elif flecheCour=="../GameJam2017/Images/fleche_bas_noire.png" and event.key == K_DOWN:
-                    liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_bas_verte.png"
-                    numFlecheCour = numFlecheCour + 1
-                #sinon c'est que la touche pressées ne correspond pas
-                else:
-                    # Si le joueur se trompe de fleche alors il perd 5 secondes, perd son combo et la longueur redescend à 3
-                    time -= 5
-                    combo = 0
-                    longueur_combo = 3
-                    # Passage a l'objet suivant
-                    monObjet = getObjet()
-                    liste_fleches = combo_random(longueur_combo);
-                    numFlecheCour = 0
-                #si on arrive a la derniere fleche il faut passer a l'objet suivant
-                if numFlecheCour == longueur_combo:
-                    # Le joueur à rentrer la bonne suite de fleche
-                    # Il faut donc : ajouter les points, ajouter du temps, passer à un autre objet
-
-                    # Deplacement de la pasteque
-                    if isinstance(monObjet, Classes.PastequeDoree):     # Si l'objet est une Pasteque Doree
-                        points += 300
-                        if multiplicateur < 4:
-                            multiplicateur = multiplicateur * 2
-                        time += 5
-                        pygame.display.flip()
-                    elif isinstance(monObjet, Classes.Pasteque):        # Si l'objet est une Pasteque
-                        points += 100 * multiplicateur
-                        time += 1
-                        pygame.display.flip()
-
-                    # Création d'une instance d'un objet (Pasteque, PastequeDoree, PastequePourrie ou Bombe)
-
-                    # Incrémentation du combo
-                    combo += 1
-                    if (combo % 10) == 0:
-                        pastequeDoree = Classes.PastequeDoree(-100, 305, "Images/Pasteque_Doréé.png", 100, 100, [15,0], 100, 5, 0, 2)
-                        monObjet = pastequeDoree
-                    else:
-                        if combo < 10:
-                            longueur_combo = 3
-                        elif combo > 10 and combo < 20:
-                            longueur_combo = 4
-                        else:
-                            longueur_combo = 5
+                #if event.key == K_SPACE:    # Si appuie sur espace, on change l'image de zizou
+                #    fenetre.blit(zizou_qui_casse, (0,0))
+                #    pygame.display.flip()
+                if isinstance(monObjet, Classes.Bombe):     # Si l'objet est une bombe
+                    if event.key == K_SPACE:
                         monObjet = getObjet()
+                    else:
+                        Game_Over()
+                        pygame.display.flip()
+                else:                                       # Sinon
+                    #on test si le bouton correspond au bouton
+                    if flecheCour=="../GameJam2017/Images/fleche_gauche_noire.png" and event.key == K_LEFT:
+                        liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_gauche_verte.png"
+                        numFlecheCour = numFlecheCour + 1
+                    elif flecheCour=="../GameJam2017/Images/fleche_haut_noire.png" and event.key == K_UP:
+                        liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_haut_verte.png"
+                        numFlecheCour = numFlecheCour + 1
+                    elif flecheCour=="../GameJam2017/Images/fleche_droite_noire.png" and event.key == K_RIGHT:
+                        liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_droite_verte.png"
+                        numFlecheCour = numFlecheCour + 1
+                    elif flecheCour=="../GameJam2017/Images/fleche_bas_noire.png" and event.key == K_DOWN:
+                        liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_bas_verte.png"
+                        numFlecheCour = numFlecheCour + 1
+                    #sinon c'est que la touche pressées ne correspond pas
+                    else:
+                        # Si le joueur se trompe de fleche alors il perd 5 secondes, perd son combo et la longueur redescend à 3
+                        time -= 5
+                        combo = 0
+                        longueur_combo = 3
+                        # Passage a l'objet suivant
+                        monObjet = getObjet()
+                        liste_fleches = combo_random(longueur_combo);
+                        numFlecheCour = 0
+                    #si on arrive a la derniere fleche il faut passer a l'objet suivant
+                    if numFlecheCour == longueur_combo:
+                        # Le joueur à rentrer la bonne suite de fleche
+                        # Il faut donc : ajouter les points, ajouter du temps, passer à un autre objet
 
-                    # Change les fleches de façon aléatoire
-                    liste_fleches = combo_random(longueur_combo);
-                    numFlecheCour= 0
+                        # Deplacement de la pasteque
+                        if isinstance(monObjet, Classes.PastequeDoree):     # Si l'objet est une Pasteque Doree
+                            points += 400
+                            if multiplicateur < 4:
+                                multiplicateur = multiplicateur * 2
+                            time += 5
+                            pygame.display.flip()
+                        elif isinstance(monObjet, Classes.Pasteque):        # Si l'objet est une Pasteque
+                            points += 100 * multiplicateur
+                            time += 1
+                            pygame.display.flip()
+
+                        # Création d'une instance d'un objet (Pasteque, PastequeDoree, PastequePourrie ou Bombe)
+
+                        # Incrémentation du combo
+                        combo += 1
+                        if (combo % 10) == 0:
+                            pastequeDoree = Classes.PastequeDoree(-100, 305, "Images/Pasteque_Doréé.png", 100, 100, [15,0], 100, 5, 0, 2)
+                            monObjet = pastequeDoree
+                        else:
+                            if combo < 10:
+                                longueur_combo = 3
+                            elif combo > 10 and combo < 20:
+                                longueur_combo = 4
+                            else:
+                                longueur_combo = 5
+                            monObjet = getObjet()
+
+                        # Change les fleches de façon aléatoire
+                        liste_fleches = combo_random(longueur_combo);
+                        numFlecheCour= 0
 
         # Si le temps est inférieur ou égal à 0 alors le joueur a perdu
         if time <= 0:
