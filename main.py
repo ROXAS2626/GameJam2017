@@ -465,13 +465,15 @@ def Tutoriel():
         #Update the display and show the button
         def update_display(self):
             #Parameters:               surface,      color,       x,   y,   length, height, width,    text,      text_color
-            self.Button1.create_button(self.screen, (127,51,6), 100, 550, 500,    75,    0,        "Retour", (255,255,255))
+            self.Button1.create_button(self.screen, (127,51,6), 100, 570, 500,    75,    0,        "Retour", (255,255,255))
+            self.Button2.create_button(self.screen, (127,51,6), 100, 465, 500,    75,    0,        "Suivant", (255,255,255))
             pygame.display.flip()
 
 
         #Run the loop
         def main(self):
             self.Button1 = Buttons.Button()
+            self.Button2 = Buttons.Button()
             self.display()
             while True:
                 self.update_display()
@@ -481,6 +483,8 @@ def Tutoriel():
                     elif event.type == MOUSEBUTTONDOWN:
                         if self.Button1.pressed(pygame.mouse.get_pos()):
                             menuMain()
+                        elif self.Button2.pressed(pygame.mouse.get_pos()):
+                            Tutoriel2()
 
     def menu(): #procedure qui affiche le menu
 
@@ -491,35 +495,36 @@ def Tutoriel():
         #création fond d'écran menu
         fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
         titre_tutos = pygame.image.load("Images/Tuto.png")
+
         fenetre.blit(fond_e,(0,0))              #affiche l'image "fond_e" aux coordonnées "(0,0)" de la fenêtre "fenetre"
         fenetre.blit(titre_tutos,(200,50))    #affiche l'image "titre_tutos" aux coordonnées "(200,50)" de la fenêtre "fenetre"
+
         pygame.display.flip()                   #rafraichit la fenêtre pour voir les changements
-        Nom = font.render("But du jeu :",1,(255,255,255))
-        Nom2 = font.render("Realisez le plus vite possible",1,(255,255,255))
-        Nom20 = font.render("les combinaisons de touches pour",1,(255,255,255))
-        Nom21 = font.render("casser le maximum de pasteques !",1,(255,255,255))
+        but1 = font.render("But du jeu :",1,(255,255,255))
+        but2 = font.render("Realisez le maximum de combinaisons",1,(255,255,255))
+        but3 = font.render("de touches en 30 secondes pour",1,(255,255,255))
+        but4 = font.render("casser le maximum de pasteques !",1,(255,255,255))
 
-        Nom22 = font.render("Nombres de points :",1,(255,255,255))
-        Nom3 = font.render("Pasteques normales : 100 points",1,(255,255,255))
-        Nom31 = font.render("Pasteques pourries : 200 points",1,(255,255,255))
-        Nom32 = font.render("Pasteques dorees : 500 points",1,(255,255,255))
+        combo1 = font.render("Combo :",1,(255,255,255))
+        combo2 = font.render("Combo < 10 : Score X1 et 3 touches",1,(255,255,255))
+        combo3 = font.render("Combo entre 10 et 20 : Score X2 et 4 touches",1,(255,255,255))
+        combo4 = font.render("Combo > 30 : Score X4 et 5 touches",1,(255,255,255))
 
-        Nom4 = font.render("Appuyer sur la touche espace pour eviter les bombes qui vont font perdre directement.",1,(255,255,255))
-        Nom5 = font.render("A chaque pasteque cassee, vous gagnez 1s et a chaque erreur vous perdez 5s.",1,(255,255,255))
+        regle1 = font.render("Pasteque cassee : +1s",1,(255,255,255))
+        regle2 = font.render("Pasteque ratee  : -5s",1,(255,255,255))
 
-        fenetre.blit(Nom,(290,150))
-        fenetre.blit(Nom2,(210,185))
-        fenetre.blit(Nom20,(210,210))
-        fenetre.blit(Nom21,(210,235))
+        fenetre.blit(but1,(290,140))
+        fenetre.blit(but2,(210,178))
+        fenetre.blit(but3,(210,203))
+        fenetre.blit(but4,(210,228))
 
-        fenetre.blit(Nom22,(265,305))
-        fenetre.blit(Nom3,(210,340))
-        fenetre.blit(Nom31,(210,365))
-        fenetre.blit(Nom32,(210,390))
+        fenetre.blit(regle1,(210,260))
+        fenetre.blit(regle2,(210,285))
 
-        fenetre.blit(Nom4,(25,460))
-        fenetre.blit(Nom5,(25,500))
-
+        fenetre.blit(combo1,(300,325))
+        fenetre.blit(combo2,(180,360))
+        fenetre.blit(combo3,(180,385))
+        fenetre.blit(combo4,(180,410))
 
         boutonJouer = Button()
 
@@ -537,6 +542,203 @@ def Tutoriel():
 
         # Limite le nombre d'image par secondes
         menu()
+
+def Tutoriel2():
+    fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
+
+
+    # Création du texte du score
+    fenetre.blit(fond_e,(0,0))
+    font = pygame.font.Font(None, 24)
+
+    pygame.display.flip()
+
+    class Button:
+        def __init__(self):
+            self.main()
+
+        #Create a display
+        def display(self):
+            self.screen = fenetre
+
+        #Update the display and show the button
+        def update_display(self):
+            #Parameters:               surface,      color,       x,   y,   length, height, width,    text,      text_color
+            self.Button1.create_button(self.screen, (127,51,6), 100, 570, 500,    75,    0,        "Retour", (255,255,255))
+            self.Button2.create_button(self.screen, (127,51,6), 100, 465, 225,    75,    0,        "Precedent", (255,255,255))
+            self.Button3.create_button(self.screen, (127,51,6), 375, 465, 225,    75,    0,        "Suivant", (255,255,255))
+            pygame.display.flip()
+
+
+        #Run the loop
+        def main(self):
+            self.Button1 = Buttons.Button()
+            self.Button2 = Buttons.Button()
+            self.Button3 = Buttons.Button()
+            self.display()
+            while True:
+                self.update_display()
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                    elif event.type == MOUSEBUTTONDOWN:
+                        if self.Button1.pressed(pygame.mouse.get_pos()):
+                            menuMain()
+                        elif self.Button2.pressed(pygame.mouse.get_pos()):
+                            Tutoriel()
+                        elif self.Button3.pressed(pygame.mouse.get_pos()):
+                            Tutoriel3()
+
+    def menu(): #procedure qui affiche le menu
+
+        # musique du menu
+        pygame.mixer.music.load("Transforyou.mp3")
+        pygame.mixer.music.play()
+
+        #création fond d'écran menu
+        fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
+        titre_tutos = pygame.image.load("Images/Tuto.png")
+        pasteque_normale = pygame.image.load("Images/pasteque.png")
+        pasteque_pourrie = pygame.image.load("Images/Pasteque_Pourris.png")
+        pasteque_doree = pygame.image.load("Images/Pasteque_Doréé.png")
+
+        fenetre.blit(fond_e,(0,0))              #affiche l'image "fond_e" aux coordonnées "(0,0)" de la fenêtre "fenetre"
+        fenetre.blit(titre_tutos,(200,50))    #affiche l'image "titre_tutos" aux coordonnées "(200,50)" de la fenêtre "fenetre"
+        fenetre.blit(pasteque_normale,(150,90))    #affiche l'image "pasteque_normale" aux coordonnées "(270,50)" de la fenêtre "fenetre"
+        fenetre.blit(pasteque_pourrie,(150,190))    #affiche l'image "pasteque_pourrie" aux coordonnées "(370,50)" de la fenêtre "fenetre"
+        fenetre.blit(pasteque_doree,(150,290))    #affiche l'image "pasteque_doree" aux coordonnées "(470,50)" de la fenêtre "fenetre"
+
+        pygame.display.flip()                   #rafraichit la fenêtre pour voir les changements
+
+        points2 = font.render("Pasteque normale",1,(255,255,255))
+        points3 = font.render("100 points",1,(255,255,255))
+        points4 = font.render("Pasteque pourrie",1,(255,255,255))
+        points5 = font.render("200 points",1,(255,255,255))
+        points6 = font.render("Pasteque doree",1,(255,255,255))
+        points7 = font.render("500 points",1,(255,255,255))
+
+        fenetre.blit(points2,(300,165))
+        fenetre.blit(points3,(300,195))
+        fenetre.blit(points4,(300,265))
+        fenetre.blit(points5,(300,295))
+        fenetre.blit(points6,(300,365))
+        fenetre.blit(points7,(300,395))
+
+        boutonJouer = Button()
+
+    while 1:
+        # Boucle sur les différents évènement reçut
+        for event in pygame.event.get():    # Ferme la fenetre si appuie sur la croix rouge
+            if event.type == QUIT:
+                sys.exit()
+        fenetre.blit(fond_e, (0,0))
+
+
+        #On refresh l'affichage
+        pygame.display.flip()
+
+
+        # Limite le nombre d'image par secondes
+        menu()
+
+def Tutoriel3():
+    fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
+
+
+    # Création du texte du score
+    fenetre.blit(fond_e,(0,0))
+    font = pygame.font.Font(None, 24)
+
+    pygame.display.flip()
+
+    class Button:
+        def __init__(self):
+            self.main()
+
+        #Create a display
+        def display(self):
+            self.screen = fenetre
+
+        #Update the display and show the button
+        def update_display(self):
+            #Parameters:               surface,      color,       x,   y,   length, height, width,    text,      text_color
+            self.Button1.create_button(self.screen, (127,51,6), 100, 570, 500,    75,    0,        "Retour", (255,255,255))
+            self.Button2.create_button(self.screen, (127,51,6), 100, 465, 500,    75,    0,        "Precedent", (255,255,255))
+            pygame.display.flip()
+
+
+        #Run the loop
+        def main(self):
+            self.Button1 = Buttons.Button()
+            self.Button2 = Buttons.Button()
+            self.display()
+            while True:
+                self.update_display()
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                    elif event.type == MOUSEBUTTONDOWN:
+                        if self.Button1.pressed(pygame.mouse.get_pos()):
+                            menuMain()
+                        elif self.Button2.pressed(pygame.mouse.get_pos()):
+                            Tutoriel2()
+
+    def menu(): #procedure qui affiche le menu
+
+        # musique du menu
+        pygame.mixer.music.load("Transforyou.mp3")
+        pygame.mixer.music.play()
+
+        #création fond d'écran menu
+        fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
+        titre_tutos = pygame.image.load("Images/Tuto.png")
+        bombe = pygame.image.load("Images/bombe.png")
+        fleche_noire = pygame.image.load("Images/fleche_droite_noire.png")
+        fleche_jaune = pygame.image.load("Images/fleche_droite_jaune.png")
+
+        fenetre.blit(fond_e,(0,0))              #affiche l'image "fond_e" aux coordonnées "(0,0)" de la fenêtre "fenetre"
+        fenetre.blit(titre_tutos,(200,50))    #affiche l'image "titre_tutos" aux coordonnées "(200,50)" de la fenêtre "fenetre"
+        fenetre.blit(bombe,(140,95))    #affiche l'image "bombe" aux coordonnées "(270,50)" de la fenêtre "fenetre"
+        fenetre.blit(fleche_noire,(180,243))    #affiche l'image "fleche_noire" aux coordonnées "(370,50)" de la fenêtre "fenetre"
+        fenetre.blit(fleche_jaune,(180,345))    #affiche l'image "fleche_jaune" aux coordonnées "(470,50)" de la fenêtre "fenetre"
+
+        pygame.display.flip()                   #rafraichit la fenêtre pour voir les changements
+
+        points2 = font.render("Bombes",1,(255,255,255))
+        points3 = font.render("Appuyez sur espace",1,(255,255,255))
+        points4 = font.render("Fleche noire",1,(255,255,255))
+        points5 = font.render("Appuyez sur la fleche",1,(255,255,255))
+        points6 = font.render("correspondante",1,(255,255,255))
+        points7 = font.render("Fleche jaune",1,(255,255,255))
+        points8 = font.render("Appuyez sur l'inverse de",1,(255,255,255))
+        points9 = font.render("la fleche correspondante",1,(255,255,255))
+
+        fenetre.blit(points2,(300,165))
+        fenetre.blit(points3,(300,195))
+        fenetre.blit(points4,(300,255))
+        fenetre.blit(points5,(300,285))
+        fenetre.blit(points6,(300,305))
+        fenetre.blit(points7,(300,355))
+        fenetre.blit(points8,(300,385))
+        fenetre.blit(points9,(300,405))
+
+        boutonJouer = Button()
+
+    while 1:
+        # Boucle sur les différents évènement reçut
+        for event in pygame.event.get():    # Ferme la fenetre si appuie sur la croix rouge
+            if event.type == QUIT:
+                sys.exit()
+        fenetre.blit(fond_e, (0,0))
+
+
+        #On refresh l'affichage
+        pygame.display.flip()
+
+
+        # Limite le nombre d'image par secondes
+        menu()
+
 
 class Button:
     def __init__(self):
