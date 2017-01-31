@@ -150,6 +150,12 @@ def Jeu():
                         time -= 5                   # Le joueur perd 5 secondes
                         combo = 0                   # Le joueur retombe à 0 de combo
                         longueur_combo = 3          # Le nombre de fleche retombe à 3
+                        fenetre.blit(fond_e, (0,0))
+                        fenetre.blit(zizou_qui_casse, (143,50))
+                        fenetre.blit(monObjet.get_img(), monObjet.get_rect())
+                        affiche_score()
+                        pygame.display.flip()
+                        pygame.time.delay(200)
                         monObjet = getObjet()       # Passage a l'objet suivant
                         liste_fleches = combo_random(longueur_combo);       # Passage aux fleches suivantes
                         numFlecheCour = 0
@@ -169,6 +175,17 @@ def Jeu():
                             monObjet.image = pasteque_doree_defoncee
                             fenetre.blit(fond_e, (0,0))
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
+                            fenetre.blit(monObjet.get_img(), monObjet.get_rect())
+                            affiche_score()
+                            pygame.display.flip()
+                            pygame.time.delay(200)
+                        elif isinstance(monObjet, Classes.PastequePourrie):
+                            points += 200
+                            time += 1
+                            pasteque_pourrie_defoncee = pygame.image.load("../GameJam2017/Images/pasteque_pourrie_defoncee.png").convert_alpha()
+                            monObjet.image = pasteque_pourrie_defoncee
+                            fenetre.blit(fond_e, (0,0))
+                            fenetre.blit(zizou_qui_casse_pourris, (170,76))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             affiche_score()
                             pygame.display.flip()
