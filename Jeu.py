@@ -19,6 +19,10 @@ fenetre = pygame.display.set_mode((700,700), RESIZABLE)
 # Création fond d'écran
 fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
 
+# Création du timer
+time = 100
+pygame.time.set_timer(USEREVENT+1, 1000) # 1 seconde c'est 1000 millisecondes
+
 # Création des variables des Scores
 points = 0
 multiplicateur = 1
@@ -47,8 +51,10 @@ def getObjet():
 # Boucle infinie pour affichage permanent de la fenêtre
 while 1:
     # Boucle sur les différents évènement reçut
-    for event in pygame.event.get():    # Ferme la fenetre si appuie sur la croix rouge
-        if event.type == QUIT:
+    for event in pygame.event.get():
+        if event.type == USEREVENT+1:
+            time -=1
+        if event.type == QUIT:          # Ferme la fenetre si appuie sur la croix rouge
             sys.exit()
         if event.type == KEYDOWN:       # Evenement sur le clavier
             if event.key == K_SPACE:    # Si appuie sur espace, on change l'image de zizou
@@ -77,7 +83,9 @@ while 1:
     fenetre.blit(fond_e, (0,0))
     fenetre.blit(zizou_normal, (230,130))
     fenetre.blit(monObjet.get_img(), monObjet.get_rect())
-
+    # On affiche le temps restant
+    timer_text = font.render("Temps : {0}".format(time), 1, (255,255,255))
+    fenetre.blit(timer_text, (500, 30))
     # On affiche les scores
     points_text = font.render("Points : {0}".format(points), 1, (255,255,255))
     multiplicateur_text = font.render("Multiplicateur : {0}".format(multiplicateur), 1, (255,255,255))
