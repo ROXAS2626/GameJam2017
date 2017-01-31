@@ -20,7 +20,7 @@ import pygame.mixer
 pygame.init()
 
 # création de la fenêtre
-fenetre  = pygame.display.set_mode((900,900), RESIZABLE)
+fenetre  = pygame.display.set_mode((700,700), RESIZABLE)
 
 
 def jeu(): #procedure qui affiche le jeu
@@ -38,7 +38,7 @@ class Button_Jouer:
     #Update the display and show the button
     def update_display(self):
         #Parameters:               surface,      color,       x,   y,   length, height, width,    text,      text_color
-        self.Button1.create_button(self.screen, (127,51,6), 200, 300, 500,    75,    0,        "Jouer", (255,255,255))
+        self.Button1.create_button(self.screen, (127,51,6), 100, 200, 500,    75,    0,        "Jouer", (255,255,255))
         pygame.display.flip()
 
 
@@ -65,7 +65,7 @@ def menu(): #procedure qui affiche le menu
     pygame.mixer.music.play()
 
     #création fond d'écran menu
-    fond_e = pygame.image.load("fondmenu.png").convert()
+    fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
     fenetre.blit(fond_e,(0,0))              #affiche l'image "fond_e" aux coordonnées "(0,0)" de la fenêtre "fenetre"
     pygame.display.flip()                   #rafraichit la fenêtre pour voir les changements
 
