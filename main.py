@@ -92,7 +92,9 @@ def Credit():
 
         #création fond d'écran menu
         fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
+        titre_credits = pygame.image.load("Images/credits_351_100.png")
         fenetre.blit(fond_e,(0,0))              #affiche l'image "fond_e" aux coordonnées "(0,0)" de la fenêtre "fenetre"
+        fenetre.blit(titre_credits,(200,50))    #affiche l'image "titre_credits" aux coordonnées "(200,50)" de la fenêtre "fenetre"
         pygame.display.flip()                   #rafraichit la fenêtre pour voir les changements
 
 
