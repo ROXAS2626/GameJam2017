@@ -2,7 +2,7 @@
 # Ligne permettant l'utilisation des accents
 
 # Importation de pygame
-import pygame, Classes, random
+import pygame, Classes, GameOver, random
 from pygame.locals import *
 
 # Importation de la bibliothèque system
@@ -18,6 +18,10 @@ fenetre = pygame.display.set_mode((700,700), RESIZABLE)
 
 # Création fond d'écran
 fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
+
+# Création du timer
+time = 100
+pygame.time.set_timer(USEREVENT+1, 1000) # 1 seconde c'est 1000 millisecondes
 
 # Création des variables des Scores
 points = 0
@@ -35,20 +39,31 @@ zizou_qui_casse_pourris = pygame.image.load("Images/zizou_casse_pasteque_pourrie
 def getObjet():
     # Charge l'image des pastèques et définit leur vitesse
     speed = [5, 0]
-    pasteque = Classes.Pasteque(0, 305, "Images/pasteque.png", 100, 100, speed, 100, 5, 0)
-    bombe = Classes.Bombe(0, 305, "Images/bombe.png", 100, 100, speed, 0)
+    pasteque1 = Classes.Pasteque(0, 305, "Images/pasteque.png", 100, 100, speed, 100, 5, 0)
+    pasteque2 = Classes.Pasteque(0, 305, "Images/pasteque.png", 100, 100, speed, 100, 5, 0)
+    pasteque3 = Classes.Pasteque(0, 305, "Images/pasteque.png", 100, 100, speed, 100, 5, 0)
+    pasteque4 = Classes.Pasteque(0, 305, "Images/pasteque.png", 100, 100, speed, 100, 5, 0)
+    pasteque5 = Classes.Pasteque(0, 305, "Images/pasteque.png", 100, 100, speed, 100, 5, 0)
+    pasteque6 = Classes.Pasteque(0, 305, "Images/pasteque.png", 100, 100, speed, 100, 5, 0)
+    pasteque7 = Classes.Pasteque(0, 305, "Images/pasteque.png", 100, 100, speed, 100, 5, 0)
+    pasteque8 = Classes.Pasteque(0, 305, "Images/pasteque.png", 100, 100, speed, 100, 5, 0)
+    bombe1 = Classes.Bombe(0, 305, "Images/bombe.png", 100, 100, speed, 0)
+    bombe2 = Classes.Bombe(0, 305, "Images/bombe.png", 100, 100, speed, 0)
     pastequeDoree = Classes.PastequeDoree(0, 305, "Images/Pasteque_Doréé.png", 100, 100, speed, 100, 5, 0, 2)
-    pastequePourrie = Classes.PastequePourrie(0, 305, "Images/Pasteque_Pourris.png", 100, 100, speed, 100, 5, 0)
-    listeObjets = [pasteque, bombe, pastequeDoree, pastequePourrie]
-    numObjet = random.randint(0,3)
+    pastequePourrie1 = Classes.PastequePourrie(0, 305, "Images/Pasteque_Pourris.png", 100, 100, speed, 100, 5, 0)
+    pastequePourrie2 = Classes.PastequePourrie(0, 305, "Images/Pasteque_Pourris.png", 100, 100, speed, 100, 5, 0)
+    listeObjets = [pasteque1, pasteque2, pasteque3, pasteque4, pasteque5, pasteque6, pasteque7, pasteque8, bombe1, bombe2, pastequeDoree, pastequePourrie1, pastequePourrie2]
+    numObjet = random.randint(0,12)
     return listeObjets[numObjet]
 
 
 # Boucle infinie pour affichage permanent de la fenêtre
 while 1:
     # Boucle sur les différents évènement reçut
-    for event in pygame.event.get():    # Ferme la fenetre si appuie sur la croix rouge
-        if event.type == QUIT:
+    for event in pygame.event.get():
+        if event.type == USEREVENT+1:
+            time -=1
+        if event.type == QUIT:          # Ferme la fenetre si appuie sur la croix rouge
             sys.exit()
         if event.type == KEYDOWN:       # Evenement sur le clavier
             if event.key == K_SPACE:    # Si appuie sur espace, on change l'image de zizou
@@ -57,14 +72,16 @@ while 1:
             if event.key == K_UP:       # Si appuie sur la fleche du haut
                 if isinstance(monObjet, Classes.PastequeDoree):     # Si l'objet est une Pasteque Doree
                     points += 300
-                    print points
+                    if multiplicateur < 4:
+                        multiplicateur = multiplicateur * 2
+                    time += 5
                     pygame.display.flip()
                 elif isinstance(monObjet, Classes.Pasteque):        # Si l'objet est une Pasteque
-                    points += 100
-                    print points
+                    points += 100 * multiplicateur
+                    time += 2
                     pygame.display.flip()
-                elif isinstance(monObjet, Classes.Bombe):           # Si l'objet est une Bombe
-                    points = 0
+                elif isinstance(monObjet, Classes.Bombe) or time ==0:           # Si l'objet est une Bombe
+                    #import GameOver
                     pygame.display.flip()
 
     # Création d'une instance d'un objet (Pasteque, PastequeDoree, PastequePourrie ou Bombe)
@@ -77,7 +94,9 @@ while 1:
     fenetre.blit(fond_e, (0,0))
     fenetre.blit(zizou_normal, (230,130))
     fenetre.blit(monObjet.get_img(), monObjet.get_rect())
-
+    # On affiche le temps restant
+    timer_text = font.render("Temps : {0}".format(time), 1, (255,255,255))
+    fenetre.blit(timer_text, (500, 30))
     # On affiche les scores
     points_text = font.render("Points : {0}".format(points), 1, (255,255,255))
     multiplicateur_text = font.render("Multiplicateur : {0}".format(multiplicateur), 1, (255,255,255))
