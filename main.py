@@ -10,6 +10,9 @@ from pygame.locals import *
 import sys;
 sys.path.insert(0, 'Buttons.py')
 
+#import time pour gestion du temps
+import time
+
 import Buttons
 
 #importation du mixer pour gérer la musique
@@ -221,19 +224,45 @@ def menuMain(): #procedure qui affiche le menu
 
 
     boutonJouer = Button()
+def leaderBoard():
+
+    fenetre = pygame.display.set_mode((700,700), RESIZABLE)
+
+    # Création fond d'écran
+    fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
+    fenetre.blit(fond_e,(0,0))
+
+    font = pygame.font.Font(None, 33)
+    titre = font.render("Leader Board",1,(255,0,0))
+    fenetre.blit(titre,(230,150))
+
+    while 1:
+        # Boucle sur les différents évènement reçut
+        for event in pygame.event.get():    # Ferme la fenetre si appuie sur la croix rouge
+            if event.type == QUIT:
+                sys.exit()
+
+
+        #On refresh l'affichage
+        pygame.display.flip()
 
 def Game_Over():
     fenetre = pygame.display.set_mode((700,700), RESIZABLE)
 
     # Création fond d'écran
-    fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
+    fond_e = pygame.image.load("Images/gameOver.png").convert()
 
 
     # Création du texte du score
     fenetre.blit(fond_e,(0,0))
     font = pygame.font.Font(None, 24)
 
+
     pygame.display.flip()
+
+    time.sleep(2)
+    leaderBoard()
+
 
     class Button:
         def __init__(self):
