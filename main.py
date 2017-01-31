@@ -504,13 +504,9 @@ class Button:
                     pygame.quit()
                 elif event.type == MOUSEBUTTONDOWN:
                     if self.Button1.pressed(pygame.mouse.get_pos()):
-<<<<<<< HEAD
-                        import Jeu
+                        Jeu()
                     if self.Button3.pressed(pygame.mouse.get_pos()):
                         Tutoriel()
-=======
-                        Jeu()
->>>>>>> af8a40d23a8c9be1cc17c8ff9b451a170856146c
                     if self.Button2.pressed(pygame.mouse.get_pos()):
                         Credit()
 
