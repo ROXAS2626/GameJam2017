@@ -68,7 +68,7 @@ while 1:
                     print points
                     pygame.display.flip()
                 elif isinstance(monObjet, Classes.Pasteque):        # Si l'objet est une Pasteque
-                    points += 100
+                    points += 100 * multiplicateur
                     print points
                     pygame.display.flip()
                 elif isinstance(monObjet, Classes.Bombe):           # Si l'objet est une Bombe
