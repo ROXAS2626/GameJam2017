@@ -93,7 +93,7 @@ class Pasteque(MySprite):
 
          # On teste si la pasteque à atteint l'un des bords de l'écran
          # Si oui on change sa direction
-         if self.rect.right > 450:
+         if self.rect.right > 350:
              self.speed[0] = 0
 
     # Retourne les points
