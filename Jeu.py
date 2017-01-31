@@ -19,7 +19,6 @@ fenetre = pygame.display.set_mode((700,700), RESIZABLE)
 # Création fond d'écran
 fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
 
-# Création d'un objet 'Score'
 points = 0
 multiplicateur = 1
 
@@ -61,10 +60,11 @@ while 1:
                 fenetre.blit(zizou_qui_casse, (0,0))
                 pygame.display.flip()
             if event.key == K_UP:
-                pasteque.set_etat(True)
-                print score.get_pts()
-
-    # Si la pasteque est cassée alors il faut ajouter les points de la pasteque dans le score
+                pasteque.etat = True
+                print pasteque.estCassee()
+                points = points + 100
+                print points
+                pygame.display.flip()
 
                   
     # Charge l'image des pastèques et définit leur vitesse
