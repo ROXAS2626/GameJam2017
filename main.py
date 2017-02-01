@@ -2,7 +2,7 @@
 #ligne permettant l'utilisation des accents
 
 #importation de Pygame
-import pygame, Classes, random, time
+import pygame, Classes, random, time, eztext
 from pygame.locals import *
 
 
@@ -149,6 +149,8 @@ def Jeu(score):
 
         monObjet.movement()
         fenetre.blit(monObjet.get_img(), monObjet.get_rect())
+        load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10), 2)
+        pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10), 3)
         # Boucle sur les différents évènement reçut
         for event in pygame.event.get():
             if event.type == USEREVENT+1:
@@ -194,6 +196,7 @@ def Jeu(score):
                     #sinon c'est que la touche pressées ne correspond pas
                     else:
                         temps -= 5                   # Le joueur perd 5 secondes
+                        multiplicateur = 1          # Le multiplicateur retombe à 1
                         combo = 0                   # Le joueur retombe à 0 de combo
                         fenetre.blit(fond_e, (0,0))
                         fenetre.blit(zizou_qui_casse, (143,50))
@@ -1004,6 +1007,56 @@ def Tutoriel3():
         menu()
 #################### FIN DU TUTORIEL ####################
 
+################### Fenetre nom joueur ####################
+def Nom_Joueur():
+    fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
+
+    # Création du texte du score
+    fenetre.blit(fond_e,(0,0))
+    font = pygame.font.Font(None, 35)
+
+
+    class Button:
+            def __init__(self):
+                self.main()
+
+            #Create a display
+            def display(self):
+                self.screen = fenetre
+
+            #Update the display and show the button
+            def update_display(self):
+                #Parameters:               surface,      color,       x,   y,   length, height, width,    text,      text_color
+                self.Button1.create_button(self.screen, (127,51,6), 230, 490, 250,    75,    0,        "Valider", (255,255,255))
+                pygame.display.flip()
+
+
+            #Run the loop
+            def main(self):
+                self.Button1 = Buttons.Button()
+                self.display()
+                while True:
+                    self.update_display()
+                    for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            pygame.quit()
+                        elif event.type == MOUSEBUTTONDOWN:
+                            if self.Button1.pressed(pygame.mouse.get_pos()):
+                                Jeu(score)
+
+    boutonValider = Button()
+
+
+    while 1:
+            # Boucle sur les différents évènement reçut
+            for event in pygame.event.get():    # Ferme la fenetre si appuie sur la croix rouge
+                if event.type == QUIT:
+                    sys.exit()
+            fenetre.blit(fond_e, (0,0))
+            #On refresh l'affichage
+            pygame.display.flip()
+
+################## FIN Fenetre nom joueur ################
 class Button:
     def __init__(self):
         self.main()
@@ -1033,7 +1086,7 @@ class Button:
                     pygame.quit()
                 elif event.type == MOUSEBUTTONDOWN:
                     if self.Button1.pressed(pygame.mouse.get_pos()):
-                        Jeu(score)
+                        Nom_Joueur()
                     if self.Button3.pressed(pygame.mouse.get_pos()):
                         Tutoriel()
                     if self.Button2.pressed(pygame.mouse.get_pos()):
