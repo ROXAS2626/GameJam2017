@@ -141,11 +141,11 @@ def Jeu(score):
         multi_x4 = pygame.image.load("Images/x4.png")
 
         if multiplicateur == 1:
-            fenetre.blit(multi_x1,(400,75))
+            fenetre.blit(multi_x1,(410,105))
         elif multiplicateur == 2:
-            fenetre.blit(multi_x2,(400,75))
+            fenetre.blit(multi_x2,(410,105))
         elif multiplicateur == 4:
-            fenetre.blit(multi_x4,(400,75))
+            fenetre.blit(multi_x4,(410,105))
 
         monObjet.movement()
         fenetre.blit(monObjet.get_img(), monObjet.get_rect())
@@ -265,9 +265,9 @@ def Jeu(score):
                             fenetre.blit(combo_image, (250,475))
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
                             if multiplicateur == 2:
-                                fenetre.blit(combo_x2, (400,75))
+                                fenetre.blit(combo_x2, (410,105))
                             elif multiplicateur == 4:
-                                fenetre.blit(combo_x4, (400,75))
+                                fenetre.blit(combo_x4, (410,105))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             affiche_score()
                             pygame.display.flip()
@@ -277,9 +277,9 @@ def Jeu(score):
                             fenetre.blit(combo_image, (253,478))
                             fenetre.blit(zizou_normal, (230,130))
                             if multiplicateur == 2:
-                                fenetre.blit(combo_x2, (397,78))
+                                fenetre.blit(combo_x2, (407,108))
                             elif multiplicateur == 4:
-                                fenetre.blit(combo_x4, (397,78))
+                                fenetre.blit(combo_x4, (407,108))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             affiche_score()
                             pygame.display.flip()
@@ -289,9 +289,9 @@ def Jeu(score):
                             fenetre.blit(combo_image, (250,475))
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
                             if multiplicateur == 2:
-                                fenetre.blit(combo_x2, (400,75))
+                                fenetre.blit(combo_x2, (410,105))
                             elif multiplicateur == 4:
-                                fenetre.blit(combo_x4, (400,75))
+                                fenetre.blit(combo_x4, (410,105))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             temps += 1
                             score += 100
@@ -303,9 +303,9 @@ def Jeu(score):
                             fenetre.blit(combo_image, (253,478))
                             fenetre.blit(zizou_normal, (230,130))
                             if multiplicateur == 2:
-                                fenetre.blit(combo_x2, (397,78))
+                                fenetre.blit(combo_x2, (407,108))
                             elif multiplicateur == 4:
-                                fenetre.blit(combo_x4, (397,78))
+                                fenetre.blit(combo_x4, (407,108))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             affiche_score()
                             pygame.display.flip()
@@ -315,9 +315,9 @@ def Jeu(score):
                             fenetre.blit(combo_image, (250,475))
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
                             if multiplicateur == 2:
-                                fenetre.blit(combo_x2, (400,75))
+                                fenetre.blit(combo_x2, (410,105))
                             elif multiplicateur == 4:
-                                fenetre.blit(combo_x4, (400,75))
+                                fenetre.blit(combo_x4, (410,105))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             temps += 1
                             score += 100
@@ -329,9 +329,9 @@ def Jeu(score):
                             fenetre.blit(combo_image, (253,478))
                             fenetre.blit(zizou_normal, (230,130))
                             if multiplicateur == 2:
-                                fenetre.blit(combo_x2, (397,78))
+                                fenetre.blit(combo_x2, (407,108))
                             elif multiplicateur == 4:
-                                fenetre.blit(combo_x4, (397,78))
+                                fenetre.blit(combo_x4, (407,108))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             affiche_score()
                             pygame.display.flip()
@@ -341,9 +341,9 @@ def Jeu(score):
                             fenetre.blit(combo_image, (250,475))
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
                             if multiplicateur == 2:
-                                fenetre.blit(combo_x2, (400,75))
+                                fenetre.blit(combo_x2, (410,105))
                             elif multiplicateur == 4:
-                                fenetre.blit(combo_x4, (400,75))
+                                fenetre.blit(combo_x4, (410,105))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             temps += 1
                             score += 100
@@ -360,11 +360,11 @@ def Jeu(score):
                             fenetre.blit(fond_e, (0,0))
                             fenetre.blit(zizou_qui_casse_pourris, (170,76))
                             if multiplicateur == 1:
-                                fenetre.blit(multi_x1,(400,75))
+                                fenetre.blit(multi_x1,(410,105))
                             elif multiplicateur == 2:
-                                fenetre.blit(multi_x2,(400,75))
+                                fenetre.blit(multi_x2,(410,105))
                             elif multiplicateur == 4:
-                                fenetre.blit(multi_x4,(400,75))
+                                fenetre.blit(multi_x4,(410,105))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             affiche_score()
                             pygame.display.flip()
@@ -378,11 +378,11 @@ def Jeu(score):
                             fenetre.blit(fond_e, (0,0))
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
                             if multiplicateur == 1:
-                                fenetre.blit(multi_x1,(400,75))
+                                fenetre.blit(multi_x1,(410,105))
                             elif multiplicateur == 2:
-                                fenetre.blit(multi_x2,(400,75))
+                                fenetre.blit(multi_x2,(410,105))
                             elif multiplicateur == 4:
-                                fenetre.blit(multi_x4,(400,75))
+                                fenetre.blit(multi_x4,(410,105))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
 
                             affiche_score()
