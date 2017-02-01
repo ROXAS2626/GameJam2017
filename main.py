@@ -49,35 +49,9 @@ def Jeu(score):
     zizou_qui_casse_vraiment = pygame.image.load("Images/zizou_casse_pasteque.png").convert_alpha()
     zizou_qui_casse_pourris = pygame.image.load("Images/zizou_casse_pasteque_pourrie.png").convert_alpha()
     zizou_explose = pygame.image.load("Images/zizou_explose.png").convert_alpha()
-
-    class Button:
-        def __init__(self):
-            self.main()
-
-        #Create a display
-        def display(self):
-            self.screen = fenetre
-
-        #Update the display and show the button
-        def update_display(self):
-            #Parameters:               surface,      color,       x,   y,   length, height, width,    text,      text_color
-            self.Button1.create_button(self.screen, (127,51,6), 475, 625, 200,    50,    0,        "Quitter", (255,255,255))
-            pygame.display.flip()
-
-        def pressed(self):
-            return self.Button1.pressed(pygame.mouse.get_pos())
-
-        #Run the loop
-        def main(self):
-            self.Button1 = Buttons.Button()
-            self.display()
-            self.update_display()
-
-
 #################### METHODES UTILES DU JEU ####################
     def getObjet():
         # Charge l'image des pastèques et définit leur vitesse
-        # chareg de façon aléatoire avec plus de pastèque normales
         x = -100
         speed = [15, 0]
         pasteque1 = Classes.Pasteque(x, 305, "Images/pasteque.png", 100, 100, speed, 100, 5, 0)
@@ -141,11 +115,9 @@ def Jeu(score):
         for event in pygame.event.get():
             if event.type == USEREVENT+1:
                 temps -=1
+                pygame.draw.rect(surface, (255,255,255, pygame.Rect(left, top, maxwidth*temps, height), 1))
             if event.type == QUIT:          # Ferme la fenetre si appuie sur la croix rouge
                 sys.exit()
-            if event.type == MOUSEBUTTONDOWN:
-                if boutonQuitter.pressed():
-                    menuMain()
             if event.type == KEYDOWN:       # Evenement sur le clavier
                 #if event.key == K_SPACE:    # Si appuie sur espace, on change l'image de zizou
                 #    fenetre.blit(zizou_qui_casse, (0,0))
@@ -182,6 +154,7 @@ def Jeu(score):
                     #sinon c'est que la touche pressées ne correspond pas
                     else:
                         temps -= 5                   # Le joueur perd 5 secondes
+                        multiplicateur = 1
                         combo = 0                   # Le joueur retombe à 0 de combo
                         fenetre.blit(fond_e, (0,0))
                         fenetre.blit(zizou_qui_casse, (143,50))
@@ -631,8 +604,10 @@ def Credit():
                 sys.exit()
         fenetre.blit(fond_e, (0,0))
 
+
         #On refresh l'affichage
         pygame.display.flip()
+
 
         # Limite le nombre d'image par secondes
         menu()
@@ -641,6 +616,7 @@ def Credit():
 #################### PAGE 1 ####################
 def Tutoriel():
     fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
+
 
     # Création du texte du score
     fenetre.blit(fond_e,(0,0))
@@ -947,8 +923,8 @@ class Button:
         #Parameters:               surface,      color,       x,   y,   length, height, width,    text,      text_color
         self.Button1.create_button(self.screen, (127,51,6), 100, 360, 500,    75,    0,        "Jouer", (255,255,255))
         self.Button3.create_button(self.screen, (127,51,6), 100, 465, 500,    75,    0,        "Tutoriel", (255,255,255))
-        self.Button2.create_button(self.screen,(127,51,6),100,570,500,75,0,"Credit",(255,255,255))
         pygame.display.flip()
+        self.Button2.create_button(self.screen,(127,51,6),100,570,500,75,0,"Credit",(255,255,255))
 
     #Run the loop
     def main(self):
