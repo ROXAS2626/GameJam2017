@@ -40,19 +40,15 @@ pygame.display.set_caption('KoudBoul')
 # variables globales :
 nom_joueur = []
 score = 0
-<<<<<<< Updated upstream
-nomDuJoueur = ""
-=======
 
->>>>>>> Stashed changes
+nomDuJoueur = ""
+
 #################### DEBUT DU JEU ####################
 def Jeu(score,nomDuJoueur):
 #################### VARIABLES GLOBALES DU JEU ####################
-<<<<<<< Updated upstream
     print nomDuJoueur
-=======
 
->>>>>>> Stashed changes
+
     fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()     # Image de fond
     font = pygame.font.Font(None, 24)       # Création de la font
     font2 = pygame.font.Font(None, 75)       # Création de la font2
@@ -1192,13 +1188,15 @@ def Tutoriel3():
 
 ################### Fenetre nom joueur ####################
 def Nom_Joueur(nomDuJoueur):
+    #Le joueur arrive sur une page pour rentrer son Pseudo
+    #D'abbord faut entrez une chaine de caractere (espaces non utilisables) Puis confirmer par ENTER avant d'appuyer sur le boutton
     fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
 
     # Création du texte du score
     fenetre.blit(fond_e,(0,0))
     font = pygame.font.Font(None, 35)
 
-    txtbx = eztext.Input(maxlength=45, color=(255,0,0), prompt='type here: ')
+
 
     class Button:
             def __init__(self):
@@ -1240,9 +1238,6 @@ def Nom_Joueur(nomDuJoueur):
                     elif evt.key == K_RETURN:
                         b= False
                         return nomDuJoueur
-    txtbx.update(pygame.event.get())
-    # blit txtbx on the sceen
-    txtbx.draw(fenetre)
     boutonValider.update_display()
     nomDuJoueur = name(nomDuJoueur)
     while 1:
