@@ -2,7 +2,7 @@
 #ligne permettant l'utilisation des accents
 
 #importation de Pygame
-import pygame, Classes, random
+import pygame, Classes, random, time
 from pygame.locals import *
 
 
@@ -110,7 +110,7 @@ def Jeu():
         # Boucle sur les différents évènement reçut
         for event in pygame.event.get():
             if event.type == USEREVENT+1:
-                time -=1
+                temps -=1
             if event.type == QUIT:          # Ferme la fenetre si appuie sur la croix rouge
                 sys.exit()
             if event.type == KEYDOWN:       # Evenement sur le clavier
@@ -256,6 +256,7 @@ def Jeu():
         else: posPrem = 50
 
         while i < longueur_combo:
+            print liste_fleches[i]
             fle_n = pygame.image.load(liste_fleches[i])
             fenetre.blit(fle_n, (posPrem + (125*i),500))
             i = i+1
