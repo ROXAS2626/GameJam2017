@@ -182,6 +182,7 @@ def Jeu(score):
                     #sinon c'est que la touche pressées ne correspond pas
                     else:
                         temps -= 5                   # Le joueur perd 5 secondes
+                        multiplicateur = 1          # Le multiplicateur retombe à 1
                         combo = 0                   # Le joueur retombe à 0 de combo
                         fenetre.blit(fond_e, (0,0))
                         fenetre.blit(zizou_qui_casse, (143,50))
