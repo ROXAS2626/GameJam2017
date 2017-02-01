@@ -1136,7 +1136,7 @@ def Nom_Joueur(nomDuJoueur):
     fenetre.blit(fond_e,(0,0))
     font = pygame.font.Font(None, 35)
 
-    txtbx = eztext.Input(maxlength=45, color=(255,0,0), prompt='type here: ')
+
 
     class Button:
             def __init__(self):
@@ -1178,9 +1178,6 @@ def Nom_Joueur(nomDuJoueur):
                     elif evt.key == K_RETURN:
                         b= False
                         return nomDuJoueur
-    txtbx.update(pygame.event.get())
-    # blit txtbx on the sceen
-    txtbx.draw(fenetre)
     boutonValider.update_display()
     nomDuJoueur = name(nomDuJoueur)
     while 1:
