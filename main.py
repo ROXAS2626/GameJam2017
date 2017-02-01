@@ -154,8 +154,38 @@ def Jeu():
                         fenetre.blit(zizou_qui_casse, (143,50))
                         fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                         affiche_score()
+
+
+                        #-----------fleche roucge debut
+                        if flecheCour=="../GameJam2017/Images/fleche_gauche_noire.png":
+                            liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_gauche_rouge.png"
+                        elif flecheCour=="../GameJam2017/Images/fleche_haut_noire.png":
+                            liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_haut_rouge.png"
+                        elif flecheCour=="../GameJam2017/Images/fleche_droite_noire.png":
+                            liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_droite_rouge.png"
+                        elif flecheCour=="../GameJam2017/Images/fleche_bas_noire.png":
+                            liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_bas_rouge.png"
+
+                        i = 0
+                        posPrem = 0
+                        if longueur_combo == 3:
+                            posPrem = 175
+                        elif longueur_combo == 4:
+                            posPrem = 110
+                        else: posPrem = 50
+
+                        while i < longueur_combo:
+                            print liste_fleches[i]
+                            fle_n = pygame.image.load(liste_fleches[i])
+                            fenetre.blit(fle_n, (posPrem + (125*i),500))
+                            i = i+1
+
+                        #On refresh l'affichage
                         pygame.display.flip()
-                        pygame.time.delay(200)
+
+                        time.sleep(1)
+                        #-----------fleche rouge fin
+
                         monObjet = getObjet()       # Passage a l'objet suivant
                         liste_fleches = combo_random(longueur_combo);       # Passage aux fleches suivantes
                         numFlecheCour = 0
