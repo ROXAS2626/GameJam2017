@@ -151,7 +151,6 @@ def Jeu(score):
                     else:
                         temps -= 5                   # Le joueur perd 5 secondes
                         combo = 0                   # Le joueur retombe à 0 de combo
-                        longueur_combo = 3          # Le nombre de fleche retombe à 3
                         fenetre.blit(fond_e, (0,0))
                         fenetre.blit(zizou_qui_casse, (143,50))
                         fenetre.blit(monObjet.get_img(), monObjet.get_rect())
@@ -181,7 +180,7 @@ def Jeu(score):
                             fenetre.blit(fle_n, (posPrem + (125*i),500))
                             i = i+1
 
-
+                        longueur_combo = 3          # Le nombre de fleche retombe à 3
                         #On refresh l'affichage
                         pygame.display.flip()
                         time.sleep(1)
