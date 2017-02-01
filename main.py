@@ -2,7 +2,7 @@
 #ligne permettant l'utilisation des accents
 
 #importation de Pygame
-import pygame, Classes, random, time
+import pygame, Classes, random, time, eztext
 from pygame.locals import *
 
 
@@ -36,23 +36,14 @@ sounda= pygame.mixer.Sound("Musiques/mainplay.ogg")
 # création de la fenêtre
 fenetre  = pygame.display.set_mode((700,700), RESIZABLE)
 pygame.display.set_caption('KoudBoul')
-
-# variables globales :
-nom_joueur = []
 score = 0
 
-nomDuJoueur = ""
-
 #################### DEBUT DU JEU ####################
-def Jeu(score,nomDuJoueur):
+def Jeu(score):
 #################### VARIABLES GLOBALES DU JEU ####################
-    print nomDuJoueur
-
 
     fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()     # Image de fond
     font = pygame.font.Font(None, 24)       # Création de la font
-    font2 = pygame.font.Font(None, 75)       # Création de la font2
-    font3 = pygame.font.Font(None, 125)       # Création de la font3
 
     # Création du timer
     temps = 30
@@ -180,11 +171,11 @@ def Jeu(score,nomDuJoueur):
         multi_x4 = pygame.image.load("Images/x4.png")
 
         if multiplicateur == 1:
-            fenetre.blit(multi_x1,(410,105))
+            fenetre.blit(multi_x1,(400,75))
         elif multiplicateur == 2:
-            fenetre.blit(multi_x2,(410,105))
+            fenetre.blit(multi_x2,(400,75))
         elif multiplicateur == 4:
-            fenetre.blit(multi_x4,(410,105))
+            fenetre.blit(multi_x4,(400,75))
 
         monObjet.movement()
         fenetre.blit(monObjet.get_img(), monObjet.get_rect())
@@ -223,10 +214,10 @@ def Jeu(score,nomDuJoueur):
                         fenetre.blit(fond_e, (0,0))
                         fenetre.blit(zizou_explose, (170,76))
                         fenetre.blit(monObjet.get_img(), monObjet.get_rect())
-                        affiche_score(nomDuJoueur)
+                        affiche_score()
                         pygame.display.flip()
                         pygame.time.delay(2000)
-                        Game_Over(score,nomDuJoueur)
+                        Game_Over(score)
                         pygame.display.flip()
                 else:
                     #on test si le bouton correspond au bouton
@@ -257,7 +248,7 @@ def Jeu(score,nomDuJoueur):
                         fenetre.blit(fond_e, (0,0))
                         fenetre.blit(zizou_qui_casse, (143,50))
                         fenetre.blit(monObjet.get_img(), monObjet.get_rect())
-                        affiche_score(nomDuJoueur)
+                        affiche_score()
 
 
                         #-----------fleche roucge debut
@@ -326,176 +317,92 @@ def Jeu(score,nomDuJoueur):
                             pasteque_defoncer = pygame.image.load("Images/pasteque_defoncee.png")
                             monObjet.image = pasteque_doree_defoncee
                             fenetre.blit(fond_e, (0,0))
-                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10), 2)
-                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10), 3)
                             fenetre.blit(combo_image, (250,475))
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
                             if multiplicateur == 2:
-
-                                #Affichage des points
-                                points1 = font3.render("+500",1,(255,255,255))
-                                fenetre.blit(points1, (175,150))
-
-                                fenetre.blit(combo_x2, (410,105))
+                                fenetre.blit(combo_x2, (400,75))
                             elif multiplicateur == 4:
-
-                                #Affichage des points
-                                points1 = font3.render("+1000",1,(255,255,255))
-                                fenetre.blit(points1, (175,150))
-
-                                fenetre.blit(combo_x4, (410,105))
+                                fenetre.blit(combo_x4, (400,75))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
-                            affiche_score(nomDuJoueur)
+                            affiche_score()
                             pygame.display.flip()
                             time.sleep(.250)
                             monObjet.image = pasteque
                             fenetre.blit(fond_e, (0,0))
-                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10), 2)
-                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10), 3)
                             fenetre.blit(combo_image, (253,478))
                             fenetre.blit(zizou_normal, (230,130))
                             if multiplicateur == 2:
-
-                                #Affichage des points
-                                points1 = font3.render("+500",1,(255,255,255))
-                                fenetre.blit(points1, (175,150))
-
-                                fenetre.blit(combo_x2, (407,108))
+                                fenetre.blit(combo_x2, (397,78))
                             elif multiplicateur == 4:
-
-                                #Affichage des points
-                                points1 = font3.render("+1000",1,(255,255,255))
-                                fenetre.blit(points1, (175,150))
-
-                                fenetre.blit(combo_x4, (407,108))
+                                fenetre.blit(combo_x4, (397,78))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
-                            affiche_score(nomDuJoueur)
+                            affiche_score()
                             pygame.display.flip()
                             time.sleep(.250)
                             monObjet.image = pasteque_defoncer
                             fenetre.blit(fond_e, (0,0))
-                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10), 2)
-                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10), 3)
                             fenetre.blit(combo_image, (250,475))
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
                             if multiplicateur == 2:
-
-                                #Affichage des points
-                                points1 = font3.render("+500",1,(255,255,255))
-                                fenetre.blit(points1, (175,150))
-
-                                fenetre.blit(combo_x2, (410,105))
+                                fenetre.blit(combo_x2, (400,75))
                             elif multiplicateur == 4:
-
-                                #Affichage des points
-                                points1 = font3.render("+1000",1,(255,255,255))
-                                fenetre.blit(points1, (175,150))
-
-                                fenetre.blit(combo_x4, (410,105))
+                                fenetre.blit(combo_x4, (400,75))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             temps += 1
                             score += 100
-                            affiche_score(nomDuJoueur)
+                            affiche_score()
                             pygame.display.flip()
                             time.sleep(.250)
                             monObjet.image = pasteque
                             fenetre.blit(fond_e, (0,0))
-                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10), 2)
-                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10), 3)
                             fenetre.blit(combo_image, (253,478))
                             fenetre.blit(zizou_normal, (230,130))
                             if multiplicateur == 2:
-
-                                #Affichage des points
-                                points1 = font3.render("+500",1,(255,255,255))
-                                fenetre.blit(points1, (175,150))
-
-                                fenetre.blit(combo_x2, (407,108))
+                                fenetre.blit(combo_x2, (397,78))
                             elif multiplicateur == 4:
-
-                                #Affichage des points
-                                points1 = font3.render("+1000",1,(255,255,255))
-                                fenetre.blit(points1, (175,150))
-
-                                fenetre.blit(combo_x4, (407,108))
+                                fenetre.blit(combo_x4, (397,78))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
-                            affiche_score(nomDuJoueur)
+                            affiche_score()
                             pygame.display.flip()
                             time.sleep(.250)
                             monObjet.image = pasteque_defoncer
                             fenetre.blit(fond_e, (0,0))
-                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10), 2)
-                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10), 3)
                             fenetre.blit(combo_image, (250,475))
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
                             if multiplicateur == 2:
-
-                                #Affichage des points
-                                points1 = font3.render("+500",1,(255,255,255))
-                                fenetre.blit(points1, (175,150))
-
-                                fenetre.blit(combo_x2, (410,105))
+                                fenetre.blit(combo_x2, (400,75))
                             elif multiplicateur == 4:
-
-                                #Affichage des points
-                                points1 = font3.render("+1000",1,(255,255,255))
-                                fenetre.blit(points1, (175,150))
-
-                                fenetre.blit(combo_x4, (410,105))
+                                fenetre.blit(combo_x4, (400,75))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             temps += 1
                             score += 100
-                            affiche_score(nomDuJoueur)
+                            affiche_score()
                             pygame.display.flip()
                             time.sleep(.250)
                             monObjet.image = pasteque
                             fenetre.blit(fond_e, (0,0))
-                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10), 2)
-                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10), 3)
                             fenetre.blit(combo_image, (253,478))
                             fenetre.blit(zizou_normal, (230,130))
                             if multiplicateur == 2:
-
-                                #Affichage des points
-                                points1 = font3.render("+500",1,(255,255,255))
-                                fenetre.blit(points1, (175,150))
-
-                                fenetre.blit(combo_x2, (407,108))
+                                fenetre.blit(combo_x2, (397,78))
                             elif multiplicateur == 4:
-
-                                #Affichage des points
-                                points1 = font3.render("+1000",1,(255,255,255))
-                                fenetre.blit(points1, (175,150))
-
-                                fenetre.blit(combo_x4, (407,108))
+                                fenetre.blit(combo_x4, (397,78))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
-                            affiche_score(nomDuJoueur)
+                            affiche_score()
                             pygame.display.flip()
                             time.sleep(.250)
                             monObjet.image = pasteque_defoncer
                             fenetre.blit(fond_e, (0,0))
-                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10), 2)
-                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10), 3)
                             fenetre.blit(combo_image, (250,475))
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
                             if multiplicateur == 2:
-
-                                #Affichage des points
-                                points1 = font3.render("+500",1,(255,255,255))
-                                fenetre.blit(points1, (175,150))
-
-                                fenetre.blit(combo_x2, (410,105))
+                                fenetre.blit(combo_x2, (400,75))
                             elif multiplicateur == 4:
-
-                                #Affichage des points
-                                points1 = font3.render("+1000",1,(255,255,255))
-                                fenetre.blit(points1, (175,150))
-
-                                fenetre.blit(combo_x4, (410,105))
+                                fenetre.blit(combo_x4, (400,75))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             temps += 1
                             score += 100
-                            affiche_score(nomDuJoueur)
+                            affiche_score()
                             pygame.display.flip()
                             time.sleep(.250)
                             pygame.time.delay(200)
@@ -508,32 +415,15 @@ def Jeu(score,nomDuJoueur):
                             pasteque_pourrie_defoncee = pygame.image.load("../GameJam2017/Images/pasteque_pourrie_defoncee.png").convert_alpha()
                             monObjet.image = pasteque_pourrie_defoncee
                             fenetre.blit(fond_e, (0,0))
-                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10), 2)
-                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10), 3)
                             fenetre.blit(zizou_qui_casse_pourris, (170,76))
                             if multiplicateur == 1:
-
-                                #Affichage des points
-                                points1 = font2.render("+200",1,(255,255,255))
-                                fenetre.blit(points1, (175,150))
-
-                                fenetre.blit(multi_x1,(410,105))
+                                fenetre.blit(multi_x1,(400,75))
                             elif multiplicateur == 2:
-
-                                #Affichage des points
-                                points1 = font2.render("+400",1,(255,255,255))
-                                fenetre.blit(points1, (175,150))
-
-                                fenetre.blit(multi_x2,(410,105))
+                                fenetre.blit(multi_x2,(400,75))
                             elif multiplicateur == 4:
-
-                                #Affichage des points
-                                points1 = font2.render("+800",1,(255,255,255))
-                                fenetre.blit(points1, (175,150))
-
-                                fenetre.blit(multi_x4,(410,105))
+                                fenetre.blit(multi_x4,(400,75))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
-                            affiche_score(nomDuJoueur)
+                            affiche_score()
                             pygame.display.flip()
                             time.sleep(0.2)
                             pygame.time.delay(200)
@@ -547,34 +437,16 @@ def Jeu(score,nomDuJoueur):
                             pasteque_defoncee = pygame.image.load("../GameJam2017/Images/pasteque_defoncee.png").convert_alpha()
                             monObjet.image = pasteque_defoncee
                             fenetre.blit(fond_e, (0,0))
-
-                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10), 2)
-                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10), 3)
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
                             if multiplicateur == 1:
-
-                                #Affichage des points
-                                points1 = font2.render("+100",1,(255,255,255))
-                                fenetre.blit(points1, (175,150))
-
-                                fenetre.blit(multi_x1,(410,105))
+                                fenetre.blit(multi_x1,(400,75))
                             elif multiplicateur == 2:
-
-                                #Affichage des points
-                                points1 = font2.render("+200",1,(255,255,255))
-                                fenetre.blit(points1, (175,150))
-
-                                fenetre.blit(multi_x2,(410,105))
+                                fenetre.blit(multi_x2,(400,75))
                             elif multiplicateur == 4:
-
-                                #Affichage des points
-                                points1 = font2.render("+400",1,(255,255,255))
-                                fenetre.blit(points1, (175,150))
-
-                                fenetre.blit(multi_x4,(410,105))
+                                fenetre.blit(multi_x4,(400,75))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
 
-                            affiche_score(nomDuJoueur)
+                            affiche_score()
                             pygame.display.flip()
                             pygame.time.delay(200)
                             time.sleep(0.2)
@@ -603,10 +475,10 @@ def Jeu(score,nomDuJoueur):
                         liste_fleches = combo_random(longueur_combo);
                         numFlecheCour= 0
 
-        def affiche_score(nomDuJoueur):
+        def affiche_score():
             # Si le temps est inférieur ou égal à 0 alors le joueur a perdu
             if temps <= 0:
-                Game_Over(score,nomDuJoueur)
+                Game_Over(score)
                 pygame.display.flip()
 
             # On affiche le temps restant
@@ -619,13 +491,13 @@ def Jeu(score,nomDuJoueur):
 
             # On affiche les scores
             points_text = font.render("Points : {0}".format(score), 1, (255,255,255))
-            #multiplicateur_text = font.render("Multiplicateur : {0}".format(multiplicateur), 1, (255,255,255))
+            multiplicateur_text = font.render("Multiplicateur : {0}".format(multiplicateur), 1, (255,255,255))
             combo_text = font.render("Combo : {0}".format(combo), 1, (255,255,255))
             fenetre.blit(points_text, (30,30))
-            #fenetre.blit(multiplicateur_text, (30,50))
+            fenetre.blit(multiplicateur_text, (30,50))
             fenetre.blit(combo_text, (30,70))
 
-        affiche_score(nomDuJoueur)
+        affiche_score()
 
         # On affiche les différentes images des flèches
         i = 0
@@ -733,7 +605,7 @@ def leaderBoard():
 #################### FIN DU TABLEAU DES SCORES ####################
 
 #################### AFFICHAGE GAME OVER ####################
-def Game_Over(score,nomDuJoueur):
+def Game_Over(score):
     fenetre = pygame.display.set_mode((700,700), RESIZABLE)
 
     # Création fond d'écran
@@ -1187,15 +1059,12 @@ def Tutoriel3():
 #################### FIN DU TUTORIEL ####################
 
 ################### Fenetre nom joueur ####################
-def Nom_Joueur(nomDuJoueur):
-    #Le joueur arrive sur une page pour rentrer son Pseudo
-    #D'abbord faut entrez une chaine de caractere (espaces non utilisables) Puis confirmer par ENTER avant d'appuyer sur le boutton
+def Nom_Joueur():
     fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
 
     # Création du texte du score
     fenetre.blit(fond_e,(0,0))
     font = pygame.font.Font(None, 35)
-
 
 
     class Button:
@@ -1213,48 +1082,30 @@ def Nom_Joueur(nomDuJoueur):
                 pygame.display.flip()
 
 
-            def pressed(self):
-                return self.Button1.pressed(pygame.mouse.get_pos())
-
             #Run the loop
             def main(self):
                 self.Button1 = Buttons.Button()
                 self.display()
-                self.update_display()
+                while True:
+                    self.update_display()
+                    for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            pygame.quit()
+                        elif event.type == MOUSEBUTTONDOWN:
+                            if self.Button1.pressed(pygame.mouse.get_pos()):
+                                Jeu(score)
 
     boutonValider = Button()
-    #name = ""
 
-    def name(nomDuJoueur):
-        font = pygame.font.Font(None, 50)
-        b=True
-        while b:
-            for evt in pygame.event.get():
-                if evt.type == KEYDOWN:
-                    if evt.unicode.isalpha():
-                        nomDuJoueur += evt.unicode
-                    elif evt.key == K_BACKSPACE:
-                        nomDuJoueur = nomDuJoueur[:-1]
-                    elif evt.key == K_RETURN:
-                        b= False
-                        return nomDuJoueur
-    boutonValider.update_display()
-    nomDuJoueur = name(nomDuJoueur)
+
     while 1:
             # Boucle sur les différents évènement reçut
             for event in pygame.event.get():    # Ferme la fenetre si appuie sur la croix rouge
                 if event.type == QUIT:
                     sys.exit()
-                elif event.type == MOUSEBUTTONDOWN: # Commence le jeu si appuie sur le bouton "Valider"
-                    if boutonValider.pressed():
-                        Jeu(score,nomDuJoueur)
-            # update txtbx
-
-
+            fenetre.blit(fond_e, (0,0))
             #On refresh l'affichage
             pygame.display.flip()
-
-
 
 ################## FIN Fenetre nom joueur ################
 class Button:
@@ -1286,11 +1137,15 @@ class Button:
                     pygame.quit()
                 elif event.type == MOUSEBUTTONDOWN:
                     if self.Button1.pressed(pygame.mouse.get_pos()):
-                        Nom_Joueur(nomDuJoueur)
+                        Nom_Joueur()
                     if self.Button3.pressed(pygame.mouse.get_pos()):
                         Tutoriel()
                     if self.Button2.pressed(pygame.mouse.get_pos()):
                         Credit()
+
+
+
+
 
 
 
