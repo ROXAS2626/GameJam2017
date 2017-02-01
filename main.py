@@ -182,7 +182,6 @@ def Jeu():
 
                         #On refresh l'affichage
                         pygame.display.flip()
-
                         time.sleep(1)
                         #-----------fleche rouge fin
 
@@ -197,17 +196,68 @@ def Jeu():
 
                         # Deplacement de la pasteque
                         if isinstance(monObjet, Classes.PastequeDoree):     # Si l'objet est une Pasteque Doree
-                            points += 400
+                            points += 200
                             if multiplicateur < 4:
                                 multiplicateur = multiplicateur * 2
-                            temps += 5
+                            temps += 2
                             pasteque_doree_defoncee = pygame.image.load("../GameJam2017/Images/pasteque_doree_defoncee.png").convert_alpha()
+                            pasteque = pygame.image.load("Images/pasteque.png")
+                            pasteque_defoncer = pygame.image.load("Images/pasteque_defoncee.png")
                             monObjet.image = pasteque_doree_defoncee
                             fenetre.blit(fond_e, (0,0))
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             affiche_score()
                             pygame.display.flip()
+                            time.sleep(.250)
+                            monObjet.image = pasteque
+                            fenetre.blit(fond_e, (0,0))
+                            fenetre.blit(zizou_normal, (230,130))
+                            fenetre.blit(monObjet.get_img(), monObjet.get_rect())
+                            affiche_score()
+                            pygame.display.flip()
+                            time.sleep(.250)
+                            monObjet.image = pasteque_defoncer
+                            fenetre.blit(fond_e, (0,0))
+                            fenetre.blit(zizou_qui_casse_vraiment, (170,76))
+                            fenetre.blit(monObjet.get_img(), monObjet.get_rect())
+                            temps += 1
+                            points += 100
+                            affiche_score()
+                            pygame.display.flip()
+                            time.sleep(.250)
+                            monObjet.image = pasteque
+                            fenetre.blit(fond_e, (0,0))
+                            fenetre.blit(zizou_normal, (230,130))
+                            fenetre.blit(monObjet.get_img(), monObjet.get_rect())
+                            affiche_score()
+                            pygame.display.flip()
+                            time.sleep(.250)
+                            monObjet.image = pasteque_defoncer
+                            fenetre.blit(fond_e, (0,0))
+                            fenetre.blit(zizou_qui_casse_vraiment, (170,76))
+                            fenetre.blit(monObjet.get_img(), monObjet.get_rect())
+                            temps += 1
+                            points += 100
+                            affiche_score()
+                            pygame.display.flip()
+                            time.sleep(.250)
+                            monObjet.image = pasteque
+                            fenetre.blit(fond_e, (0,0))
+                            fenetre.blit(zizou_normal, (230,130))
+                            fenetre.blit(monObjet.get_img(), monObjet.get_rect())
+                            affiche_score()
+                            pygame.display.flip()
+                            time.sleep(.250)
+                            monObjet.image = pasteque_defoncer
+                            fenetre.blit(fond_e, (0,0))
+                            fenetre.blit(zizou_qui_casse_vraiment, (170,76))
+                            fenetre.blit(monObjet.get_img(), monObjet.get_rect())
+                            temps += 1
+                            points += 100
+                            affiche_score()
+                            pygame.display.flip()
+                            time.sleep(.250)
                             pygame.time.delay(200)
                         elif isinstance(monObjet, Classes.PastequePourrie):
                             points += 200
@@ -284,7 +334,7 @@ def Jeu():
         elif longueur_combo == 4:
             posPrem = 110
         else: posPrem = 50
-
+        
         while i < longueur_combo:
             fle_n = pygame.image.load(liste_fleches[i])
             fenetre.blit(fle_n, (posPrem + (125*i),500))
