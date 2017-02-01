@@ -135,6 +135,18 @@ def Jeu(score):
         # On affiche les différentes images
         fenetre.blit(fond_e, (0,0))
         fenetre.blit(zizou_normal, (230,130))
+
+        multi_x1 = pygame.image.load("Images/x1.png")
+        multi_x2 = pygame.image.load("Images/x2.png")
+        multi_x4 = pygame.image.load("Images/x4.png")
+
+        if multiplicateur == 1:
+            fenetre.blit(multi_x1,(400,75))
+        elif multiplicateur == 2:
+            fenetre.blit(multi_x2,(400,75))
+        elif multiplicateur == 4:
+            fenetre.blit(multi_x4,(400,75))
+
         monObjet.movement()
         fenetre.blit(monObjet.get_img(), monObjet.get_rect())
         # Boucle sur les différents évènement reçut
@@ -230,35 +242,53 @@ def Jeu(score):
 
                         # Deplacement de la pasteque
                         if isinstance(monObjet, Classes.PastequeDoree):     # Si l'objet est une Pasteque Doree
-                            score += 200
+                            score += 200 * multiplicateur
                             if multiplicateur < 4:
                                 multiplicateur = multiplicateur * 2
                             temps += 2
 
                             #afficher l'image du combo
-                            #combo = pygame.image.load("Images/combo.png")
-                            #fenetre.blit(fond_e, (250,100))
+                            combo_image = pygame.image.load("Images/combo.png")
+                            #afficher les images des multiplicateurs
+                            combo_x2 = pygame.image.load("Images/x2_explosion.png")
+                            combo_x4 = pygame.image.load("Images/x4_explosion.png")
+
 
                             pasteque_doree_defoncee = pygame.image.load("Images/pasteque_doree_defoncee.png").convert_alpha()
                             pasteque = pygame.image.load("Images/pasteque.png")
                             pasteque_defoncer = pygame.image.load("Images/pasteque_defoncee.png")
                             monObjet.image = pasteque_doree_defoncee
                             fenetre.blit(fond_e, (0,0))
+                            fenetre.blit(combo_image, (250,475))
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
+                            if multiplicateur == 2:
+                                fenetre.blit(combo_x2, (400,75))
+                            elif multiplicateur == 4:
+                                fenetre.blit(combo_x4, (400,75))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             affiche_score()
                             pygame.display.flip()
                             time.sleep(.250)
                             monObjet.image = pasteque
                             fenetre.blit(fond_e, (0,0))
+                            fenetre.blit(combo_image, (250,475))
                             fenetre.blit(zizou_normal, (230,130))
+                            if multiplicateur == 2:
+                                fenetre.blit(combo_x2, (397,78))
+                            elif multiplicateur == 4:
+                                fenetre.blit(combo_x4, (397,78))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             affiche_score()
                             pygame.display.flip()
                             time.sleep(.250)
                             monObjet.image = pasteque_defoncer
                             fenetre.blit(fond_e, (0,0))
+                            fenetre.blit(combo_image, (250,475))
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
+                            if multiplicateur == 2:
+                                fenetre.blit(combo_x2, (400,75))
+                            elif multiplicateur == 4:
+                                fenetre.blit(combo_x4, (400,75))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             temps += 1
                             score += 100
@@ -267,14 +297,24 @@ def Jeu(score):
                             time.sleep(.250)
                             monObjet.image = pasteque
                             fenetre.blit(fond_e, (0,0))
+                            fenetre.blit(combo_image, (250,475))
                             fenetre.blit(zizou_normal, (230,130))
+                            if multiplicateur == 2:
+                                fenetre.blit(combo_x2, (397,78))
+                            elif multiplicateur == 4:
+                                fenetre.blit(combo_x4, (397,78))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             affiche_score()
                             pygame.display.flip()
                             time.sleep(.250)
                             monObjet.image = pasteque_defoncer
                             fenetre.blit(fond_e, (0,0))
+                            fenetre.blit(combo_image, (250,475))
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
+                            if multiplicateur == 2:
+                                fenetre.blit(combo_x2, (400,75))
+                            elif multiplicateur == 4:
+                                fenetre.blit(combo_x4, (400,75))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             temps += 1
                             score += 100
@@ -283,14 +323,24 @@ def Jeu(score):
                             time.sleep(.250)
                             monObjet.image = pasteque
                             fenetre.blit(fond_e, (0,0))
+                            fenetre.blit(combo_image, (250,475))
                             fenetre.blit(zizou_normal, (230,130))
+                            if multiplicateur == 2:
+                                fenetre.blit(combo_x2, (397,78))
+                            elif multiplicateur == 4:
+                                fenetre.blit(combo_x4, (397,78))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             affiche_score()
                             pygame.display.flip()
                             time.sleep(.250)
                             monObjet.image = pasteque_defoncer
                             fenetre.blit(fond_e, (0,0))
+                            fenetre.blit(combo_image, (250,475))
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
+                            if multiplicateur == 2:
+                                fenetre.blit(combo_x2, (400,75))
+                            elif multiplicateur == 4:
+                                fenetre.blit(combo_x4, (400,75))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             temps += 1
                             score += 100
@@ -298,17 +348,25 @@ def Jeu(score):
                             pygame.display.flip()
                             time.sleep(.250)
                             pygame.time.delay(200)
+
                         elif isinstance(monObjet, Classes.PastequePourrie):
-                            score += 200
+                            score += 200 * multiplicateur
                             temps += 1
                             pasteque_pourrie_defoncee = pygame.image.load("../GameJam2017/Images/pasteque_pourrie_defoncee.png").convert_alpha()
                             monObjet.image = pasteque_pourrie_defoncee
                             fenetre.blit(fond_e, (0,0))
                             fenetre.blit(zizou_qui_casse_pourris, (170,76))
+                            if multiplicateur == 1:
+                                fenetre.blit(multi_x1,(400,75))
+                            elif multiplicateur == 2:
+                                fenetre.blit(multi_x2,(400,75))
+                            elif multiplicateur == 4:
+                                fenetre.blit(multi_x4,(400,75))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             affiche_score()
                             pygame.display.flip()
                             pygame.time.delay(200)
+
                         elif isinstance(monObjet, Classes.Pasteque):        # Si l'objet est une Pasteque
                             score += 100 * multiplicateur
                             temps += 1
@@ -316,7 +374,14 @@ def Jeu(score):
                             monObjet.image = pasteque_defoncee
                             fenetre.blit(fond_e, (0,0))
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
+                            if multiplicateur == 1:
+                                fenetre.blit(multi_x1,(400,75))
+                            elif multiplicateur == 2:
+                                fenetre.blit(multi_x2,(400,75))
+                            elif multiplicateur == 4:
+                                fenetre.blit(multi_x4,(400,75))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
+
                             affiche_score()
                             pygame.display.flip()
                             pygame.time.delay(200)
