@@ -385,10 +385,9 @@ def Game_Over():
     font = pygame.font.Font(None, 24)
 
 
-    pygame.display.flip()
-
-    time.sleep(2)
-    leaderBoard()
+    font = pygame.font.Font(None, 35)
+    score = font.render("Score : " ,1,(0,0,0))
+    fenetre.blit(score,(400,590))
 
     class Button:
         def __init__(self):
@@ -401,7 +400,7 @@ def Game_Over():
         #Update the display and show the button
         def update_display(self):
             #Parameters:               surface,      color,       x,   y,   length, height, width,    text,      text_color
-            self.Button1.create_button(self.screen, (127,51,6), 50, 600, 250,    75,    0,        "Retour", (255,255,255))
+            self.Button1.create_button(self.screen, (127,51,6), 400, 639, 250,    37,    0,        "Suivant", (255,255,255))
             pygame.display.flip()
 
 
@@ -416,21 +415,9 @@ def Game_Over():
                         pygame.quit()
                     elif event.type == MOUSEBUTTONDOWN:
                         if self.Button1.pressed(pygame.mouse.get_pos()):
-                            menuMain()
+                            leaderBoard()
 
-    def menu(): #procedure qui affiche le menu
-
-        # musique du menu
-        pygame.mixer.music.load("Transforyou.mp3")
-        pygame.mixer.music.play()
-
-        #création fond d'écran menu
-        fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
-        fenetre.blit(fond_e,(0,0))              #affiche l'image "fond_e" aux coordonnées "(0,0)" de la fenêtre "fenetre"
-        pygame.display.flip()                   #rafraichit la fenêtre pour voir les changements
-
-
-        boutonJouer = Button()
+    boutonSuivant = Button()
 
     while 1:
         # Boucle sur les différents évènement reçut
@@ -446,7 +433,7 @@ def Game_Over():
 
         # Limite le nombre d'image par secondes
         pygame.time.wait(10)
-        menu()
+
 #################### FIN GAME OVER ####################
 
 #################### AFFICHAGE CREDIT ####################
