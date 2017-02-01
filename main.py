@@ -156,7 +156,7 @@ def Jeu():
                         affiche_score()
 
 
-                        #-----------fleche roucge debut
+                        #-----------fleche rouge debut
                         if flecheCour=="../GameJam2017/Images/fleche_gauche_noire.png":
                             liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_gauche_rouge.png"
                         elif flecheCour=="../GameJam2017/Images/fleche_haut_noire.png":
@@ -175,7 +175,6 @@ def Jeu():
                         else: posPrem = 50
 
                         while i < longueur_combo:
-                            print liste_fleches[i]
                             fle_n = pygame.image.load(liste_fleches[i])
                             fenetre.blit(fle_n, (posPrem + (125*i),500))
                             i = i+1
