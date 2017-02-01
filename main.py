@@ -122,15 +122,10 @@ def Jeu(score):
     liste_fleches = combo_random(longueur_combo);   # Création d'une liste de fleches aléatoires
     numFlecheCour = 0                               # La première fleche est la fleche 0
     monObjet = getObjet()                           # Création d'un objet
-<<<<<<< HEAD
-
 
     boutonQuitter = Button()
 
-
-=======
     saveObjet = Classes.Pasteque(450, 305, "Images/pasteque.png", 100, 100, 5, 100, 5, 0);
->>>>>>> b66225bbc5b0c652da9e430aada8f0f151de6509
     # Boucle infinie pour affichage permanent de la fenêtre
     while 1:
         #accès a l'élément courant de la liste de fleches
@@ -391,22 +386,13 @@ def Jeu(score):
             fenetre.blit(fle_n, (posPrem + (125*i),500))
             i = i+1
 
-<<<<<<< HEAD
         boutonQuitter.update_display()
-=======
 
->>>>>>> b66225bbc5b0c652da9e430aada8f0f151de6509
         #On refresh l'affichage
         pygame.display.flip()
 
         # Limite le nombre d'image par secondes
         pygame.time.wait(10)
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> b66225bbc5b0c652da9e430aada8f0f151de6509
 #################### FIN DU JEU ####################
 
 #################### MENU ####################
@@ -529,7 +515,6 @@ def Game_Over(score):
                         if self.Button1.pressed(pygame.mouse.get_pos()):
                             leaderBoard()
 
-<<<<<<< HEAD
     def menu(): #procedure qui affiche le menu
 
         # musique du menu
@@ -542,9 +527,7 @@ def Game_Over(score):
         pygame.display.flip()                   #rafraichit la fenêtre pour voir les changements
 
         boutonJouer = Button()
-=======
     boutonSuivant = Button()
->>>>>>> b66225bbc5b0c652da9e430aada8f0f151de6509
 
     while 1:
         # Boucle sur les différents évènement reçut
