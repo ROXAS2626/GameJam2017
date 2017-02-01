@@ -33,7 +33,7 @@ def Jeu():
     font = pygame.font.Font(None, 24)       # Création de la font
 
     # Création du timer
-    time = 30
+    temps = 30
     pygame.time.set_timer(USEREVENT+1, 1000) # 1 seconde c'est 1000 millisecondes
 
     # Création des variables globales des Scores
@@ -147,7 +147,7 @@ def Jeu():
                         numFlecheCour = numFlecheCour + 1
                     #sinon c'est que la touche pressées ne correspond pas
                     else:
-                        time -= 5                   # Le joueur perd 5 secondes
+                        temps -= 5                   # Le joueur perd 5 secondes
                         combo = 0                   # Le joueur retombe à 0 de combo
                         longueur_combo = 3          # Le nombre de fleche retombe à 3
                         fenetre.blit(fond_e, (0,0))
@@ -170,7 +170,7 @@ def Jeu():
                             points += 400
                             if multiplicateur < 4:
                                 multiplicateur = multiplicateur * 2
-                            time += 5
+                            temps += 5
                             pasteque_doree_defoncee = pygame.image.load("../GameJam2017/Images/pasteque_doree_defoncee.png").convert_alpha()
                             monObjet.image = pasteque_doree_defoncee
                             fenetre.blit(fond_e, (0,0))
@@ -181,7 +181,7 @@ def Jeu():
                             pygame.time.delay(200)
                         elif isinstance(monObjet, Classes.PastequePourrie):
                             points += 200
-                            time += 1
+                            temps += 1
                             pasteque_pourrie_defoncee = pygame.image.load("../GameJam2017/Images/pasteque_pourrie_defoncee.png").convert_alpha()
                             monObjet.image = pasteque_pourrie_defoncee
                             fenetre.blit(fond_e, (0,0))
@@ -192,7 +192,7 @@ def Jeu():
                             pygame.time.delay(200)
                         elif isinstance(monObjet, Classes.Pasteque):        # Si l'objet est une Pasteque
                             points += 100 * multiplicateur
-                            time += 1
+                            temps += 1
                             pasteque_defoncee = pygame.image.load("../GameJam2017/Images/pasteque_defoncee.png").convert_alpha()
                             monObjet.image = pasteque_defoncee
                             fenetre.blit(fond_e, (0,0))
@@ -224,16 +224,16 @@ def Jeu():
 
         def affiche_score():
             # Si le temps est inférieur ou égal à 0 alors le joueur a perdu
-            if time <= 0:
+            if temps <= 0:
                 Game_Over()
                 pygame.display.flip()
 
             # On affiche le temps restant
-            if time > 3:
-                timer_text = font.render("Temps : {0}".format(time), 1, (255,255,255))
+            if temps > 3:
+                timer_text = font.render("Temps : {0}".format(temps), 1, (255,255,255))
                 fenetre.blit(timer_text, (500, 30))
             else:
-                timer_text = font.render("Temps : {0}".format(time), 1, (240, 10, 10))
+                timer_text = font.render("Temps : {0}".format(temps), 1, (240, 10, 10))
                 fenetre.blit(timer_text, (500, 30))
 
             # On affiche les scores
@@ -256,7 +256,6 @@ def Jeu():
         else: posPrem = 50
 
         while i < longueur_combo:
-            print liste_fleches[i]
             fle_n = pygame.image.load(liste_fleches[i])
             fenetre.blit(fle_n, (posPrem + (125*i),500))
             i = i+1
