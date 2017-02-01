@@ -27,6 +27,12 @@ pygame.init()
 pygame.mixer.music.load("Musiques/mainMusic.mp3")
 pygame.mixer.music.play()
 
+pygame.mixer.init()
+channel1 = pygame.mixer.Channel(0) # argument must be int
+sounda= pygame.mixer.Sound("Musiques/mainplay.ogg")
+
+
+
 # création de la fenêtre
 fenetre  = pygame.display.set_mode((700,700), RESIZABLE)
 pygame.display.set_caption('KoudBoul')
@@ -34,11 +40,19 @@ pygame.display.set_caption('KoudBoul')
 # variables globales :
 nom_joueur = []
 score = 0
+<<<<<<< Updated upstream
 nomDuJoueur = ""
+=======
+
+>>>>>>> Stashed changes
 #################### DEBUT DU JEU ####################
 def Jeu(score,nomDuJoueur):
 #################### VARIABLES GLOBALES DU JEU ####################
+<<<<<<< Updated upstream
     print nomDuJoueur
+=======
+
+>>>>>>> Stashed changes
     fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()     # Image de fond
     font = pygame.font.Font(None, 24)       # Création de la font
     font2 = pygame.font.Font(None, 75)       # Création de la font2
@@ -54,6 +68,10 @@ def Jeu(score,nomDuJoueur):
     # variable globale fixe longueur combo
     longueur_combo = 3
 
+    pygame.mixer.music.load("Musiques/ScalesOfJustice.wav")
+    pygame.mixer.music.play()
+
+    time.sleep(2)
 
     # Création perso
     zizou_normal = pygame.image.load("Images/Zizou_transparent.png").convert_alpha()
@@ -63,6 +81,8 @@ def Jeu(score,nomDuJoueur):
     zizou_explose = pygame.image.load("Images/zizou_explose.png").convert_alpha()
 
     class Button:
+        pygame.mixer.stop()
+
         def __init__(self):
             self.main()
 
@@ -130,6 +150,10 @@ def Jeu(score,nomDuJoueur):
     			 liste_images.append("../GameJam2017/Images/fleche_bas_noire.png")
     		 v = v + 1
     	return liste_images
+
+    soundTabFail = ["Musiques/rentrecheztamere.mp3" , "Musiques/ohleboulet.mp3", "Musiques/tulavaispasvuvenir.mp3"]
+    soundTabFail2 = ["Musiques/coin.wav", "Musiques/buzzer.mp3"]
+
 #################### AFFICHAGE DE LA FENETRE DU JEU ####################
     liste_fleches = combo_random(longueur_combo);   # Création d'une liste de fleches aléatoires
     numFlecheCour = 0                               # La première fleche est la fleche 0
@@ -139,7 +163,14 @@ def Jeu(score,nomDuJoueur):
 
     saveObjet = Classes.Pasteque(450, 305, "Images/pasteque.png", 100, 100, 5, 100, 5, 0);
     # Boucle infinie pour affichage permanent de la fenêtre
+    pygame.mixer.music.stop()
+    channel1.play(sounda)
+
     while 1:
+
+
+
+
         #accès a l'élément courant de la liste de fleches
         flecheCour = liste_fleches[numFlecheCour]
 
@@ -161,6 +192,7 @@ def Jeu(score,nomDuJoueur):
 
         monObjet.movement()
         fenetre.blit(monObjet.get_img(), monObjet.get_rect())
+
         load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10), 2)
         pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10), 3)
         # Boucle sur les différents évènement reçut
@@ -179,10 +211,19 @@ def Jeu(score,nomDuJoueur):
                 if isinstance(monObjet, Classes.Bombe):     # Si l'objet est une bombe
                     if event.key == K_SPACE:
                         saveObjet = monObjet;
+                        pygame.mixer.music.load("Musiques/bombequipart.WAV")
+                        pygame.mixer.music.play()
                         monObjet = getObjet()       # Passage à l'objet suivant
                         liste_fleches = combo_random(longueur_combo);       # Passage aux fleches suivantes
                         numFlecheCour = 0
                     else:
+                        pygame.mixer.music.load("Musiques/Explosion1.wav")
+                        pygame.mixer.music.play()
+                        time.sleep(1.5)
+                        numsound = random.randint(0,2)
+                        pygame.mixer.music.stop()
+                        pygame.mixer.music.load(soundTabFail[numsound])
+                        pygame.mixer.music.play()
                         fenetre.blit(fond_e, (0,0))
                         fenetre.blit(zizou_explose, (170,76))
                         fenetre.blit(monObjet.get_img(), monObjet.get_rect())
@@ -207,6 +248,13 @@ def Jeu(score,nomDuJoueur):
                         numFlecheCour = numFlecheCour + 1
                     #sinon c'est que la touche pressées ne correspond pas
                     else:
+
+                        numsound1 = random.randint(0,1)
+                        pygame.mixer.music.stop()
+                        pygame.mixer.music.load(soundTabFail2[numsound1])
+                        pygame.mixer.music.play()
+
+
                         temps -= 5                   # Le joueur perd 5 secondes
                         multiplicateur = 1          # Le multiplicateur retombe à 1
                         combo = 0                   # Le joueur retombe à 0 de combo
@@ -244,7 +292,7 @@ def Jeu(score,nomDuJoueur):
                         pygame.display.flip()
 
 
-                        time.sleep(1)
+                        time.sleep(0.75)
                         #-----------fleche rouge fin
 
                         saveObjet = monObjet;
@@ -259,6 +307,7 @@ def Jeu(score,nomDuJoueur):
 
                         # Deplacement de la pasteque
                         if isinstance(monObjet, Classes.PastequeDoree):     # Si l'objet est une Pasteque Doree
+
                             score += 200 * multiplicateur
                             if multiplicateur < 4:
                                 multiplicateur = multiplicateur * 2
@@ -269,6 +318,11 @@ def Jeu(score,nomDuJoueur):
                             #afficher les images des multiplicateurs
                             combo_x2 = pygame.image.load("Images/x2_explosion.png")
                             combo_x4 = pygame.image.load("Images/x4_explosion.png")
+
+
+                            pygame.mixer.music.load("Musiques/combo.mp3")
+                            pygame.mixer.music.play()
+
 
 
                             pasteque_doree_defoncee = pygame.image.load("Images/pasteque_doree_defoncee.png").convert_alpha()
@@ -451,6 +505,8 @@ def Jeu(score,nomDuJoueur):
                             pygame.time.delay(200)
 
                         elif isinstance(monObjet, Classes.PastequePourrie):
+                            pygame.mixer.music.load("Musiques/Splish.wav")
+                            pygame.mixer.music.play()
                             score += 200 * multiplicateur
                             temps += 1
                             pasteque_pourrie_defoncee = pygame.image.load("../GameJam2017/Images/pasteque_pourrie_defoncee.png").convert_alpha()
@@ -483,9 +539,13 @@ def Jeu(score,nomDuJoueur):
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             affiche_score(nomDuJoueur)
                             pygame.display.flip()
+                            time.sleep(0.2)
                             pygame.time.delay(200)
 
                         elif isinstance(monObjet, Classes.Pasteque):        # Si l'objet est une Pasteque
+                            pygame.mixer.music.load("Musiques/FirePunchImpact.wav")
+                            pygame.mixer.music.play()
+
                             score += 100 * multiplicateur
                             temps += 1
                             pasteque_defoncee = pygame.image.load("../GameJam2017/Images/pasteque_defoncee.png").convert_alpha()
@@ -521,13 +581,16 @@ def Jeu(score,nomDuJoueur):
                             affiche_score(nomDuJoueur)
                             pygame.display.flip()
                             pygame.time.delay(200)
-
+                            time.sleep(0.2)
+                            pygame.mixer.music.stop()
                         # Incrémentation du combo
                         combo += 1
 
                         # Création d'une nouvelle instance d'un objet (Pasteque, PastequeDoree, PastequePourrie ou Bombe)
                         if (combo % 10) == 0:       # Si le combo est un multiple de 10 alors le prochain objet sera une pastequeDoree
                             pastequeDoree = Classes.PastequeDoree(-100, 305, "Images/Pasteque_Doréé.png", 100, 100, [15,0], 100, 5, 0, 2)
+                            pygame.mixer.music.load("Musiques/pastequesdorees.mp3")
+                            pygame.mixer.music.play()
                             saveObjet = monObjet;
                             monObjet = pastequeDoree
                         else:
@@ -679,7 +742,8 @@ def Game_Over(score,nomDuJoueur):
 
     # Création fond d'écran
     fond_e = pygame.image.load("Images/gameOver.png").convert()
-
+    pygame.mixer.music.load("Musiques/gameover.mp3")
+    pygame.mixer.music.play()
 
     # Création du texte du score
     fenetre.blit(fond_e,(0,0))
