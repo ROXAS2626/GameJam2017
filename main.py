@@ -182,6 +182,7 @@ def Jeu(score):
                     #sinon c'est que la touche pressées ne correspond pas
                     else:
                         temps -= 5                   # Le joueur perd 5 secondes
+                        multiplicateur = 1          # Le multiplicateur retombe à 1
                         combo = 0                   # Le joueur retombe à 0 de combo
                         fenetre.blit(fond_e, (0,0))
                         fenetre.blit(zizou_qui_casse, (143,50))
@@ -234,7 +235,12 @@ def Jeu(score):
                             if multiplicateur < 4:
                                 multiplicateur = multiplicateur * 2
                             temps += 2
-                            pasteque_doree_defoncee = pygame.image.load("../GameJam2017/Images/pasteque_doree_defoncee.png").convert_alpha()
+
+                            #afficher l'image du combo
+                            #combo = pygame.image.load("Images/combo.png")
+                            #fenetre.blit(fond_e, (250,100))
+
+                            pasteque_doree_defoncee = pygame.image.load("Images/pasteque_doree_defoncee.png").convert_alpha()
                             pasteque = pygame.image.load("Images/pasteque.png")
                             pasteque_defoncer = pygame.image.load("Images/pasteque_defoncee.png")
                             monObjet.image = pasteque_doree_defoncee
@@ -945,6 +951,24 @@ def Nom_Joueur():
 
     fenetre.blit(label,(50,415))
 
+    #Run the loop
+    def main(self):
+        self.Button1 = Buttons.Button()
+        self.Button3 = Buttons.Button()
+        self.Button2 = Buttons.Button()
+        self.display()
+        while True:
+            self.update_display()
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                elif event.type == MOUSEBUTTONDOWN:
+                    if self.Button1.pressed(pygame.mouse.get_pos()):
+                        Jeu(score)
+                    if self.Button3.pressed(pygame.mouse.get_pos()):
+                        Tutoriel()
+                    if self.Button2.pressed(pygame.mouse.get_pos()):
+                        Credit()
 
     class Button:
             def __init__(self):
