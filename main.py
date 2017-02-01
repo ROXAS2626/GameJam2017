@@ -234,7 +234,12 @@ def Jeu(score):
                             if multiplicateur < 4:
                                 multiplicateur = multiplicateur * 2
                             temps += 2
-                            pasteque_doree_defoncee = pygame.image.load("../GameJam2017/Images/pasteque_doree_defoncee.png").convert_alpha()
+
+                            #afficher l'image du combo
+                            combo = pygame.image.load("Images/combo.png")
+                            fenetre.blit(fond_e, (250,100))
+
+                            pasteque_doree_defoncee = pygame.image.load("Images/pasteque_doree_defoncee.png").convert_alpha()
                             pasteque = pygame.image.load("Images/pasteque.png")
                             pasteque_defoncer = pygame.image.load("Images/pasteque_defoncee.png")
                             monObjet.image = pasteque_doree_defoncee
