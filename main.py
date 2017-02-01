@@ -1004,6 +1004,8 @@ def Tutoriel3():
 
 ################### Fenetre nom joueur ####################
 def Nom_Joueur(nomDuJoueur):
+    #Le joueur arrive sur une page pour rentrer son Pseudo
+    #D'abbord faut entrez une chaine de caractere (espaces non utilisables) Puis confirmer par ENTER avant d'appuyer sur le boutton
     fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
 
     # Création du texte du score
