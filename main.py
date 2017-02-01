@@ -96,10 +96,12 @@ def Jeu(score):
     liste_fleches = combo_random(longueur_combo);   # Création d'une liste de fleches aléatoires
     numFlecheCour = 0                               # La première fleche est la fleche 0
     monObjet = getObjet()                           # Création d'un objet
+    saveObjet = Classes.Pasteque(450, 305, "Images/pasteque.png", 100, 100, 5, 100, 5, 0);
     # Boucle infinie pour affichage permanent de la fenêtre
     while 1:
         #accès a l'élément courant de la liste de fleches
         flecheCour = liste_fleches[numFlecheCour]
+
 
         # On affiche les différentes images
         fenetre.blit(fond_e, (0,0))
@@ -118,6 +120,7 @@ def Jeu(score):
                 #    pygame.display.flip()
                 if isinstance(monObjet, Classes.Bombe):     # Si l'objet est une bombe
                     if event.key == K_SPACE:
+                        saveObjet = monObjet;
                         monObjet = getObjet()       # Passage à l'objet suivant
                         liste_fleches = combo_random(longueur_combo);       # Passage aux fleches suivantes
                         numFlecheCour = 0
@@ -132,16 +135,16 @@ def Jeu(score):
                         pygame.display.flip()
                 else:
                     #on test si le bouton correspond au bouton
-                    if flecheCour=="../GameJam2017/Images/fleche_gauche_noire.png" and event.key == K_LEFT:
+                    if (flecheCour=="../GameJam2017/Images/fleche_gauche_noire.png" or flecheCour=="../GameJam2017/Images/fleche_droite_jaune.png") and event.key == K_LEFT:
                         liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_gauche_verte.png"
                         numFlecheCour = numFlecheCour + 1
-                    elif flecheCour=="../GameJam2017/Images/fleche_haut_noire.png" and event.key == K_UP:
+                    elif (flecheCour=="../GameJam2017/Images/fleche_haut_noire.png" or flecheCour=="../GameJam2017/Images/fleche_bas_jaune.png") and event.key == K_UP:
                         liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_haut_verte.png"
                         numFlecheCour = numFlecheCour + 1
-                    elif flecheCour=="../GameJam2017/Images/fleche_droite_noire.png" and event.key == K_RIGHT:
+                    elif (flecheCour=="../GameJam2017/Images/fleche_droite_noire.png" or flecheCour=="../GameJam2017/Images/fleche_gauche_jaune.png") and event.key == K_RIGHT:
                         liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_droite_verte.png"
                         numFlecheCour = numFlecheCour + 1
-                    elif flecheCour=="../GameJam2017/Images/fleche_bas_noire.png" and event.key == K_DOWN:
+                    elif (flecheCour=="../GameJam2017/Images/fleche_bas_noire.png" or flecheCour=="../GameJam2017/Images/fleche_haut_jaune.png") and event.key == K_DOWN:
                         liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_bas_verte.png"
                         numFlecheCour = numFlecheCour + 1
                     #sinon c'est que la touche pressées ne correspond pas
@@ -155,14 +158,14 @@ def Jeu(score):
                         affiche_score()
 
 
-                        #-----------fleche rouge debut
-                        if flecheCour=="../GameJam2017/Images/fleche_gauche_noire.png":
+                        #-----------fleche roucge debut
+                        if flecheCour=="../GameJam2017/Images/fleche_gauche_noire.png" or flecheCour=="../GameJam2017/Images/fleche_gauche_jaune.png":
                             liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_gauche_rouge.png"
-                        elif flecheCour=="../GameJam2017/Images/fleche_haut_noire.png":
+                        elif flecheCour=="../GameJam2017/Images/fleche_haut_noire.png" or flecheCour=="../GameJam2017/Images/fleche_haut_jaune.png":
                             liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_haut_rouge.png"
-                        elif flecheCour=="../GameJam2017/Images/fleche_droite_noire.png":
+                        elif flecheCour=="../GameJam2017/Images/fleche_droite_noire.png" or flecheCour=="../GameJam2017/Images/fleche_droite_jaune.png":
                             liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_droite_rouge.png"
-                        elif flecheCour=="../GameJam2017/Images/fleche_bas_noire.png":
+                        elif flecheCour=="../GameJam2017/Images/fleche_bas_noire.png" or flecheCour=="../GameJam2017/Images/fleche_bas_jaune.png":
                             liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_bas_rouge.png"
 
                         i = 0
@@ -178,12 +181,14 @@ def Jeu(score):
                             fenetre.blit(fle_n, (posPrem + (125*i),500))
                             i = i+1
 
+
                         #On refresh l'affichage
                         pygame.display.flip()
 
                         time.sleep(1)
                         #-----------fleche rouge fin
 
+                        saveObjet = monObjet;
                         monObjet = getObjet()       # Passage a l'objet suivant
                         liste_fleches = combo_random(longueur_combo);       # Passage aux fleches suivantes
                         numFlecheCour = 0
@@ -236,6 +241,7 @@ def Jeu(score):
                         # Création d'une nouvelle instance d'un objet (Pasteque, PastequeDoree, PastequePourrie ou Bombe)
                         if (combo % 10) == 0:       # Si le combo est un multiple de 10 alors le prochain objet sera une pastequeDoree
                             pastequeDoree = Classes.PastequeDoree(-100, 305, "Images/Pasteque_Doréé.png", 100, 100, [15,0], 100, 5, 0, 2)
+                            saveObjet = monObjet;
                             monObjet = pastequeDoree
                         else:
                             if combo < 10:
@@ -244,6 +250,7 @@ def Jeu(score):
                                 longueur_combo = 4
                             else:
                                 longueur_combo = 5
+                            saveObjet = monObjet;
                             monObjet = getObjet()
 
                         # Change les fleches de façon aléatoire
@@ -284,15 +291,29 @@ def Jeu(score):
         else: posPrem = 50
 
         while i < longueur_combo:
+            #si c'est la derniere fleche de cette combinaison ET que l'ancien objet (saveObjet) est une pasteque pourrit alors on ecrit la fleche en jaune
+            if i==(longueur_combo-1) and isinstance(saveObjet, Classes.PastequePourrie):
+                if liste_fleches[i]=="../GameJam2017/Images/fleche_haut_noire.png":
+                    liste_fleches[i]="../GameJam2017/Images/fleche_bas_jaune.png"
+                elif liste_fleches[i]=="../GameJam2017/Images/fleche_bas_noire.png":
+                    liste_fleches[i]="../GameJam2017/Images/fleche_haut_jaune.png"
+                elif liste_fleches[i]=="../GameJam2017/Images/fleche_gauche_noire.png":
+                    liste_fleches[i]="../GameJam2017/Images/fleche_droite_jaune.png"
+                elif liste_fleches[i]=="../GameJam2017/Images/fleche_droite_noire.png":
+                    liste_fleches[i]="../GameJam2017/Images/fleche_gauche_jaune.png"
             fle_n = pygame.image.load(liste_fleches[i])
             fenetre.blit(fle_n, (posPrem + (125*i),500))
             i = i+1
+
 
         #On refresh l'affichage
         pygame.display.flip()
 
         # Limite le nombre d'image par secondes
         pygame.time.wait(10)
+
+
+
 #################### FIN DU JEU ####################
 
 #################### MENU ####################
