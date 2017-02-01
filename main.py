@@ -274,7 +274,7 @@ def Jeu(score):
                             time.sleep(.250)
                             monObjet.image = pasteque
                             fenetre.blit(fond_e, (0,0))
-                            fenetre.blit(combo_image, (250,475))
+                            fenetre.blit(combo_image, (253,478))
                             fenetre.blit(zizou_normal, (230,130))
                             if multiplicateur == 2:
                                 fenetre.blit(combo_x2, (397,78))
@@ -300,7 +300,7 @@ def Jeu(score):
                             time.sleep(.250)
                             monObjet.image = pasteque
                             fenetre.blit(fond_e, (0,0))
-                            fenetre.blit(combo_image, (250,475))
+                            fenetre.blit(combo_image, (253,478))
                             fenetre.blit(zizou_normal, (230,130))
                             if multiplicateur == 2:
                                 fenetre.blit(combo_x2, (397,78))
@@ -326,7 +326,7 @@ def Jeu(score):
                             time.sleep(.250)
                             monObjet.image = pasteque
                             fenetre.blit(fond_e, (0,0))
-                            fenetre.blit(combo_image, (250,475))
+                            fenetre.blit(combo_image, (253,478))
                             fenetre.blit(zizou_normal, (230,130))
                             if multiplicateur == 2:
                                 fenetre.blit(combo_x2, (397,78))
