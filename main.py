@@ -199,11 +199,7 @@ def Jeu(score):
 
                         # Deplacement de la pasteque
                         if isinstance(monObjet, Classes.PastequeDoree):     # Si l'objet est une Pasteque Doree
-<<<<<<< HEAD
-                            points += 200
-=======
-                            score += 400
->>>>>>> 49dbcbe0b5c16ba5ea5041a0bdc95c8b0df41a0e
+                            score += 200
                             if multiplicateur < 4:
                                 multiplicateur = multiplicateur * 2
                             temps += 2
@@ -229,7 +225,7 @@ def Jeu(score):
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             temps += 1
-                            points += 100
+                            score += 100
                             affiche_score()
                             pygame.display.flip()
                             time.sleep(.250)
@@ -245,7 +241,7 @@ def Jeu(score):
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             temps += 1
-                            points += 100
+                            score += 100
                             affiche_score()
                             pygame.display.flip()
                             time.sleep(.250)
@@ -261,7 +257,7 @@ def Jeu(score):
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             temps += 1
-                            points += 100
+                            score += 100
                             affiche_score()
                             pygame.display.flip()
                             time.sleep(.250)
@@ -343,7 +339,7 @@ def Jeu(score):
         elif longueur_combo == 4:
             posPrem = 110
         else: posPrem = 50
-        
+
         while i < longueur_combo:
             #si c'est la derniere fleche de cette combinaison ET que l'ancien objet (saveObjet) est une pasteque pourrit alors on ecrit la fleche en jaune
             if i==(longueur_combo-1) and isinstance(saveObjet, Classes.PastequePourrie):
