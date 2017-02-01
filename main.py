@@ -22,6 +22,11 @@ import pygame.mixer
 
 pygame.init()
 
+# musique du menu
+# musique du menu
+pygame.mixer.music.load("Musiques/mainMusic.mp3")
+pygame.mixer.music.play()
+
 # création de la fenêtre
 fenetre  = pygame.display.set_mode((700,700), RESIZABLE)
 pygame.display.set_caption('KoudBoul')
@@ -230,6 +235,8 @@ def Jeu(score):
                         longueur_combo = 3          # Le nombre de fleche retombe à 3
                         #On refresh l'affichage
                         pygame.display.flip()
+
+
                         time.sleep(1)
                         #-----------fleche rouge fin
 
@@ -471,10 +478,7 @@ def Jeu(score):
 #################### MENU ####################
 def menuMain(): #procedure qui affiche le menu
 
-    # musique du menu
-    # musique du menu
-    pygame.mixer.music.load("Transforyou.mp3")
-    pygame.mixer.music.play()
+
 
     #création fond d'écran menu
     fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
@@ -590,9 +594,6 @@ def Game_Over(score):
 
     def menu(): #procedure qui affiche le menu
 
-        # musique du menu
-        pygame.mixer.music.load("Transforyou.mp3")
-        pygame.mixer.music.play()
 
         #création fond d'écran menu
         fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
@@ -660,9 +661,7 @@ def Credit():
 
     def menu(): #procedure qui affiche le menu
 
-        # musique du menu
-        pygame.mixer.music.load("Transforyou.mp3")
-        pygame.mixer.music.play()
+
 
         #création fond d'écran menu
         fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
@@ -755,9 +754,7 @@ def Tutoriel():
 
     def menu(): #procedure qui affiche le menu
 
-        # musique du menu
-        pygame.mixer.music.load("Transforyou.mp3")
-        pygame.mixer.music.play()
+
 
         #création fond d'écran menu
         fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
@@ -858,9 +855,7 @@ def Tutoriel2():
 
     def menu(): #procedure qui affiche le menu
 
-        # musique du menu
-        pygame.mixer.music.load("Transforyou.mp3")
-        pygame.mixer.music.play()
+
 
         #création fond d'écran menu
         fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
@@ -952,9 +947,7 @@ def Tutoriel3():
 
     def menu(): #procedure qui affiche le menu
 
-        # musique du menu
-        pygame.mixer.music.load("Transforyou.mp3")
-        pygame.mixer.music.play()
+
 
         #création fond d'écran menu
         fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
