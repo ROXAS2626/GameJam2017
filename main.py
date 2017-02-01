@@ -2,7 +2,7 @@
 #ligne permettant l'utilisation des accents
 
 #importation de Pygame
-import pygame, Classes, random
+import pygame, Classes, random, time
 from pygame.locals import *
 
 
@@ -25,19 +25,18 @@ pygame.init()
 # création de la fenêtre
 fenetre  = pygame.display.set_mode((700,700), RESIZABLE)
 pygame.display.set_caption('KoudBoul')
-
+score = 0
 #################### DEBUT DU JEU ####################
-def Jeu():
+def Jeu(score):
 #################### VARIABLES GLOBALES DU JEU ####################
     fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()     # Image de fond
     font = pygame.font.Font(None, 24)       # Création de la font
 
     # Création du timer
-    time = 30
+    temps = 30
     pygame.time.set_timer(USEREVENT+1, 1000) # 1 seconde c'est 1000 millisecondes
 
     # Création des variables globales des Scores
-    points = 0
     multiplicateur = 1
     combo = 0
     # variable globale fixe longueur combo
@@ -123,15 +122,20 @@ def Jeu():
     liste_fleches = combo_random(longueur_combo);   # Création d'une liste de fleches aléatoires
     numFlecheCour = 0                               # La première fleche est la fleche 0
     monObjet = getObjet()                           # Création d'un objet
+<<<<<<< HEAD
 
 
     boutonQuitter = Button()
 
 
+=======
+    saveObjet = Classes.Pasteque(450, 305, "Images/pasteque.png", 100, 100, 5, 100, 5, 0);
+>>>>>>> b66225bbc5b0c652da9e430aada8f0f151de6509
     # Boucle infinie pour affichage permanent de la fenêtre
     while 1:
         #accès a l'élément courant de la liste de fleches
         flecheCour = liste_fleches[numFlecheCour]
+
 
         # On affiche les différentes images
         fenetre.blit(fond_e, (0,0))
@@ -141,7 +145,7 @@ def Jeu():
         # Boucle sur les différents évènement reçut
         for event in pygame.event.get():
             if event.type == USEREVENT+1:
-                time -=1
+                temps -=1
             if event.type == QUIT:          # Ferme la fenetre si appuie sur la croix rouge
                 sys.exit()
             if event.type == MOUSEBUTTONDOWN:
@@ -153,6 +157,7 @@ def Jeu():
                 #    pygame.display.flip()
                 if isinstance(monObjet, Classes.Bombe):     # Si l'objet est une bombe
                     if event.key == K_SPACE:
+                        saveObjet = monObjet;
                         monObjet = getObjet()       # Passage à l'objet suivant
                         liste_fleches = combo_random(longueur_combo);       # Passage aux fleches suivantes
                         numFlecheCour = 0
@@ -163,33 +168,62 @@ def Jeu():
                         affiche_score()
                         pygame.display.flip()
                         pygame.time.delay(2000)
-                        Game_Over()
+                        Game_Over(score)
                         pygame.display.flip()
                 else:
                     #on test si le bouton correspond au bouton
-                    if flecheCour=="../GameJam2017/Images/fleche_gauche_noire.png" and event.key == K_LEFT:
+                    if (flecheCour=="../GameJam2017/Images/fleche_gauche_noire.png" or flecheCour=="../GameJam2017/Images/fleche_droite_jaune.png") and event.key == K_LEFT:
                         liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_gauche_verte.png"
                         numFlecheCour = numFlecheCour + 1
-                    elif flecheCour=="../GameJam2017/Images/fleche_haut_noire.png" and event.key == K_UP:
+                    elif (flecheCour=="../GameJam2017/Images/fleche_haut_noire.png" or flecheCour=="../GameJam2017/Images/fleche_bas_jaune.png") and event.key == K_UP:
                         liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_haut_verte.png"
                         numFlecheCour = numFlecheCour + 1
-                    elif flecheCour=="../GameJam2017/Images/fleche_droite_noire.png" and event.key == K_RIGHT:
+                    elif (flecheCour=="../GameJam2017/Images/fleche_droite_noire.png" or flecheCour=="../GameJam2017/Images/fleche_gauche_jaune.png") and event.key == K_RIGHT:
                         liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_droite_verte.png"
                         numFlecheCour = numFlecheCour + 1
-                    elif flecheCour=="../GameJam2017/Images/fleche_bas_noire.png" and event.key == K_DOWN:
+                    elif (flecheCour=="../GameJam2017/Images/fleche_bas_noire.png" or flecheCour=="../GameJam2017/Images/fleche_haut_jaune.png") and event.key == K_DOWN:
                         liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_bas_verte.png"
                         numFlecheCour = numFlecheCour + 1
                     #sinon c'est que la touche pressées ne correspond pas
                     else:
-                        time -= 5                   # Le joueur perd 5 secondes
+                        temps -= 5                   # Le joueur perd 5 secondes
                         combo = 0                   # Le joueur retombe à 0 de combo
-                        longueur_combo = 3          # Le nombre de fleche retombe à 3
                         fenetre.blit(fond_e, (0,0))
                         fenetre.blit(zizou_qui_casse, (143,50))
                         fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                         affiche_score()
+
+
+                        #-----------fleche roucge debut
+                        if flecheCour=="../GameJam2017/Images/fleche_gauche_noire.png" or flecheCour=="../GameJam2017/Images/fleche_gauche_jaune.png":
+                            liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_gauche_rouge.png"
+                        elif flecheCour=="../GameJam2017/Images/fleche_haut_noire.png" or flecheCour=="../GameJam2017/Images/fleche_haut_jaune.png":
+                            liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_haut_rouge.png"
+                        elif flecheCour=="../GameJam2017/Images/fleche_droite_noire.png" or flecheCour=="../GameJam2017/Images/fleche_droite_jaune.png":
+                            liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_droite_rouge.png"
+                        elif flecheCour=="../GameJam2017/Images/fleche_bas_noire.png" or flecheCour=="../GameJam2017/Images/fleche_bas_jaune.png":
+                            liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_bas_rouge.png"
+
+                        i = 0
+                        posPrem = 0
+                        if longueur_combo == 3:
+                            posPrem = 175
+                        elif longueur_combo == 4:
+                            posPrem = 110
+                        else: posPrem = 50
+
+                        while i < longueur_combo:
+                            fle_n = pygame.image.load(liste_fleches[i])
+                            fenetre.blit(fle_n, (posPrem + (125*i),500))
+                            i = i+1
+
+                        longueur_combo = 3          # Le nombre de fleche retombe à 3
+                        #On refresh l'affichage
                         pygame.display.flip()
-                        pygame.time.delay(200)
+                        time.sleep(1)
+                        #-----------fleche rouge fin
+
+                        saveObjet = monObjet;
                         monObjet = getObjet()       # Passage a l'objet suivant
                         liste_fleches = combo_random(longueur_combo);       # Passage aux fleches suivantes
                         numFlecheCour = 0
@@ -201,21 +235,72 @@ def Jeu():
 
                         # Deplacement de la pasteque
                         if isinstance(monObjet, Classes.PastequeDoree):     # Si l'objet est une Pasteque Doree
-                            points += 400
+                            score += 200
                             if multiplicateur < 4:
                                 multiplicateur = multiplicateur * 2
-                            time += 5
+                            temps += 2
                             pasteque_doree_defoncee = pygame.image.load("../GameJam2017/Images/pasteque_doree_defoncee.png").convert_alpha()
+                            pasteque = pygame.image.load("Images/pasteque.png")
+                            pasteque_defoncer = pygame.image.load("Images/pasteque_defoncee.png")
                             monObjet.image = pasteque_doree_defoncee
                             fenetre.blit(fond_e, (0,0))
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
                             fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                             affiche_score()
                             pygame.display.flip()
+                            time.sleep(.250)
+                            monObjet.image = pasteque
+                            fenetre.blit(fond_e, (0,0))
+                            fenetre.blit(zizou_normal, (230,130))
+                            fenetre.blit(monObjet.get_img(), monObjet.get_rect())
+                            affiche_score()
+                            pygame.display.flip()
+                            time.sleep(.250)
+                            monObjet.image = pasteque_defoncer
+                            fenetre.blit(fond_e, (0,0))
+                            fenetre.blit(zizou_qui_casse_vraiment, (170,76))
+                            fenetre.blit(monObjet.get_img(), monObjet.get_rect())
+                            temps += 1
+                            score += 100
+                            affiche_score()
+                            pygame.display.flip()
+                            time.sleep(.250)
+                            monObjet.image = pasteque
+                            fenetre.blit(fond_e, (0,0))
+                            fenetre.blit(zizou_normal, (230,130))
+                            fenetre.blit(monObjet.get_img(), monObjet.get_rect())
+                            affiche_score()
+                            pygame.display.flip()
+                            time.sleep(.250)
+                            monObjet.image = pasteque_defoncer
+                            fenetre.blit(fond_e, (0,0))
+                            fenetre.blit(zizou_qui_casse_vraiment, (170,76))
+                            fenetre.blit(monObjet.get_img(), monObjet.get_rect())
+                            temps += 1
+                            score += 100
+                            affiche_score()
+                            pygame.display.flip()
+                            time.sleep(.250)
+                            monObjet.image = pasteque
+                            fenetre.blit(fond_e, (0,0))
+                            fenetre.blit(zizou_normal, (230,130))
+                            fenetre.blit(monObjet.get_img(), monObjet.get_rect())
+                            affiche_score()
+                            pygame.display.flip()
+                            time.sleep(.250)
+                            monObjet.image = pasteque_defoncer
+                            fenetre.blit(fond_e, (0,0))
+                            fenetre.blit(zizou_qui_casse_vraiment, (170,76))
+                            fenetre.blit(monObjet.get_img(), monObjet.get_rect())
+                            temps += 1
+                            score += 100
+                            affiche_score()
+                            pygame.display.flip()
+                            time.sleep(.250)
                             pygame.time.delay(200)
                         elif isinstance(monObjet, Classes.PastequePourrie):
-                            points += 200
-                            time += 1
+                            score += 200
+                            temps += 1
                             pasteque_pourrie_defoncee = pygame.image.load("../GameJam2017/Images/pasteque_pourrie_defoncee.png").convert_alpha()
                             monObjet.image = pasteque_pourrie_defoncee
                             fenetre.blit(fond_e, (0,0))
@@ -225,8 +310,8 @@ def Jeu():
                             pygame.display.flip()
                             pygame.time.delay(200)
                         elif isinstance(monObjet, Classes.Pasteque):        # Si l'objet est une Pasteque
-                            points += 100 * multiplicateur
-                            time += 1
+                            score += 100 * multiplicateur
+                            temps += 1
                             pasteque_defoncee = pygame.image.load("../GameJam2017/Images/pasteque_defoncee.png").convert_alpha()
                             monObjet.image = pasteque_defoncee
                             fenetre.blit(fond_e, (0,0))
@@ -242,6 +327,7 @@ def Jeu():
                         # Création d'une nouvelle instance d'un objet (Pasteque, PastequeDoree, PastequePourrie ou Bombe)
                         if (combo % 10) == 0:       # Si le combo est un multiple de 10 alors le prochain objet sera une pastequeDoree
                             pastequeDoree = Classes.PastequeDoree(-100, 305, "Images/Pasteque_Doréé.png", 100, 100, [15,0], 100, 5, 0, 2)
+                            saveObjet = monObjet;
                             monObjet = pastequeDoree
                         else:
                             if combo < 10:
@@ -250,6 +336,7 @@ def Jeu():
                                 longueur_combo = 4
                             else:
                                 longueur_combo = 5
+                            saveObjet = monObjet;
                             monObjet = getObjet()
 
                         # Change les fleches de façon aléatoire
@@ -258,20 +345,20 @@ def Jeu():
 
         def affiche_score():
             # Si le temps est inférieur ou égal à 0 alors le joueur a perdu
-            if time <= 0:
-                Game_Over()
+            if temps <= 0:
+                Game_Over(score)
                 pygame.display.flip()
 
             # On affiche le temps restant
-            if time > 3:
-                timer_text = font.render("Temps : {0}".format(time), 1, (255,255,255))
+            if temps > 3:
+                timer_text = font.render("Temps : {0}".format(temps), 1, (255,255,255))
                 fenetre.blit(timer_text, (500, 30))
             else:
-                timer_text = font.render("Temps : {0}".format(time), 1, (240, 10, 10))
+                timer_text = font.render("Temps : {0}".format(temps), 1, (240, 10, 10))
                 fenetre.blit(timer_text, (500, 30))
 
             # On affiche les scores
-            points_text = font.render("Points : {0}".format(points), 1, (255,255,255))
+            points_text = font.render("Points : {0}".format(score), 1, (255,255,255))
             multiplicateur_text = font.render("Multiplicateur : {0}".format(multiplicateur), 1, (255,255,255))
             combo_text = font.render("Combo : {0}".format(combo), 1, (255,255,255))
             fenetre.blit(points_text, (30,30))
@@ -290,17 +377,36 @@ def Jeu():
         else: posPrem = 50
 
         while i < longueur_combo:
+            #si c'est la derniere fleche de cette combinaison ET que l'ancien objet (saveObjet) est une pasteque pourrit alors on ecrit la fleche en jaune
+            if i==(longueur_combo-1) and isinstance(saveObjet, Classes.PastequePourrie):
+                if liste_fleches[i]=="../GameJam2017/Images/fleche_haut_noire.png":
+                    liste_fleches[i]="../GameJam2017/Images/fleche_bas_jaune.png"
+                elif liste_fleches[i]=="../GameJam2017/Images/fleche_bas_noire.png":
+                    liste_fleches[i]="../GameJam2017/Images/fleche_haut_jaune.png"
+                elif liste_fleches[i]=="../GameJam2017/Images/fleche_gauche_noire.png":
+                    liste_fleches[i]="../GameJam2017/Images/fleche_droite_jaune.png"
+                elif liste_fleches[i]=="../GameJam2017/Images/fleche_droite_noire.png":
+                    liste_fleches[i]="../GameJam2017/Images/fleche_gauche_jaune.png"
             fle_n = pygame.image.load(liste_fleches[i])
             fenetre.blit(fle_n, (posPrem + (125*i),500))
             i = i+1
 
+<<<<<<< HEAD
         boutonQuitter.update_display()
+=======
+
+>>>>>>> b66225bbc5b0c652da9e430aada8f0f151de6509
         #On refresh l'affichage
         pygame.display.flip()
 
         # Limite le nombre d'image par secondes
         pygame.time.wait(10)
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> b66225bbc5b0c652da9e430aada8f0f151de6509
 #################### FIN DU JEU ####################
 
 #################### MENU ####################
@@ -327,45 +433,6 @@ def menuMain(): #procedure qui affiche le menu
 #################### TABLEAU DES SCORES ####################
 def leaderBoard():
 
-    fenetre = pygame.display.set_mode((700,700), RESIZABLE)
-
-    # Création fond d'écran
-    fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
-    fenetre.blit(fond_e,(0,0))
-
-    font = pygame.font.Font(None, 33)
-    titre = font.render("Leader Board",1,(255,0,0))
-    fenetre.blit(titre,(230,150))
-
-    while 1:
-        # Boucle sur les différents évènement reçut
-        for event in pygame.event.get():    # Ferme la fenetre si appuie sur la croix rouge
-            if event.type == QUIT:
-                sys.exit()
-
-
-        #On refresh l'affichage
-        pygame.display.flip()
-#################### FIN DU TABLEAU DES SCORES ####################
-
-#################### AFFICHAGE GAME OVER ####################
-def Game_Over():
-    fenetre = pygame.display.set_mode((700,700), RESIZABLE)
-
-    # Création fond d'écran
-    fond_e = pygame.image.load("Images/gameOver.png").convert()
-
-
-    # Création du texte du score
-    fenetre.blit(fond_e,(0,0))
-    font = pygame.font.Font(None, 24)
-
-
-    pygame.display.flip()
-
-    time.sleep(2)
-    leaderBoard()
-
     class Button:
         def __init__(self):
             self.main()
@@ -377,7 +444,7 @@ def Game_Over():
         #Update the display and show the button
         def update_display(self):
             #Parameters:               surface,      color,       x,   y,   length, height, width,    text,      text_color
-            self.Button1.create_button(self.screen, (127,51,6), 50, 600, 250,    75,    0,        "Retour", (255,255,255))
+            self.Button1.create_button(self.screen, (127,51,6), 50, 600, 250,    75,    0,        "Rejouer", (255,255,255))
             pygame.display.flip()
 
 
@@ -392,8 +459,77 @@ def Game_Over():
                         pygame.quit()
                     elif event.type == MOUSEBUTTONDOWN:
                         if self.Button1.pressed(pygame.mouse.get_pos()):
-                            menuMain()
+                            Jeu(score)
 
+    fenetre = pygame.display.set_mode((700,700), RESIZABLE)
+
+    # Création fond d'écran
+    fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
+    fenetre.blit(fond_e,(0,0))
+
+    font = pygame.font.Font(None, 50)
+    titre = font.render("Leader Board",1,(255,0,0))
+    fenetre.blit(titre,(247,70))
+
+
+    boutonRejouer = Button()
+    while 1:
+        # Boucle sur les différents évènement reçut
+        for event in pygame.event.get():    # Ferme la fenetre si appuie sur la croix rouge
+            if event.type == QUIT:
+                sys.exit()
+
+        #On refresh l'affichage
+        pygame.display.flip()
+
+#################### FIN DU TABLEAU DES SCORES ####################
+
+#################### AFFICHAGE GAME OVER ####################
+def Game_Over(score):
+    fenetre = pygame.display.set_mode((700,700), RESIZABLE)
+
+    # Création fond d'écran
+    fond_e = pygame.image.load("Images/gameOver.png").convert()
+
+
+    # Création du texte du score
+    fenetre.blit(fond_e,(0,0))
+    font = pygame.font.Font(None, 24)
+
+
+    font = pygame.font.Font(None, 35)
+    points = font.render("Score : {0}".format(score) ,1,(0,0,0))
+    fenetre.blit(points,(400,590))
+
+    class Button:
+        def __init__(self):
+            self.main()
+
+        #Create a display
+        def display(self):
+            self.screen = fenetre
+
+        #Update the display and show the button
+        def update_display(self):
+            #Parameters:               surface,      color,       x,   y,   length, height, width,    text,      text_color
+            self.Button1.create_button(self.screen, (127,51,6), 400, 639, 250,    37,    0,        "Suivant", (255,255,255))
+            pygame.display.flip()
+
+
+        #Run the loop
+        def main(self):
+            self.Button1 = Buttons.Button()
+            self.display()
+            while True:
+                self.update_display()
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                    elif event.type == MOUSEBUTTONDOWN:
+                        if self.Button1.pressed(pygame.mouse.get_pos()):
+                            leaderBoard()
+
+<<<<<<< HEAD
     def menu(): #procedure qui affiche le menu
 
         # musique du menu
@@ -406,6 +542,9 @@ def Game_Over():
         pygame.display.flip()                   #rafraichit la fenêtre pour voir les changements
 
         boutonJouer = Button()
+=======
+    boutonSuivant = Button()
+>>>>>>> b66225bbc5b0c652da9e430aada8f0f151de6509
 
     while 1:
         # Boucle sur les différents évènement reçut
@@ -421,7 +560,7 @@ def Game_Over():
 
         # Limite le nombre d'image par secondes
         pygame.time.wait(10)
-        menu()
+
 #################### FIN GAME OVER ####################
 
 #################### AFFICHAGE CREDIT ####################
@@ -841,7 +980,7 @@ class Button:
                     pygame.quit()
                 elif event.type == MOUSEBUTTONDOWN:
                     if self.Button1.pressed(pygame.mouse.get_pos()):
-                        Jeu()
+                        Jeu(score)
                     if self.Button3.pressed(pygame.mouse.get_pos()):
                         Tutoriel()
                     if self.Button2.pressed(pygame.mouse.get_pos()):
