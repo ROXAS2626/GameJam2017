@@ -2,7 +2,7 @@
 #ligne permettant l'utilisation des accents
 
 #importation de Pygame
-import pygame, Classes, random, time, eztext
+import pygame, Classes, random, time
 from pygame.locals import *
 
 
@@ -1052,7 +1052,6 @@ def Nom_Joueur(nomDuJoueur):
                     elif evt.key == K_RETURN:
                         b= False
                         return nomDuJoueur
-            print nomDuJoueur
     txtbx.update(pygame.event.get())
     # blit txtbx on the sceen
     txtbx.draw(fenetre)
