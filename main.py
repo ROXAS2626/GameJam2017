@@ -1008,6 +1008,7 @@ def Nom_Joueur():
     fenetre.blit(fond_e,(0,0))
     font = pygame.font.Font(None, 35)
 
+    txtbx = eztext.Input(maxlength=45, color=(255,0,0), prompt='type here: ')
 
     class Button:
             def __init__(self):
@@ -1024,20 +1025,17 @@ def Nom_Joueur():
                 pygame.display.flip()
 
 
+            def pressed(self):
+                return self.Button1.pressed(pygame.mouse.get_pos())
+
             #Run the loop
             def main(self):
                 self.Button1 = Buttons.Button()
                 self.display()
-                while True:
-                    self.update_display()
-                    for event in pygame.event.get():
-                        if event.type == pygame.QUIT:
-                            pygame.quit()
-                        elif event.type == MOUSEBUTTONDOWN:
-                            if self.Button1.pressed(pygame.mouse.get_pos()):
-                                Jeu(score)
+                self.update_display()
 
     boutonValider = Button()
+    #name = ""
 
 
     while 1:
@@ -1045,7 +1043,24 @@ def Nom_Joueur():
             for event in pygame.event.get():    # Ferme la fenetre si appuie sur la croix rouge
                 if event.type == QUIT:
                     sys.exit()
-            fenetre.blit(fond_e, (0,0))
+                elif event.type == MOUSEBUTTONDOWN: # Commence le jeu si appuie sur le bouton "Valider"
+                    if boutonValider.pressed():
+                        Jeu(score)
+#                elif event.type == KEYDOWN:
+#                     if event.unicode.isalpha():
+#                         name += event.unicode
+#                     elif event.key == K_BACKSPACE:
+#                         name = name[:-1]
+#                     elif event.key == K_RETURN:
+#                         name = ""
+            #fenetre.blit(fond_e, (0,0))
+
+            # update txtbx
+            txtbx.update(pygame.event.get())
+            # blit txtbx on the sceen
+            txtbx.draw(fenetre)
+            boutonValider.update_display()
+
             #On refresh l'affichage
             pygame.display.flip()
 
