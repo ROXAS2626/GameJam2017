@@ -2,7 +2,7 @@
 #ligne permettant l'utilisation des accents
 
 #importation de Pygame
-import pygame, Classes, random, time
+import pygame, Classes, random, time, eztext
 from pygame.locals import *
 
 
@@ -947,28 +947,7 @@ def Nom_Joueur():
     # Création du texte du score
     fenetre.blit(fond_e,(0,0))
     font = pygame.font.Font(None, 35)
-    label = font.render("saisissez votre nom : ", 1, (255,255,255))
 
-    fenetre.blit(label,(50,415))
-
-    #Run the loop
-    def main(self):
-        self.Button1 = Buttons.Button()
-        self.Button3 = Buttons.Button()
-        self.Button2 = Buttons.Button()
-        self.display()
-        while True:
-            self.update_display()
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                elif event.type == MOUSEBUTTONDOWN:
-                    if self.Button1.pressed(pygame.mouse.get_pos()):
-                        Jeu(score)
-                    if self.Button3.pressed(pygame.mouse.get_pos()):
-                        Tutoriel()
-                    if self.Button2.pressed(pygame.mouse.get_pos()):
-                        Credit()
 
     class Button:
             def __init__(self):
@@ -1007,10 +986,9 @@ def Nom_Joueur():
                 if event.type == QUIT:
                     sys.exit()
             fenetre.blit(fond_e, (0,0))
-
-
             #On refresh l'affichage
             pygame.display.flip()
+
 ################## FIN Fenetre nom joueur ################
 class Button:
     def __init__(self):
