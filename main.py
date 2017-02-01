@@ -5,7 +5,6 @@
 import pygame, Classes, random, time
 from pygame.locals import *
 
-
 #importation de la bibliothèque system
 import sys;
 sys.path.insert(0, 'Buttons.py')
@@ -393,6 +392,8 @@ def Jeu(score):
 
         # Limite le nombre d'image par secondes
         pygame.time.wait(10)
+
+
 #################### FIN DU JEU ####################
 
 #################### MENU ####################
@@ -410,7 +411,40 @@ def menuMain(): #procedure qui affiche le menu
     logo = pygame.image.load("Images/logo.png")
     fenetre.blit(logo,(200,45))             #affiche l'image "logo" aux coordonnées "(0,0)" de la fenêtre "fenetre"
 
-    pygame.display.flip()                   #rafraichit la fenêtre pour voir les changements
+    class Button:
+        def __init__(self):
+            self.main()
+
+        #Create a display
+        def display(self):
+            self.screen = fenetre
+
+        #Update the display and show the button
+        def update_display(self):
+            #Parameters:               surface,      color,       x,   y,   length, height, width,    text,      text_color
+            self.Button1.create_button(self.screen, (127,51,6), 100, 360, 500,    75,    0,        "Jouer", (255,255,255))
+            self.Button3.create_button(self.screen, (127,51,6), 100, 465, 500,    75,    0,        "Tutoriel", (255,255,255))
+            self.Button2.create_button(self.screen,(127,51,6),100,570,500,75,0,"Credit",(255,255,255))
+            pygame.display.flip()
+
+        #Run the loop
+        def main(self):
+            self.Button1 = Buttons.Button()
+            self.Button3 = Buttons.Button()
+            self.Button2 = Buttons.Button()
+            self.display()
+            while True:
+                self.update_display()
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                    elif event.type == MOUSEBUTTONDOWN:
+                        if self.Button1.pressed(pygame.mouse.get_pos()):
+                            Jeu(score)
+                        if self.Button3.pressed(pygame.mouse.get_pos()):
+                            Tutoriel()
+                        if self.Button2.pressed(pygame.mouse.get_pos()):
+                            Credit()
 
 
     boutonJouer = Button()
@@ -515,6 +549,7 @@ def Game_Over(score):
                         if self.Button1.pressed(pygame.mouse.get_pos()):
                             leaderBoard()
 
+
     def menu(): #procedure qui affiche le menu
 
         # musique du menu
@@ -528,6 +563,7 @@ def Game_Over(score):
 
         boutonJouer = Button()
     boutonSuivant = Button()
+
 
     while 1:
         # Boucle sur les différents évènement reçut
@@ -933,44 +969,6 @@ def Tutoriel3():
         # Limite le nombre d'image par secondes
         menu()
 #################### FIN DU TUTORIEL ####################
-
-class Button:
-    def __init__(self):
-        self.main()
-
-    #Create a display
-    def display(self):
-        self.screen = fenetre
-
-    #Update the display and show the button
-    def update_display(self):
-        #Parameters:               surface,      color,       x,   y,   length, height, width,    text,      text_color
-        self.Button1.create_button(self.screen, (127,51,6), 100, 360, 500,    75,    0,        "Jouer", (255,255,255))
-        self.Button3.create_button(self.screen, (127,51,6), 100, 465, 500,    75,    0,        "Tutoriel", (255,255,255))
-        self.Button2.create_button(self.screen,(127,51,6),100,570,500,75,0,"Credit",(255,255,255))
-        pygame.display.flip()
-
-    #Run the loop
-    def main(self):
-        self.Button1 = Buttons.Button()
-        self.Button3 = Buttons.Button()
-        self.Button2 = Buttons.Button()
-        self.display()
-        while True:
-            self.update_display()
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                elif event.type == MOUSEBUTTONDOWN:
-                    if self.Button1.pressed(pygame.mouse.get_pos()):
-                        Jeu(score)
-                    if self.Button3.pressed(pygame.mouse.get_pos()):
-                        Tutoriel()
-                    if self.Button2.pressed(pygame.mouse.get_pos()):
-                        Credit()
-
-
-
 
 
 
