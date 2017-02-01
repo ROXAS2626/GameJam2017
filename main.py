@@ -137,6 +137,8 @@ def Jeu(score):
         fenetre.blit(zizou_normal, (230,130))
         monObjet.movement()
         fenetre.blit(monObjet.get_img(), monObjet.get_rect())
+        load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10), 2)
+        pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10), 3)
         # Boucle sur les différents évènement reçut
         for event in pygame.event.get():
             if event.type == USEREVENT+1:
