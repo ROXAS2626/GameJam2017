@@ -25,9 +25,9 @@ pygame.init()
 # création de la fenêtre
 fenetre  = pygame.display.set_mode((700,700), RESIZABLE)
 pygame.display.set_caption('KoudBoul')
-
+score = 0
 #################### DEBUT DU JEU ####################
-def Jeu():
+def Jeu(score):
 #################### VARIABLES GLOBALES DU JEU ####################
     fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()     # Image de fond
     font = pygame.font.Font(None, 24)       # Création de la font
@@ -37,7 +37,6 @@ def Jeu():
     pygame.time.set_timer(USEREVENT+1, 1000) # 1 seconde c'est 1000 millisecondes
 
     # Création des variables globales des Scores
-    points = 0
     multiplicateur = 1
     combo = 0
     # variable globale fixe longueur combo
@@ -129,7 +128,7 @@ def Jeu():
                         affiche_score()
                         pygame.display.flip()
                         pygame.time.delay(2000)
-                        Game_Over()
+                        Game_Over(score)
                         pygame.display.flip()
                 else:
                     #on test si le bouton correspond au bouton
@@ -156,7 +155,7 @@ def Jeu():
                         affiche_score()
 
 
-                        #-----------fleche roucge debut
+                        #-----------fleche rouge debut
                         if flecheCour=="../GameJam2017/Images/fleche_gauche_noire.png":
                             liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_gauche_rouge.png"
                         elif flecheCour=="../GameJam2017/Images/fleche_haut_noire.png":
@@ -175,7 +174,6 @@ def Jeu():
                         else: posPrem = 50
 
                         while i < longueur_combo:
-                            print liste_fleches[i]
                             fle_n = pygame.image.load(liste_fleches[i])
                             fenetre.blit(fle_n, (posPrem + (125*i),500))
                             i = i+1
@@ -196,7 +194,11 @@ def Jeu():
 
                         # Deplacement de la pasteque
                         if isinstance(monObjet, Classes.PastequeDoree):     # Si l'objet est une Pasteque Doree
+<<<<<<< HEAD
                             points += 200
+=======
+                            score += 400
+>>>>>>> 49dbcbe0b5c16ba5ea5041a0bdc95c8b0df41a0e
                             if multiplicateur < 4:
                                 multiplicateur = multiplicateur * 2
                             temps += 2
@@ -260,7 +262,7 @@ def Jeu():
                             time.sleep(.250)
                             pygame.time.delay(200)
                         elif isinstance(monObjet, Classes.PastequePourrie):
-                            points += 200
+                            score += 200
                             temps += 1
                             pasteque_pourrie_defoncee = pygame.image.load("../GameJam2017/Images/pasteque_pourrie_defoncee.png").convert_alpha()
                             monObjet.image = pasteque_pourrie_defoncee
@@ -271,7 +273,7 @@ def Jeu():
                             pygame.display.flip()
                             pygame.time.delay(200)
                         elif isinstance(monObjet, Classes.Pasteque):        # Si l'objet est une Pasteque
-                            points += 100 * multiplicateur
+                            score += 100 * multiplicateur
                             temps += 1
                             pasteque_defoncee = pygame.image.load("../GameJam2017/Images/pasteque_defoncee.png").convert_alpha()
                             monObjet.image = pasteque_defoncee
@@ -305,7 +307,7 @@ def Jeu():
         def affiche_score():
             # Si le temps est inférieur ou égal à 0 alors le joueur a perdu
             if temps <= 0:
-                Game_Over()
+                Game_Over(score)
                 pygame.display.flip()
 
             # On affiche le temps restant
@@ -317,7 +319,7 @@ def Jeu():
                 fenetre.blit(timer_text, (500, 30))
 
             # On affiche les scores
-            points_text = font.render("Points : {0}".format(points), 1, (255,255,255))
+            points_text = font.render("Points : {0}".format(score), 1, (255,255,255))
             multiplicateur_text = font.render("Multiplicateur : {0}".format(multiplicateur), 1, (255,255,255))
             combo_text = font.render("Combo : {0}".format(combo), 1, (255,255,255))
             fenetre.blit(points_text, (30,30))
@@ -342,7 +344,6 @@ def Jeu():
 
         #On refresh l'affichage
         pygame.display.flip()
-
 
         # Limite le nombre d'image par secondes
         pygame.time.wait(10)
@@ -372,45 +373,6 @@ def menuMain(): #procedure qui affiche le menu
 #################### TABLEAU DES SCORES ####################
 def leaderBoard():
 
-    fenetre = pygame.display.set_mode((700,700), RESIZABLE)
-
-    # Création fond d'écran
-    fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
-    fenetre.blit(fond_e,(0,0))
-
-    font = pygame.font.Font(None, 33)
-    titre = font.render("Leader Board",1,(255,0,0))
-    fenetre.blit(titre,(230,150))
-
-    while 1:
-        # Boucle sur les différents évènement reçut
-        for event in pygame.event.get():    # Ferme la fenetre si appuie sur la croix rouge
-            if event.type == QUIT:
-                sys.exit()
-
-
-        #On refresh l'affichage
-        pygame.display.flip()
-#################### FIN DU TABLEAU DES SCORES ####################
-
-#################### AFFICHAGE GAME OVER ####################
-def Game_Over():
-    fenetre = pygame.display.set_mode((700,700), RESIZABLE)
-
-    # Création fond d'écran
-    fond_e = pygame.image.load("Images/gameOver.png").convert()
-
-
-    # Création du texte du score
-    fenetre.blit(fond_e,(0,0))
-    font = pygame.font.Font(None, 24)
-
-
-    pygame.display.flip()
-
-    time.sleep(2)
-    leaderBoard()
-
     class Button:
         def __init__(self):
             self.main()
@@ -422,7 +384,7 @@ def Game_Over():
         #Update the display and show the button
         def update_display(self):
             #Parameters:               surface,      color,       x,   y,   length, height, width,    text,      text_color
-            self.Button1.create_button(self.screen, (127,51,6), 50, 600, 250,    75,    0,        "Retour", (255,255,255))
+            self.Button1.create_button(self.screen, (127,51,6), 50, 600, 250,    75,    0,        "Rejouer", (255,255,255))
             pygame.display.flip()
 
 
@@ -437,21 +399,77 @@ def Game_Over():
                         pygame.quit()
                     elif event.type == MOUSEBUTTONDOWN:
                         if self.Button1.pressed(pygame.mouse.get_pos()):
-                            menuMain()
+                            Jeu(score)
 
-    def menu(): #procedure qui affiche le menu
+    fenetre = pygame.display.set_mode((700,700), RESIZABLE)
 
-        # musique du menu
-        pygame.mixer.music.load("Transforyou.mp3")
-        pygame.mixer.music.play()
+    # Création fond d'écran
+    fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
+    fenetre.blit(fond_e,(0,0))
 
-        #création fond d'écran menu
-        fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
-        fenetre.blit(fond_e,(0,0))              #affiche l'image "fond_e" aux coordonnées "(0,0)" de la fenêtre "fenetre"
-        pygame.display.flip()                   #rafraichit la fenêtre pour voir les changements
+    font = pygame.font.Font(None, 50)
+    titre = font.render("Leader Board",1,(255,0,0))
+    fenetre.blit(titre,(247,70))
 
 
-        boutonJouer = Button()
+    boutonRejouer = Button()
+    while 1:
+        # Boucle sur les différents évènement reçut
+        for event in pygame.event.get():    # Ferme la fenetre si appuie sur la croix rouge
+            if event.type == QUIT:
+                sys.exit()
+
+        #On refresh l'affichage
+        pygame.display.flip()
+
+#################### FIN DU TABLEAU DES SCORES ####################
+
+#################### AFFICHAGE GAME OVER ####################
+def Game_Over(score):
+    fenetre = pygame.display.set_mode((700,700), RESIZABLE)
+
+    # Création fond d'écran
+    fond_e = pygame.image.load("Images/gameOver.png").convert()
+
+
+    # Création du texte du score
+    fenetre.blit(fond_e,(0,0))
+    font = pygame.font.Font(None, 24)
+
+
+    font = pygame.font.Font(None, 35)
+    points = font.render("Score : {0}".format(score) ,1,(0,0,0))
+    fenetre.blit(points,(400,590))
+
+    class Button:
+        def __init__(self):
+            self.main()
+
+        #Create a display
+        def display(self):
+            self.screen = fenetre
+
+        #Update the display and show the button
+        def update_display(self):
+            #Parameters:               surface,      color,       x,   y,   length, height, width,    text,      text_color
+            self.Button1.create_button(self.screen, (127,51,6), 400, 639, 250,    37,    0,        "Suivant", (255,255,255))
+            pygame.display.flip()
+
+
+        #Run the loop
+        def main(self):
+            self.Button1 = Buttons.Button()
+            self.display()
+            while True:
+                self.update_display()
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                    elif event.type == MOUSEBUTTONDOWN:
+                        if self.Button1.pressed(pygame.mouse.get_pos()):
+                            leaderBoard()
+
+    boutonSuivant = Button()
 
     while 1:
         # Boucle sur les différents évènement reçut
@@ -467,7 +485,7 @@ def Game_Over():
 
         # Limite le nombre d'image par secondes
         pygame.time.wait(10)
-        menu()
+
 #################### FIN GAME OVER ####################
 
 #################### AFFICHAGE CREDIT ####################
@@ -890,7 +908,7 @@ class Button:
                     pygame.quit()
                 elif event.type == MOUSEBUTTONDOWN:
                     if self.Button1.pressed(pygame.mouse.get_pos()):
-                        Jeu()
+                        Jeu(score)
                     if self.Button3.pressed(pygame.mouse.get_pos()):
                         Tutoriel()
                     if self.Button2.pressed(pygame.mouse.get_pos()):
