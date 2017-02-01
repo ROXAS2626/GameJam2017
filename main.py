@@ -175,8 +175,8 @@ def Jeu(score,nomDuJoueur):
 
         monObjet.movement()
         fenetre.blit(monObjet.get_img(), monObjet.get_rect())
-        load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10), 2)
-        pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10), 3)
+        pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10))
+        load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10))
         # Boucle sur les différents évènement reçut
         for event in pygame.event.get():
             if event.type == USEREVENT+1:
@@ -245,7 +245,7 @@ def Jeu(score,nomDuJoueur):
 
                         #Affichage du temps perdu
                         temps1 = font3.render("-5s",1,(240, 10, 10))
-                        fenetre.blit(temps1, (450,150))
+                        fenetre.blit(temps1, (450,75))
 
                         fenetre.blit(monObjet.get_img(), monObjet.get_rect())
                         affiche_score(nomDuJoueur)
@@ -313,8 +313,8 @@ def Jeu(score,nomDuJoueur):
                             pasteque_defoncer = pygame.image.load("Images/pasteque_defoncee.png")
                             monObjet.image = pasteque_doree_defoncee
                             fenetre.blit(fond_e, (0,0))
-                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10), 2)
-                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10), 3)
+                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10))
+                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10))
                             fenetre.blit(combo_image, (250,475))
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
                             if multiplicateur == 2:
@@ -337,8 +337,8 @@ def Jeu(score,nomDuJoueur):
                             time.sleep(.250)
                             monObjet.image = pasteque
                             fenetre.blit(fond_e, (0,0))
-                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10), 2)
-                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10), 3)
+                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10))
+                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10))
                             fenetre.blit(combo_image, (253,478))
                             fenetre.blit(zizou_normal, (230,130))
                             if multiplicateur == 2:
@@ -361,58 +361,8 @@ def Jeu(score,nomDuJoueur):
                             time.sleep(.250)
                             monObjet.image = pasteque_defoncer
                             fenetre.blit(fond_e, (0,0))
-                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10), 2)
-                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10), 3)
-                            fenetre.blit(combo_image, (250,475))
-                            fenetre.blit(zizou_qui_casse_vraiment, (170,76))
-                            if multiplicateur == 2:
-
-                                #Affichage des points
-                                points1 = font3.render("+500",1,(255,255,255))
-                                fenetre.blit(points1, (175,150))
-
-                                fenetre.blit(combo_x2, (410,105))
-                            elif multiplicateur == 4:
-
-                                #Affichage des points
-                                points1 = font3.render("+1000",1,(255,255,255))
-                                fenetre.blit(points1, (175,150))
-
-                                fenetre.blit(combo_x4, (410,105))
-                            fenetre.blit(monObjet.get_img(), monObjet.get_rect())
-                            temps += 1
-                            score += 100
-                            affiche_score(nomDuJoueur)
-                            pygame.display.flip()
-                            time.sleep(.250)
-                            monObjet.image = pasteque
-                            fenetre.blit(fond_e, (0,0))
-                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10), 2)
-                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10), 3)
-                            fenetre.blit(combo_image, (253,478))
-                            fenetre.blit(zizou_normal, (230,130))
-                            if multiplicateur == 2:
-
-                                #Affichage des points
-                                points1 = font3.render("+500",1,(255,255,255))
-                                fenetre.blit(points1, (175,150))
-
-                                fenetre.blit(combo_x2, (407,108))
-                            elif multiplicateur == 4:
-
-                                #Affichage des points
-                                points1 = font3.render("+1000",1,(255,255,255))
-                                fenetre.blit(points1, (175,150))
-
-                                fenetre.blit(combo_x4, (407,108))
-                            fenetre.blit(monObjet.get_img(), monObjet.get_rect())
-                            affiche_score(nomDuJoueur)
-                            pygame.display.flip()
-                            time.sleep(.250)
-                            monObjet.image = pasteque_defoncer
-                            fenetre.blit(fond_e, (0,0))
-                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10), 2)
-                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10), 3)
+                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10))
+                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10))
                             fenetre.blit(combo_image, (250,475))
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
                             if multiplicateur == 2:
@@ -437,8 +387,8 @@ def Jeu(score,nomDuJoueur):
                             time.sleep(.250)
                             monObjet.image = pasteque
                             fenetre.blit(fond_e, (0,0))
-                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10), 2)
-                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10), 3)
+                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10))
+                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10))
                             fenetre.blit(combo_image, (253,478))
                             fenetre.blit(zizou_normal, (230,130))
                             if multiplicateur == 2:
@@ -461,8 +411,58 @@ def Jeu(score,nomDuJoueur):
                             time.sleep(.250)
                             monObjet.image = pasteque_defoncer
                             fenetre.blit(fond_e, (0,0))
-                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10), 2)
-                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10), 3)
+                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10))
+                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10))
+                            fenetre.blit(combo_image, (250,475))
+                            fenetre.blit(zizou_qui_casse_vraiment, (170,76))
+                            if multiplicateur == 2:
+
+                                #Affichage des points
+                                points1 = font3.render("+500",1,(255,255,255))
+                                fenetre.blit(points1, (175,150))
+
+                                fenetre.blit(combo_x2, (410,105))
+                            elif multiplicateur == 4:
+
+                                #Affichage des points
+                                points1 = font3.render("+1000",1,(255,255,255))
+                                fenetre.blit(points1, (175,150))
+
+                                fenetre.blit(combo_x4, (410,105))
+                            fenetre.blit(monObjet.get_img(), monObjet.get_rect())
+                            temps += 1
+                            score += 100
+                            affiche_score(nomDuJoueur)
+                            pygame.display.flip()
+                            time.sleep(.250)
+                            monObjet.image = pasteque
+                            fenetre.blit(fond_e, (0,0))
+                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10))
+                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10))
+                            fenetre.blit(combo_image, (253,478))
+                            fenetre.blit(zizou_normal, (230,130))
+                            if multiplicateur == 2:
+
+                                #Affichage des points
+                                points1 = font3.render("+500",1,(255,255,255))
+                                fenetre.blit(points1, (175,150))
+
+                                fenetre.blit(combo_x2, (407,108))
+                            elif multiplicateur == 4:
+
+                                #Affichage des points
+                                points1 = font3.render("+1000",1,(255,255,255))
+                                fenetre.blit(points1, (175,150))
+
+                                fenetre.blit(combo_x4, (407,108))
+                            fenetre.blit(monObjet.get_img(), monObjet.get_rect())
+                            affiche_score(nomDuJoueur)
+                            pygame.display.flip()
+                            time.sleep(.250)
+                            monObjet.image = pasteque_defoncer
+                            fenetre.blit(fond_e, (0,0))
+                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10))
+                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10))
                             fenetre.blit(combo_image, (250,475))
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
                             if multiplicateur == 2:
@@ -495,8 +495,8 @@ def Jeu(score,nomDuJoueur):
                             pasteque_pourrie_defoncee = pygame.image.load("../GameJam2017/Images/pasteque_pourrie_defoncee.png").convert_alpha()
                             monObjet.image = pasteque_pourrie_defoncee
                             fenetre.blit(fond_e, (0,0))
-                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10), 2)
-                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10), 3)
+                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10))
+                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10))
                             fenetre.blit(zizou_qui_casse_pourris, (170,76))
                             if multiplicateur == 1:
 
@@ -532,8 +532,8 @@ def Jeu(score,nomDuJoueur):
                             pasteque_defoncee = pygame.image.load("../GameJam2017/Images/pasteque_defoncee.png").convert_alpha()
                             monObjet.image = pasteque_defoncee
                             fenetre.blit(fond_e, (0,0))
-                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10), 2)
-                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10), 3)
+                            pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10))
+                            load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10))
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
                             if multiplicateur == 1:
 
