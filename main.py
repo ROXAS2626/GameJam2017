@@ -25,9 +25,9 @@ pygame.init()
 # création de la fenêtre
 fenetre  = pygame.display.set_mode((700,700), RESIZABLE)
 pygame.display.set_caption('KoudBoul')
-
+score = 0
 #################### DEBUT DU JEU ####################
-def Jeu():
+def Jeu(score):
 #################### VARIABLES GLOBALES DU JEU ####################
     fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()     # Image de fond
     font = pygame.font.Font(None, 24)       # Création de la font
@@ -37,7 +37,6 @@ def Jeu():
     pygame.time.set_timer(USEREVENT+1, 1000) # 1 seconde c'est 1000 millisecondes
 
     # Création des variables globales des Scores
-    points = 0
     multiplicateur = 1
     combo = 0
     # variable globale fixe longueur combo
@@ -129,7 +128,7 @@ def Jeu():
                         affiche_score()
                         pygame.display.flip()
                         pygame.time.delay(2000)
-                        Game_Over()
+                        Game_Over(score)
                         pygame.display.flip()
                 else:
                     #on test si le bouton correspond au bouton
@@ -196,7 +195,7 @@ def Jeu():
 
                         # Deplacement de la pasteque
                         if isinstance(monObjet, Classes.PastequeDoree):     # Si l'objet est une Pasteque Doree
-                            points += 400
+                            score += 400
                             if multiplicateur < 4:
                                 multiplicateur = multiplicateur * 2
                             temps += 5
@@ -209,7 +208,7 @@ def Jeu():
                             pygame.display.flip()
                             pygame.time.delay(200)
                         elif isinstance(monObjet, Classes.PastequePourrie):
-                            points += 200
+                            score += 200
                             temps += 1
                             pasteque_pourrie_defoncee = pygame.image.load("../GameJam2017/Images/pasteque_pourrie_defoncee.png").convert_alpha()
                             monObjet.image = pasteque_pourrie_defoncee
@@ -220,7 +219,7 @@ def Jeu():
                             pygame.display.flip()
                             pygame.time.delay(200)
                         elif isinstance(monObjet, Classes.Pasteque):        # Si l'objet est une Pasteque
-                            points += 100 * multiplicateur
+                            score += 100 * multiplicateur
                             temps += 1
                             pasteque_defoncee = pygame.image.load("../GameJam2017/Images/pasteque_defoncee.png").convert_alpha()
                             monObjet.image = pasteque_defoncee
@@ -254,7 +253,7 @@ def Jeu():
         def affiche_score():
             # Si le temps est inférieur ou égal à 0 alors le joueur a perdu
             if temps <= 0:
-                Game_Over()
+                Game_Over(score)
                 pygame.display.flip()
 
             # On affiche le temps restant
@@ -266,7 +265,7 @@ def Jeu():
                 fenetre.blit(timer_text, (500, 30))
 
             # On affiche les scores
-            points_text = font.render("Points : {0}".format(points), 1, (255,255,255))
+            points_text = font.render("Points : {0}".format(score), 1, (255,255,255))
             multiplicateur_text = font.render("Multiplicateur : {0}".format(multiplicateur), 1, (255,255,255))
             combo_text = font.render("Combo : {0}".format(combo), 1, (255,255,255))
             fenetre.blit(points_text, (30,30))
@@ -291,7 +290,6 @@ def Jeu():
 
         #On refresh l'affichage
         pygame.display.flip()
-
 
         # Limite le nombre d'image par secondes
         pygame.time.wait(10)
@@ -347,7 +345,7 @@ def leaderBoard():
                         pygame.quit()
                     elif event.type == MOUSEBUTTONDOWN:
                         if self.Button1.pressed(pygame.mouse.get_pos()):
-                            Jeu()
+                            Jeu(score)
 
     fenetre = pygame.display.set_mode((700,700), RESIZABLE)
 
@@ -373,7 +371,7 @@ def leaderBoard():
 #################### FIN DU TABLEAU DES SCORES ####################
 
 #################### AFFICHAGE GAME OVER ####################
-def Game_Over():
+def Game_Over(score):
     fenetre = pygame.display.set_mode((700,700), RESIZABLE)
 
     # Création fond d'écran
@@ -386,8 +384,8 @@ def Game_Over():
 
 
     font = pygame.font.Font(None, 35)
-    score = font.render("Score : " ,1,(0,0,0))
-    fenetre.blit(score,(400,590))
+    points = font.render("Score : {0}".format(score) ,1,(0,0,0))
+    fenetre.blit(points,(400,590))
 
     class Button:
         def __init__(self):
@@ -856,7 +854,7 @@ class Button:
                     pygame.quit()
                 elif event.type == MOUSEBUTTONDOWN:
                     if self.Button1.pressed(pygame.mouse.get_pos()):
-                        Jeu()
+                        Jeu(score)
                     if self.Button3.pressed(pygame.mouse.get_pos()):
                         Tutoriel()
                     if self.Button2.pressed(pygame.mouse.get_pos()):
