@@ -322,25 +322,55 @@ def menuMain(): #procedure qui affiche le menu
 #################### TABLEAU DES SCORES ####################
 def leaderBoard():
 
+    class Button:
+        def __init__(self):
+            self.main()
+
+        #Create a display
+        def display(self):
+            self.screen = fenetre
+
+        #Update the display and show the button
+        def update_display(self):
+            #Parameters:               surface,      color,       x,   y,   length, height, width,    text,      text_color
+            self.Button1.create_button(self.screen, (127,51,6), 50, 600, 250,    75,    0,        "Rejouer", (255,255,255))
+            pygame.display.flip()
+
+
+        #Run the loop
+        def main(self):
+            self.Button1 = Buttons.Button()
+            self.display()
+            while True:
+                self.update_display()
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                    elif event.type == MOUSEBUTTONDOWN:
+                        if self.Button1.pressed(pygame.mouse.get_pos()):
+                            Jeu()
+
     fenetre = pygame.display.set_mode((700,700), RESIZABLE)
 
     # Création fond d'écran
     fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
     fenetre.blit(fond_e,(0,0))
 
-    font = pygame.font.Font(None, 33)
+    font = pygame.font.Font(None, 50)
     titre = font.render("Leader Board",1,(255,0,0))
-    fenetre.blit(titre,(230,150))
+    fenetre.blit(titre,(247,70))
 
+
+    boutonRejouer = Button()
     while 1:
         # Boucle sur les différents évènement reçut
         for event in pygame.event.get():    # Ferme la fenetre si appuie sur la croix rouge
             if event.type == QUIT:
                 sys.exit()
 
-
         #On refresh l'affichage
         pygame.display.flip()
+
 #################### FIN DU TABLEAU DES SCORES ####################
 
 #################### AFFICHAGE GAME OVER ####################
