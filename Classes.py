@@ -80,6 +80,8 @@ class Pasteque(MySprite):
          if self.rect.right > 350:
              self.speed[0] = 0
 
+
+
     # Retourne les points
     def get_pts(self):
         return self.points
