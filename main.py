@@ -924,7 +924,7 @@ def Credit():
         #Update the display and show the button
         def update_display(self):
             #Parameters:               surface,      color,       x,   y,   length, height, width,    text,      text_color
-            self.Button1.create_button(self.screen, (127,51,6), 100, 550, 500,    75,    0,        "Retour", (255,255,255))
+            self.Button1.create_button(self.screen, (127,51,6), 100, 570, 500,    75,    0,        "Retour", (255,255,255))
             pygame.display.flip()
 
 
@@ -962,19 +962,19 @@ def Credit():
         PDR2 = font.render("Nous esperons que cela vous a procure un plaisir malsain de casser les pasteques.",1,(255,255,255))
         PDR3 = font.render("NB : Aucune pasteque n'a ete maltraitee pendant la creation du jeu.",1,(255,255,255))
         PDR4 = font.render("Nous ne sommes pas sponsorises par Zizou.",1,(255,255,255))
-        PDR5 = font.render("Sources : Youtube, StackOverFlow, OpenClassroom",1,(255,255,255))
+        PDR5 = font.render("Sources : Youtube, StackOverFlow, OpenClassroom, Pygame, Gimp",1,(255,255,255))
 
-        fenetre.blit(Nom,(250,175))
-        fenetre.blit(Nom2,(250,200))
-        fenetre.blit(Nom3,(250,225))
-        fenetre.blit(Nom4,(250,250))
-        fenetre.blit(Nom5,(250,275))
+        fenetre.blit(Nom,(250,195))
+        fenetre.blit(Nom2,(250,225))
+        fenetre.blit(Nom3,(250,255))
+        fenetre.blit(Nom4,(250,285))
+        fenetre.blit(Nom5,(250,315))
 
         fenetre.blit(PDR,(150,375))
         fenetre.blit(PDR2,(25,400))
-        fenetre.blit(PDR3,(100,450))
-        fenetre.blit(PDR4,(165,475))
-        fenetre.blit(PDR5,(140,500))
+        fenetre.blit(PDR3,(100,460))
+        fenetre.blit(PDR4,(136,485))
+        fenetre.blit(PDR5,(90,530))
 
         boutonJouer = Button()
 
