@@ -2,7 +2,7 @@
 #ligne permettant l'utilisation des accents
 
 #importation de Pygame
-import pygame, Classes, random, time, eztext
+import pygame, Classes, random, time, eztext, string, operator
 from pygame.locals import *
 
 
@@ -676,7 +676,7 @@ def menuMain(): #procedure qui affiche le menu
 #################### FIN DU MENU ####################
 
 #################### TABLEAU DES SCORES ####################
-def leaderBoard():
+def leaderBoard(score, nomDuJoueur):
 
     class Button:
         def __init__(self):
@@ -710,6 +710,78 @@ def leaderBoard():
                         elif self.Button2.pressed(pygame.mouse.get_pos()):
                             menuMain()
 
+
+    ##gestion de score grâce au fichier#######################
+    #insertion de valeur dans le fichier########################""
+    fichier = open("testfile.txt","a")
+
+    fichier.write("%d|%s\n" % (score, nomDuJoueur))
+
+    fichier.close()
+
+#tri du fichier############
+    #ouverture du fichier en mode lecture
+    fichier = open("testfile.txt","r")
+
+    #sauvegarde du contenu du fichier
+    str_temp = fichier.read()
+
+    #fermeture du fichier initial de score et ouverture en mode écriture
+    fichier.close()
+
+    #table intermédiaire supprimant \n
+    temp_tab1 = str_temp.split('\n')
+
+    #tableau contenant des tableaux de la forme [michel, 3200]
+    temp_tab2=[]
+    i=0
+    while i <= (len(temp_tab1)-2):
+        tab = temp_tab1[i].split('|')
+        temp_tab2.append( (int(tab[0]), tab[1]) )
+        i = i+1
+
+
+
+    #tri des scores
+    def getKey(item):
+        return item[0]
+
+    tabScoreTriee = sorted(temp_tab2, key = operator.itemgetter(0), reverse = True)
+
+
+    #insertion score trié dans fichier
+    fichier = open("testfile.txt","w")
+
+    for k in range(0, len(tabScoreTriee)):
+        fichier.write("%d|%s\n" % (int(tabScoreTriee[k][0]), tabScoreTriee[k][1]))
+
+    fichier.close()
+#fin tri fichier######################
+
+    poscourante=-1
+    for k in range(0, len(tabScoreTriee)):
+        if tabScoreTriee[k][1]==nomDuJoueur and tabScoreTriee[k][0]==score:
+            poscourante = k
+
+
+    def parcoursAffiche(bornInf, bornSup, tab):
+        tabRet = []
+        for k in range(bornInf, bornSup):
+            tabRet.append(tab[k])
+        return tabRet
+
+
+    #haut du tableau
+    if poscourante < 5:
+        tabAfficher = parcoursAffiche(0,11, tabScoreTriee)
+    #bas du tableau
+    elif poscourante > (len(tabScoreTriee)-5):
+        tabAfficher = parcoursAffiche(len(tabScoreTriee)-11,len(tabScoreTriee), tabScoreTriee)
+    #au milieu
+    else:
+        tabAfficher = parcoursAffiche(poscourante-6, poscourante+5, tabScoreTriee)
+
+
     fenetre = pygame.display.set_mode((700,700), RESIZABLE)
 
     # Création fond d'écran
@@ -725,17 +797,19 @@ def leaderBoard():
     fontRes = pygame.font.Font(None, 25)
     fontResJoueurCour = pygame.font.Font(None, 35)
     fenetre.blit(titre,(240,70))
-    nbResultat = 11
+    nbResultat = len(tabAfficher)
+
+
     i=0
     while i < nbResultat:
-        if i==5:
-            name = fontResJoueurCour.render("Name",1,(240,10,10))
-            score = fontResJoueurCour.render("Score",1,(240,10,10))
+        if tabAfficher[i][1]==nomDuJoueur and tabAfficher[i][0]==score:
+            name = fontResJoueurCour.render(tabAfficher[i][1],1,(240,10,10))
+            scoreaf = fontResJoueurCour.render(str(tabAfficher[i][0]),1,(240,10,10))
         else:
-            name = fontRes.render("Name",1,(255,255,255))
-            score = fontRes.render("Score",1,(255,255,255))
+            name = fontRes.render(tabAfficher[i][1],1,(255,255,255))
+            scoreaf = fontRes.render(str(tabAfficher[i][0]),1,(255,255,255))
         fenetre.blit(name,(200,120+i*40))
-        fenetre.blit(score,(380,120+i*40))
+        fenetre.blit(scoreaf,(380,120+i*40))
         i = i + 1
 
 
@@ -798,7 +872,7 @@ def Game_Over(score,nomDuJoueur):
                         pygame.quit()
                     elif event.type == MOUSEBUTTONDOWN:
                         if self.Button1.pressed(pygame.mouse.get_pos()):
-                            leaderBoard()
+                            leaderBoard(score, nomDuJoueur)
 
     def menu(): #procedure qui affiche le menu
 
