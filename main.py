@@ -848,7 +848,7 @@ def Credit():
         fenetre.blit(titre_credits,(200,50))    #affiche l'image "titre_credits" aux coordonnées "(200,50)" de la fenêtre "fenetre"
         pygame.display.flip()                   #rafraichit la fenêtre pour voir les changements
 
-        Nom = font.render("Bastien : Notre roi",1,(255,255,255))
+        Nom = font.render("Bastien : Notre Roi",1,(255,255,255))
         Nom2 = font.render("Nathan : Notre Guide",1,(255,255,255))
         Nom3 = font.render("Esteban : Notre Sauveur",1,(255,255,255))
         Nom4 = font.render("Lucas  : Notre Force",1,(255,255,255))
@@ -1186,7 +1186,8 @@ def Nom_Joueur(nomDuJoueur):
     fenetre.blit(fond_e,(0,0))
     font = pygame.font.Font(None, 35)
 
-    txtbx = eztext.Input(maxlength=45, color=(255,0,0), prompt='type here: ')
+    tnom = font.render("RENTREZ VOTRE NOM",1,(240, 10, 10))
+    tconf = font.render("VALIDER AVEC 'ENTER'",1,(240, 10, 10))
 
     class Button:
             def __init__(self):
@@ -1199,7 +1200,7 @@ def Nom_Joueur(nomDuJoueur):
             #Update the display and show the button
             def update_display(self):
                 #Parameters:               surface,      color,       x,   y,   length, height, width,    text,      text_color
-                self.Button1.create_button(self.screen, (127,51,6), 230, 490, 250,    75,    0,        "Valider", (255,255,255))
+                self.Button1.create_button(self.screen, (127,51,6), 230, 490, 250,    75,    0,        "Jouer", (255,255,255))
                 pygame.display.flip()
 
 
@@ -1212,11 +1213,15 @@ def Nom_Joueur(nomDuJoueur):
                 self.display()
                 self.update_display()
 
-    boutonValider = Button()
+
     #name = ""
 
     def name(nomDuJoueur):
-        font = pygame.font.Font(None, 50)
+        fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
+
+        font = pygame.font.Font(None, 35)
+
+
         b=True
         while b:
             for evt in pygame.event.get():
@@ -1228,12 +1233,20 @@ def Nom_Joueur(nomDuJoueur):
                     elif evt.key == K_RETURN:
                         b= False
                         return nomDuJoueur
-            print nomDuJoueur
-    txtbx.update(pygame.event.get())
-    # blit txtbx on the sceen
-    txtbx.draw(fenetre)
-    boutonValider.update_display()
+            fenetre.blit(fond_e,(0,0))
+            tnom = font.render("RENTREZ VOTRE NOM",1,(240, 10, 10))
+            tconf = font.render("VALIDER AVEC 'ENTER'",1,(240, 10, 10))
+            fenetre.blit(tnom,(205,175))
+            fenetre.blit(tconf,(205,195))
+            nomDJ = font.render(nomDuJoueur,True,(255,255,255))
+            rect = nomDJ.get_rect()
+            rect.center = fenetre.get_rect().center
+            fenetre.blit(nomDJ,rect)
+            pygame.display.flip()
     nomDuJoueur = name(nomDuJoueur)
+    boutonValider = Button()
+    boutonValider.update_display()
+
     while 1:
             # Boucle sur les différents évènement reçut
             for event in pygame.event.get():    # Ferme la fenetre si appuie sur la croix rouge
