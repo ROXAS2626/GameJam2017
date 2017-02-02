@@ -141,6 +141,8 @@ def Jeu(score,nomDuJoueur):
 
     soundTabFail = ["Musiques/rentrecheztamere.mp3" , "Musiques/ohleboulet.mp3", "Musiques/tulavaispasvuvenir.mp3"]
     soundTabFail2 = ["Musiques/coin.wav", "Musiques/buzzer.mp3"]
+    soundTabPasteque = ["Musiques/FirePunchImpact.wav", "Musiques/FirePunchImpact.wav", "Musiques/FirePunchImpact.wav", "Musiques/FirePunchImpact.wav", "Musiques/FirePunchImpact.wav", "Musiques/FirePunchImpact.wav" ,"Musiques/ronaldo.mp3", "Musiques/FirePunchImpact.wav","Musiques/FirePunchImpact.wav","Musiques/FirePunchImpact.wav",]
+
 #################### AFFICHAGE DE LA FENETRE DU JEU ####################
     liste_fleches = combo_random(longueur_combo);   # Création d'une liste de fleches aléatoires
     numFlecheCour = 0                               # La première fleche est la fleche 0
@@ -365,6 +367,8 @@ def Jeu(score,nomDuJoueur):
                             load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10))
                             fenetre.blit(combo_image, (250,475))
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
+                            pygame.mixer.music.load("Musiques/FirePunchImpact.wav")
+                            pygame.mixer.music.play()
                             if multiplicateur == 2:
 
                                 #Affichage des points
@@ -415,6 +419,8 @@ def Jeu(score,nomDuJoueur):
                             load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10))
                             fenetre.blit(combo_image, (250,475))
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
+                            pygame.mixer.music.load("Musiques/FirePunchImpact.wav")
+                            pygame.mixer.music.play()
                             if multiplicateur == 2:
 
                                 #Affichage des points
@@ -465,6 +471,8 @@ def Jeu(score,nomDuJoueur):
                             load_bar = pygame.draw.rect(fenetre, (255,255,0), pygame.Rect(250+(7*(30-temps)),100,7*temps,10))
                             fenetre.blit(combo_image, (250,475))
                             fenetre.blit(zizou_qui_casse_vraiment, (170,76))
+                            pygame.mixer.music.load("Musiques/FirePunchImpact.wav")
+                            pygame.mixer.music.play()
                             if multiplicateur == 2:
 
                                 #Affichage des points
@@ -525,7 +533,8 @@ def Jeu(score,nomDuJoueur):
                             pygame.time.delay(200)
 
                         elif isinstance(monObjet, Classes.Pasteque):        # Si l'objet est une Pasteque
-                            pygame.mixer.music.load("Musiques/FirePunchImpact.wav")
+                            numsound1 = random.randint(0,9)
+                            pygame.mixer.music.load(soundTabPasteque[numsound1])
                             pygame.mixer.music.play()
                             score += 100 * multiplicateur
                             temps += 1
@@ -562,7 +571,6 @@ def Jeu(score,nomDuJoueur):
                             pygame.display.flip()
                             pygame.time.delay(200)
                             time.sleep(0.2)
-                            pygame.mixer.music.stop()
                         # Incrémentation du combo
                         combo += 1
 
