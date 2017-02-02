@@ -888,7 +888,7 @@ def Credit():
         PDR2 = font.render("Nous esperons que cela vous a procure un plaisir malsain de casser les pasteques.",1,(255,255,255))
         PDR3 = font.render("NB : Aucune pasteque n'a ete maltraitee pendant la creation du jeu.",1,(255,255,255))
         PDR4 = font.render("Nous ne sommes pas sponsorises par Zizou.",1,(255,255,255))
-        PDR5 = font.render("Source : Youtube,StackOverFlow,OpenClassroom",1,(255,255,255))
+        PDR5 = font.render("Sources : Youtube, StackOverFlow, OpenClassroom",1,(255,255,255))
 
         fenetre.blit(Nom,(250,175))
         fenetre.blit(Nom2,(250,200))
