@@ -36,14 +36,18 @@ fenetre  = pygame.display.set_mode((700,700), RESIZABLE)
 pygame.display.set_caption('KoudBoul')
 score = 0
 nomDuJoueur = ""
+
+#définition des polices
+font = pygame.font.Font(None, 24)       # Création de la font
+font1 = pygame.font.Font(None, 40)       # Création de la font
+font2 = pygame.font.Font(None, 75)       # Création de la font2
+font3 = pygame.font.Font(None, 125)       # Création de la font3
+
 #################### DEBUT DU JEU ####################
 def Jeu(score,nomDuJoueur):
 #################### VARIABLES GLOBALES DU JEU ####################
     print nomDuJoueur
     fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()     # Image de fond
-    font = pygame.font.Font(None, 24)       # Création de la font
-    font2 = pygame.font.Font(None, 75)       # Création de la font2
-    font3 = pygame.font.Font(None, 125)       # Création de la font3
 
     # Création du timer
     temps = 30
@@ -52,6 +56,7 @@ def Jeu(score,nomDuJoueur):
     # Création des variables globales des Scores
     multiplicateur = 1
     combo = 0
+    score = 0
     # variable globale fixe longueur combo
     longueur_combo = 3
 
@@ -1209,10 +1214,9 @@ def Nom_Joueur(nomDuJoueur):
 
     # Création du texte du score
     fenetre.blit(fond_e,(0,0))
-    font = pygame.font.Font(None, 35)
 
-    tnom = font.render("RENTREZ VOTRE NOM",1,(240, 10, 10))
-    tconf = font.render("VALIDER AVEC 'ENTER'",1,(240, 10, 10))
+    tnom = font.render("Rentrez votre nom",1,(240, 10, 10))
+    tconf = font.render("Validez avec Entree",1,(240, 10, 10))
 
     class Button:
             def __init__(self):
@@ -1225,7 +1229,7 @@ def Nom_Joueur(nomDuJoueur):
             #Update the display and show the button
             def update_display(self):
                 #Parameters:               surface,      color,       x,   y,   length, height, width,    text,      text_color
-                self.Button1.create_button(self.screen, (127,51,6), 230, 490, 250,    75,    0,        "Jouer", (255,255,255))
+                self.Button1.create_button(self.screen, (127,51,6), 200, 500, 300,    100,    0,        "Jouer", (255,255,255))
                 pygame.display.flip()
 
 
@@ -1244,8 +1248,6 @@ def Nom_Joueur(nomDuJoueur):
     def name(nomDuJoueur):
         fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
 
-        font = pygame.font.Font(None, 35)
-
 
         b=True
         while b:
@@ -1259,10 +1261,10 @@ def Nom_Joueur(nomDuJoueur):
                         b= False
                         return nomDuJoueur
             fenetre.blit(fond_e,(0,0))
-            tnom = font.render("RENTREZ VOTRE NOM",1,(240, 10, 10))
-            tconf = font.render("VALIDER AVEC 'ENTER'",1,(240, 10, 10))
-            fenetre.blit(tnom,(205,175))
-            fenetre.blit(tconf,(205,195))
+            tnom = font1.render("Entrez votre nom",1,(255, 255, 255))
+            tconf = font1.render("Validez avec Entree",1,(255, 255, 255))
+            fenetre.blit(tnom,(225,175))
+            fenetre.blit(tconf,(220,205))
             nomDJ = font.render(nomDuJoueur,True,(255,255,255))
             rect = nomDJ.get_rect()
             rect.center = fenetre.get_rect().center
