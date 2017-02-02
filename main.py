@@ -711,9 +711,30 @@ def leaderBoard():
     fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
     fenetre.blit(fond_e,(0,0))
 
+
+    pygame.draw.rect(fenetre, (127,51,6), pygame.Rect(175,50,350,500))
+
     font = pygame.font.Font(None, 50)
-    titre = font.render("Leader Board",1,(255,0,0))
-    fenetre.blit(titre,(247,70))
+    titre = font.render("Leader Board",1,(255,255,255))
+
+    fontRes = pygame.font.Font(None, 25)
+    fontResJoueurCour = pygame.font.Font(None, 35)
+    fenetre.blit(titre,(240,70))
+    nbResultat = 11
+    i=0
+    while i < nbResultat:
+        if i==5:
+            name = fontResJoueurCour.render("Name",1,(240,10,10))
+            score = fontResJoueurCour.render("Score",1,(240,10,10))
+        else:
+            name = fontRes.render("Name",1,(255,255,255))
+            score = fontRes.render("Score",1,(255,255,255))
+        fenetre.blit(name,(200,120+i*40))
+        fenetre.blit(score,(380,120+i*40))
+        i = i + 1
+
+
+
 
 
     boutonRejouer = Button()
