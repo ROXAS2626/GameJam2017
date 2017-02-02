@@ -685,12 +685,14 @@ def leaderBoard():
         def update_display(self):
             #Parameters:               surface,      color,       x,   y,   length, height, width,    text,      text_color
             self.Button1.create_button(self.screen, (127,51,6), 50, 600, 250,    75,    0,        "Rejouer", (255,255,255))
+            self.Button2.create_button(self.screen, (127,51,6), 400, 600, 250,    75,    0,        "Quitter", (255,255,255))
             pygame.display.flip()
 
 
         #Run the loop
         def main(self):
             self.Button1 = Buttons.Button()
+            self.Button2 = Buttons.Button()
             self.display()
             while True:
                 self.update_display()
@@ -700,6 +702,8 @@ def leaderBoard():
                     elif event.type == MOUSEBUTTONDOWN:
                         if self.Button1.pressed(pygame.mouse.get_pos()):
                             Jeu(score, nomDuJoueur)
+                        elif self.Button2.pressed(pygame.mouse.get_pos()):
+                            menuMain()
 
     fenetre = pygame.display.set_mode((700,700), RESIZABLE)
 
@@ -707,9 +711,30 @@ def leaderBoard():
     fond_e = pygame.image.load("Images/fond_cuisine.jpg").convert()
     fenetre.blit(fond_e,(0,0))
 
+
+    pygame.draw.rect(fenetre, (127,51,6), pygame.Rect(175,50,350,500))
+
     font = pygame.font.Font(None, 50)
-    titre = font.render("Leader Board",1,(255,0,0))
-    fenetre.blit(titre,(247,70))
+    titre = font.render("Leader Board",1,(255,255,255))
+
+    fontRes = pygame.font.Font(None, 25)
+    fontResJoueurCour = pygame.font.Font(None, 35)
+    fenetre.blit(titre,(240,70))
+    nbResultat = 11
+    i=0
+    while i < nbResultat:
+        if i==5:
+            name = fontResJoueurCour.render("Name",1,(240,10,10))
+            score = fontResJoueurCour.render("Score",1,(240,10,10))
+        else:
+            name = fontRes.render("Name",1,(255,255,255))
+            score = fontRes.render("Score",1,(255,255,255))
+        fenetre.blit(name,(200,120+i*40))
+        fenetre.blit(score,(380,120+i*40))
+        i = i + 1
+
+
+
 
 
     boutonRejouer = Button()
