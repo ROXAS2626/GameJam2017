@@ -685,12 +685,14 @@ def leaderBoard():
         def update_display(self):
             #Parameters:               surface,      color,       x,   y,   length, height, width,    text,      text_color
             self.Button1.create_button(self.screen, (127,51,6), 50, 600, 250,    75,    0,        "Rejouer", (255,255,255))
+            self.Button2.create_button(self.screen, (127,51,6), 400, 600, 250,    75,    0,        "Quitter", (255,255,255))
             pygame.display.flip()
 
 
         #Run the loop
         def main(self):
             self.Button1 = Buttons.Button()
+            self.Button2 = Buttons.Button()
             self.display()
             while True:
                 self.update_display()
@@ -700,6 +702,8 @@ def leaderBoard():
                     elif event.type == MOUSEBUTTONDOWN:
                         if self.Button1.pressed(pygame.mouse.get_pos()):
                             Jeu(score, nomDuJoueur)
+                        elif self.Button2.pressed(pygame.mouse.get_pos()):
+                            menuMain()
 
     fenetre = pygame.display.set_mode((700,700), RESIZABLE)
 
