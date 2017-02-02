@@ -134,13 +134,13 @@ def Jeu(score,nomDuJoueur):
     	v = 0
     	while v < len(liste_temp):
     		 if(liste_temp[v] == 0):
-    			 liste_images.append("../GameJam2017/Images/fleche_gauche_noire.png")
+    			 liste_images.append("Images/fleche_gauche_noire.png")
     		 if(liste_temp[v] == 1):
-    			 liste_images.append("../GameJam2017/Images/fleche_droite_noire.png")
+    			 liste_images.append("Images/fleche_droite_noire.png")
     		 if(liste_temp[v] == 2):
-    			 liste_images.append("../GameJam2017/Images/fleche_haut_noire.png")
+    			 liste_images.append("Images/fleche_haut_noire.png")
     		 if(liste_temp[v] == 3):
-    			 liste_images.append("../GameJam2017/Images/fleche_bas_noire.png")
+    			 liste_images.append("Images/fleche_bas_noire.png")
     		 v = v + 1
     	return liste_images
 
@@ -223,17 +223,17 @@ def Jeu(score,nomDuJoueur):
                         pygame.display.flip()
                 else:
                     #on test si le bouton correspond au bouton
-                    if (flecheCour=="../GameJam2017/Images/fleche_gauche_noire.png" or flecheCour=="../GameJam2017/Images/fleche_droite_jaune.png") and event.key == K_LEFT:
-                        liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_gauche_verte.png"
+                    if (flecheCour=="Images/fleche_gauche_noire.png" or flecheCour=="Images/fleche_droite_jaune.png") and event.key == K_LEFT:
+                        liste_fleches[numFlecheCour]="Images/fleche_gauche_verte.png"
                         numFlecheCour = numFlecheCour + 1
-                    elif (flecheCour=="../GameJam2017/Images/fleche_haut_noire.png" or flecheCour=="../GameJam2017/Images/fleche_bas_jaune.png") and event.key == K_UP:
-                        liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_haut_verte.png"
+                    elif (flecheCour=="Images/fleche_haut_noire.png" or flecheCour=="Images/fleche_bas_jaune.png") and event.key == K_UP:
+                        liste_fleches[numFlecheCour]="Images/fleche_haut_verte.png"
                         numFlecheCour = numFlecheCour + 1
-                    elif (flecheCour=="../GameJam2017/Images/fleche_droite_noire.png" or flecheCour=="../GameJam2017/Images/fleche_gauche_jaune.png") and event.key == K_RIGHT:
-                        liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_droite_verte.png"
+                    elif (flecheCour=="Images/fleche_droite_noire.png" or flecheCour=="Images/fleche_gauche_jaune.png") and event.key == K_RIGHT:
+                        liste_fleches[numFlecheCour]="Images/fleche_droite_verte.png"
                         numFlecheCour = numFlecheCour + 1
-                    elif (flecheCour=="../GameJam2017/Images/fleche_bas_noire.png" or flecheCour=="../GameJam2017/Images/fleche_haut_jaune.png") and event.key == K_DOWN:
-                        liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_bas_verte.png"
+                    elif (flecheCour=="Images/fleche_bas_noire.png" or flecheCour=="Images/fleche_haut_jaune.png") and event.key == K_DOWN:
+                        liste_fleches[numFlecheCour]="Images/fleche_bas_verte.png"
                         numFlecheCour = numFlecheCour + 1
                     #sinon c'est que la touche pressées ne correspond pas
                     else:
@@ -259,14 +259,14 @@ def Jeu(score,nomDuJoueur):
 
 
                         #-----------fleche roucge debut
-                        if flecheCour=="../GameJam2017/Images/fleche_gauche_noire.png" or flecheCour=="../GameJam2017/Images/fleche_gauche_jaune.png":
-                            liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_gauche_rouge.png"
-                        elif flecheCour=="../GameJam2017/Images/fleche_haut_noire.png" or flecheCour=="../GameJam2017/Images/fleche_haut_jaune.png":
-                            liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_haut_rouge.png"
-                        elif flecheCour=="../GameJam2017/Images/fleche_droite_noire.png" or flecheCour=="../GameJam2017/Images/fleche_droite_jaune.png":
-                            liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_droite_rouge.png"
-                        elif flecheCour=="../GameJam2017/Images/fleche_bas_noire.png" or flecheCour=="../GameJam2017/Images/fleche_bas_jaune.png":
-                            liste_fleches[numFlecheCour]="../GameJam2017/Images/fleche_bas_rouge.png"
+                        if flecheCour=="Images/fleche_gauche_noire.png" or flecheCour=="Images/fleche_gauche_jaune.png":
+                            liste_fleches[numFlecheCour]="Images/fleche_gauche_rouge.png"
+                        elif flecheCour=="Images/fleche_haut_noire.png" or flecheCour=="Images/fleche_haut_jaune.png":
+                            liste_fleches[numFlecheCour]="Images/fleche_haut_rouge.png"
+                        elif flecheCour=="Images/fleche_droite_noire.png" or flecheCour=="Images/fleche_droite_jaune.png":
+                            liste_fleches[numFlecheCour]="Images/fleche_droite_rouge.png"
+                        elif flecheCour=="Images/fleche_bas_noire.png" or flecheCour=="Images/fleche_bas_jaune.png":
+                            liste_fleches[numFlecheCour]="Images/fleche_bas_rouge.png"
 
                         i = 0
                         posPrem = 0
@@ -505,7 +505,7 @@ def Jeu(score,nomDuJoueur):
                             pygame.mixer.music.play()
                             score += 200 * multiplicateur
                             temps += 1
-                            pasteque_pourrie_defoncee = pygame.image.load("../GameJam2017/Images/pasteque_pourrie_defoncee.png").convert_alpha()
+                            pasteque_pourrie_defoncee = pygame.image.load("Images/pasteque_pourrie_defoncee.png").convert_alpha()
                             monObjet.image = pasteque_pourrie_defoncee
                             fenetre.blit(fond_e, (0,0))
                             pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10))
@@ -543,7 +543,7 @@ def Jeu(score,nomDuJoueur):
                             pygame.mixer.music.play()
                             score += 100 * multiplicateur
                             temps += 1
-                            pasteque_defoncee = pygame.image.load("../GameJam2017/Images/pasteque_defoncee.png").convert_alpha()
+                            pasteque_defoncee = pygame.image.load("Images/pasteque_defoncee.png").convert_alpha()
                             monObjet.image = pasteque_defoncee
                             fenetre.blit(fond_e, (0,0))
                             pygame.draw.rect(fenetre, (255,0,0), pygame.Rect(250,100,7*30,10))
@@ -636,14 +636,14 @@ def Jeu(score,nomDuJoueur):
         while i < longueur_combo:
             #si c'est la derniere fleche de cette combinaison ET que l'ancien objet (saveObjet) est une pasteque pourrit alors on ecrit la fleche en jaune
             if i==(longueur_combo-1) and isinstance(saveObjet, Classes.PastequePourrie):
-                if liste_fleches[i]=="../GameJam2017/Images/fleche_haut_noire.png":
-                    liste_fleches[i]="../GameJam2017/Images/fleche_bas_jaune.png"
-                elif liste_fleches[i]=="../GameJam2017/Images/fleche_bas_noire.png":
-                    liste_fleches[i]="../GameJam2017/Images/fleche_haut_jaune.png"
-                elif liste_fleches[i]=="../GameJam2017/Images/fleche_gauche_noire.png":
-                    liste_fleches[i]="../GameJam2017/Images/fleche_droite_jaune.png"
-                elif liste_fleches[i]=="../GameJam2017/Images/fleche_droite_noire.png":
-                    liste_fleches[i]="../GameJam2017/Images/fleche_gauche_jaune.png"
+                if liste_fleches[i]=="Images/fleche_haut_noire.png":
+                    liste_fleches[i]="Images/fleche_bas_jaune.png"
+                elif liste_fleches[i]=="Images/fleche_bas_noire.png":
+                    liste_fleches[i]="Images/fleche_haut_jaune.png"
+                elif liste_fleches[i]=="Images/fleche_gauche_noire.png":
+                    liste_fleches[i]="Images/fleche_droite_jaune.png"
+                elif liste_fleches[i]=="Images/fleche_droite_noire.png":
+                    liste_fleches[i]="Images/fleche_gauche_jaune.png"
             fle_n = pygame.image.load(liste_fleches[i])
             fenetre.blit(fle_n, (posPrem + (125*i),500))
             i = i+1
